@@ -23,7 +23,7 @@ export class ClientItem {
   constructor(
     public readonly id: string,
     public readonly name: string,
-    public readonly shortName: string,
+    public readonly logo: string,
   ) {}
 }
 
@@ -98,12 +98,11 @@ export class SiteConfig {
   ];
 
   readonly clients: ClientItem[] = [
-    new ClientItem("emba", "АО «Эмбамунайгаз»", "EMG"),
-    new ClientItem("mmg", "АО «Мангистаумунайгаз»", "MMG"),
-    new ClientItem("kto", "АО «Казтрансойл»", "KTO"),
-    new ClientItem("nasar", "ТОО «NASAR Solutions»", "NASAR"),
-    new ClientItem("green", "ТОО «GREEN ATYRAU»", "GREEN"),
-    new ClientItem("smart", "ТОО «SMART TRANS»", "SMART"),
+    new ClientItem("emba", "АО «Эмбамунайгаз»", "/images/clients/embamunaigas.png"),
+    new ClientItem("mmg", "АО «Мангистаумунайгаз»", "/images/clients/mangistaumunaigaz.png"),
+    new ClientItem("kto", "АО «Казтрансойл»", "/images/clients/kaztransoil.png"),
+    new ClientItem("nasar", "ТОО «NASAR Solutions»", "/images/clients/nasar-solutions.jpg"),
+    new ClientItem("green", "ТОО «GREEN ATYRAU»", "/images/clients/green-atyrau.png"),
   ];
 
   readonly certifications: CertificationItem[] = [

@@ -11,17 +11,24 @@ import { site } from "../../shared/config/site";
       subtitle="clients.subtitle"
     />
 
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
       {
         site.clients.map((client, index) => (
           <article
             class:list={[
-              "reveal flex min-h-28 flex-col items-center justify-center gap-2 border border-border bg-bg-elevated px-4 py-6 text-center opacity-70 grayscale transition duration-300 hover:border-accent hover:bg-surface hover:opacity-100 hover:grayscale-0",
+              "reveal group flex min-h-40 flex-col items-center justify-center gap-4 border border-border bg-bg-elevated px-4 py-8 transition duration-300 hover:border-accent hover:bg-surface",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
-            <span class="font-display text-[1.75rem] tracking-[0.12em] text-accent">{client.shortName}</span>
-            <span class="text-sm text-soft">{client.name}</span>
+            <img
+              src={client.logo}
+              alt={client.name}
+              width="280"
+              height="140"
+              loading="lazy"
+              class="h-24 w-auto max-w-[90%] object-contain opacity-75 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:h-28"
+            />
+            <p class="text-center text-xs leading-snug text-muted">{client.name}</p>
           </article>
         ))
       }
