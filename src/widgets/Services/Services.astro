@@ -1,0 +1,39 @@
+---
+import SectionTitle from "../../shared/ui/SectionTitle.astro";
+import ServiceIcon from "../../shared/ui/ServiceIcon.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<section class="py-[var(--spacing-section)]" id="services">
+  <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+    <SectionTitle
+      eyebrow="services.eyebrow"
+      title="services.title"
+      subtitle="services.subtitle"
+    />
+
+    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {
+        site.services.map((service, index) => (
+          <article
+            class:list={[
+              "reveal group flex h-full flex-col gap-4 border border-border bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover hover:shadow-[0_12px_32px_rgb(0_0_0_/_0.35)]",
+              `reveal-delay-${(index % 3) + 1}`,
+            ]}
+          >
+            <div class="flex h-12 w-12 items-center justify-center border border-border-strong bg-accent-dim text-accent transition group-hover:border-accent">
+              <ServiceIcon name={service.icon} />
+            </div>
+            <h3 class="font-display text-[clamp(1.25rem,2.2vw,1.75rem)] uppercase tracking-[0.05em]">
+              <T path={`services.items.${service.id}.title`} />
+            </h3>
+            <p class="text-sm leading-relaxed text-muted">
+              <T path={`services.items.${service.id}.description`} />
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

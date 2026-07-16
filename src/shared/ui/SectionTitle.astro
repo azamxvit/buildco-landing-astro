@@ -1,0 +1,29 @@
+---
+import T from "./T.astro";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const { eyebrow, title, subtitle, class: className = "" } = Astro.props;
+---
+
+<header class:list={["mb-12 max-w-xl reveal", className]}>
+  <p class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+    <span class="inline-block h-0.5 w-6 bg-accent" aria-hidden="true"></span>
+    <T path={eyebrow} />
+  </p>
+  <h2 class="mb-3 font-display text-[clamp(2.5rem,6vw,4.25rem)] uppercase leading-[1.05] tracking-[0.03em]">
+    <T path={title} />
+  </h2>
+  {
+    subtitle && (
+      <p class="text-[1.0625rem] leading-relaxed text-soft">
+        <T path={subtitle} />
+      </p>
+    )
+  }
+</header>

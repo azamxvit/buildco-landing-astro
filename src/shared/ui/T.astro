@@ -1,0 +1,32 @@
+---
+import { messages, type Locale } from "../../messages";
+
+interface Props {
+  path: string;
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const { path, as: Tag = "span", class: className = "" } = Astro.props;
+
+function readPath(obj: unknown, keyPath: string): string {
+  const value = keyPath.split(".").reduce<unknown>((acc, key) => {
+    if (acc && typeof acc === "object" && key in acc) {
+      return (acc as Record<string, unknown>)[key];
+    }
+    return undefined;
+  }, obj);
+
+  return typeof value === "string" ? value : keyPath;
+}
+
+const locales: Locale[] = ["ru", "en", "kz"];
+---
+
+{
+  locales.map((locale) => (
+    <Tag class={className} data-i18n={locale}>
+      {readPath(messages[locale], path)}
+    </Tag>
+  ))
+}

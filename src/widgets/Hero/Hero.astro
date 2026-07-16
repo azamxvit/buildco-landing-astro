@@ -1,0 +1,68 @@
+---
+import Button from "../../shared/ui/Button.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<section class="relative flex min-h-screen items-end overflow-hidden pt-[var(--spacing-header)]" id="top" aria-label="Hero">
+  <div class="absolute inset-0" aria-hidden="true">
+    {
+      site.heroSlides.map((src, index) => (
+        <div
+          class:list={[
+            "absolute inset-0 bg-cover bg-center opacity-0 scale-105 transition-[opacity,transform] duration-[1200ms] ease-out data-[active=true]:opacity-100 data-[active=true]:scale-100 data-[active=true]:duration-[6000ms]",
+          ]}
+          style={`background-image: url('${src}')`}
+          data-hero-slide
+          data-active={index === 0 ? "true" : "false"}
+        />
+      ))
+    }
+  </div>
+
+  <div
+    class="absolute inset-0 bg-[linear-gradient(180deg,rgb(0_0_0_/_0.55)_0%,rgb(0_0_0_/_0.3)_40%,rgb(0_0_0_/_0.9)_100%),linear-gradient(90deg,rgb(0_0_0_/_0.6)_0%,transparent_55%)]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 mx-auto w-[min(100%-2.5rem,var(--container-max))] pb-20 pt-24 md:pb-28">
+    <p class="reveal mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+      <T path="brand.location" />
+    </p>
+    <h1 class="reveal reveal-delay-1 mb-5 max-w-[14ch] font-display text-[clamp(3.75rem,11vw,8rem)] uppercase leading-[0.95] tracking-[0.04em] text-white">
+      {site.brand}
+    </h1>
+    <div class="reveal reveal-delay-1 mb-6 h-1 w-16 bg-accent" aria-hidden="true"></div>
+    <p class="reveal reveal-delay-2 mb-10 max-w-xl font-display text-[clamp(1.5rem,3.5vw,2.25rem)] uppercase leading-snug tracking-[0.06em] text-accent">
+      <T path="hero.slogan" />
+    </p>
+    <div class="reveal reveal-delay-3 flex flex-wrap gap-3">
+      <Button href="#contact" variant="primary">
+        <T path="cta.primary" />
+      </Button>
+      <Button href="#projects" variant="outline">
+        <T path="cta.secondary" />
+      </Button>
+    </div>
+  </div>
+
+  <a
+    href="#about"
+    class="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-[0.6875rem] uppercase tracking-[0.18em] text-muted"
+  >
+    <T path="hero.scroll" />
+    <span class="h-10 w-px animate-pulse bg-gradient-to-b from-accent to-transparent" aria-hidden="true"></span>
+  </a>
+</section>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>("[data-hero-slide]");
+  if (slides.length > 1) {
+    let active = 0;
+    setInterval(() => {
+      slides[active]?.setAttribute("data-active", "false");
+      active = (active + 1) % slides.length;
+      slides[active]?.setAttribute("data-active", "true");
+    }, 5500);
+  }
+</script>

@@ -1,0 +1,139 @@
+---
+import Button from "../../shared/ui/Button.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-50 h-[var(--spacing-header)] border-b border-transparent transition duration-300 data-[scrolled=true]:border-border data-[scrolled=true]:bg-bg/90 data-[scrolled=true]:backdrop-blur-md"
+  id="site-header"
+  role="banner"
+  data-scrolled="false"
+>
+  <div class="mx-auto flex h-full w-[min(100%-2.5rem,var(--container-max))] items-center justify-between gap-4">
+    <a href="#top" class="flex shrink-0 flex-col leading-none" aria-label={site.brand}>
+      <span class="font-display text-[1.65rem] tracking-[0.08em] text-accent">{site.brand}</span>
+      <span class="text-[0.625rem] font-medium uppercase tracking-[0.22em] text-muted">
+        <T path="brand.location" />
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+      {
+        site.nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-[0.8125rem] font-medium tracking-wide text-soft transition hover:text-accent"
+          >
+            <T path={`nav.${item.key}`} />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="inline-flex overflow-hidden border border-border-strong" role="group" aria-label="Language">
+        {
+          (["ru", "en", "kz"] as const).map((lang) => (
+            <button
+              type="button"
+              class="cursor-pointer border-0 bg-transparent px-2.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-muted transition data-[active=true]:bg-accent data-[active=true]:text-bg"
+              data-lang-btn={lang}
+              data-active={lang === "ru" ? "true" : "false"}
+            >
+              {lang}
+            </button>
+          ))
+        }
+      </div>
+
+      <a
+        class="hidden items-center gap-2 text-sm font-semibold transition hover:text-accent sm:inline-flex"
+        href={site.contact.phoneHref}
+      >
+        {site.contact.phone}
+      </a>
+
+      <Button href="#contact" variant="primary" class="hidden md:inline-flex">
+        <T path="cta.call" />
+      </Button>
+
+      <button
+        type="button"
+        class="inline-flex h-10 w-10 cursor-pointer items-center justify-center border border-border-strong bg-transparent text-fg lg:hidden"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav
+    class="absolute inset-x-0 top-full flex max-h-0 flex-col gap-4 overflow-hidden border-b border-border bg-bg-elevated px-6 opacity-0 transition-all duration-300 data-[open=true]:max-h-96 data-[open=true]:py-6 data-[open=true]:opacity-100 lg:hidden"
+    id="mobile-nav"
+    aria-label="Mobile"
+    data-open="false"
+  >
+    {
+      site.nav.map((item) => (
+        <a href={item.href} class="text-sm font-medium text-soft transition hover:text-accent" data-mobile-link>
+          <T path={`nav.${item.key}`} />
+        </a>
+      ))
+    }
+    <a class="text-sm font-semibold" href={site.contact.phoneHref}>{site.contact.phone}</a>
+  </nav>
+</header>
+
+<script>
+  import type { Locale } from "../../messages";
+
+  const header = document.getElementById("site-header");
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileNav = document.getElementById("mobile-nav");
+  const langButtons = document.querySelectorAll<HTMLButtonElement>("[data-lang-btn]");
+
+  const setLocale = (locale: Locale) => {
+    document.documentElement.dataset.locale = locale;
+    document.documentElement.lang = locale === "kz" ? "kk" : locale;
+    langButtons.forEach((btn) => {
+      btn.dataset.active = btn.dataset.langBtn === locale ? "true" : "false";
+    });
+    localStorage.setItem("rc-locale", locale);
+  };
+
+  const saved = localStorage.getItem("rc-locale");
+  setLocale(saved === "en" || saved === "kz" ? saved : "ru");
+
+  langButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const locale = (btn.dataset.langBtn ?? "ru") as Locale;
+      setLocale(locale);
+    });
+  });
+
+  const onScroll = () => {
+    header?.setAttribute("data-scrolled", String(window.scrollY > 24));
+  };
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  menuToggle?.addEventListener("click", () => {
+    const open = mobileNav?.dataset.open !== "true";
+    mobileNav?.setAttribute("data-open", String(open));
+    menuToggle.setAttribute("aria-expanded", String(open));
+  });
+
+  document.querySelectorAll("[data-mobile-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav?.setAttribute("data-open", "false");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>

@@ -1,0 +1,48 @@
+---
+import SectionTitle from "../../shared/ui/SectionTitle.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<section class="py-[var(--spacing-section)]" id="about">
+  <div class="mx-auto grid w-[min(100%-2.5rem,var(--container-max))] items-start gap-12 lg:grid-cols-2">
+    <div>
+      <SectionTitle eyebrow="about.eyebrow" title="about.title" />
+      <div class="flex flex-col gap-5">
+        <p class="reveal reveal-delay-1 text-[1.0625rem] leading-relaxed text-soft">
+          <T path="about.p1" />
+        </p>
+        <p class="reveal reveal-delay-2 text-[1.0625rem] leading-relaxed text-soft">
+          <T path="about.p2" />
+        </p>
+        <div class="reveal reveal-delay-3 mt-4 grid gap-4 sm:grid-cols-3">
+          {
+            site.stats.map((stat) => (
+              <article class="border border-border border-l-4 border-l-accent bg-gradient-to-br from-surface to-bg-elevated p-5">
+                <p class="mb-2 font-display text-[clamp(2rem,4vw,3rem)] leading-none tracking-wide text-accent">
+                  {stat.value}
+                </p>
+                <p class="text-sm text-muted">
+                  <T path={`about.stats.${stat.labelKey}`} />
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal relative min-h-80">
+      <span class="pointer-events-none absolute -inset-x-3 -top-6 -bottom-3 border border-accent/45" aria-hidden="true"></span>
+      <img
+        src="/images/projects/t5.jpg"
+        alt={site.brand}
+        width="960"
+        height="1280"
+        loading="lazy"
+        class="relative h-full min-h-[22rem] w-full object-cover contrast-[1.05] saturate-90"
+      />
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
+    </div>
+  </div>
+</section>

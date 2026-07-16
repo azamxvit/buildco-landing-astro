@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-surface: #1a1a1a;
+  --color-surface-hover: #222222;
+  --color-border: #2a2a2a;
+  --color-border-strong: #3a3a3a;
+  --color-muted: #9a9a9a;
+  --color-soft: #c8c8c8;
+  --color-fg: #f5f5f5;
+  --color-accent: #f5a623;
+  --color-accent-hover: #ffb84a;
+  --color-accent-dim: rgb(245 166 35 / 0.12);
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-section: clamp(4.5rem, 10vw, 7.5rem);
+  --spacing-header: 5rem;
+  --container-max: 72rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
+  }
+
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    background-image:
+      radial-gradient(ellipse 70% 45% at 0% 0%, rgb(245 166 35 / 0.07), transparent 55%),
+      radial-gradient(ellipse 50% 35% at 100% 10%, rgb(245 166 35 / 0.04), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-accent text-bg;
+  }
+
+  [data-locale="ru"] [data-i18n]:not([data-i18n="ru"]),
+  [data-locale="en"] [data-i18n]:not([data-i18n="en"]),
+  [data-locale="kz"] [data-i18n]:not([data-i18n="kz"]) {
+    display: none !important;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 {
+    transition-delay: 80ms;
+  }
+
+  .reveal-delay-2 {
+    transition-delay: 160ms;
+  }
+
+  .reveal-delay-3 {
+    transition-delay: 240ms;
+  }
+}

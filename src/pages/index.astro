@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../app/layouts/BaseLayout.astro";
+import Header from "../widgets/Header/Header.astro";
+import Hero from "../widgets/Hero/Hero.astro";
+import About from "../widgets/About/About.astro";
+import Services from "../widgets/Services/Services.astro";
+import Projects from "../widgets/Projects/Projects.astro";
+import Clients from "../widgets/Clients/Clients.astro";
+import Certifications from "../widgets/Certifications/Certifications.astro";
+import Contact from "../widgets/Contact/Contact.astro";
+import Footer from "../widgets/Footer/Footer.astro";
+import { getMessages } from "../messages";
+
+const meta = getMessages("ru").meta;
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <Services />
+    <Projects />
+    <Clients />
+    <Certifications />
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

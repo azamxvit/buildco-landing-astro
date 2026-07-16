@@ -1,0 +1,36 @@
+---
+import SectionTitle from "../../shared/ui/SectionTitle.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<section class="py-[clamp(3rem,7vw,5rem)]" id="certifications">
+  <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+    <SectionTitle
+      eyebrow="certifications.eyebrow"
+      title="certifications.title"
+      subtitle="certifications.subtitle"
+    />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        site.certifications.map((cert, index) => (
+          <article
+            class:list={[
+              "reveal flex flex-col gap-3 border border-border bg-[linear-gradient(180deg,var(--color-accent-dim),transparent_40%),var(--color-surface)] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent",
+              `reveal-delay-${(index % 3) + 1}`,
+            ]}
+          >
+            <span class="inline-flex w-fit border border-border-strong bg-accent-dim px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-accent">
+              {cert.code}
+            </span>
+            <p class="font-display text-2xl tracking-wide text-accent">{cert.code}</p>
+            <p class="text-sm leading-relaxed text-muted">
+              <T path={`certifications.items.${cert.id}`} />
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
