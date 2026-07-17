@@ -11,9 +11,9 @@ import { site } from "../../shared/config/site";
   data-scrolled="false"
 >
   <div class="mx-auto flex h-full w-[min(100%-2.5rem,var(--container-max))] items-center justify-between gap-4">
-    <a href="#top" class="flex shrink-0 flex-col leading-none" aria-label={site.brand}>
-      <span class="font-display text-[1.65rem] tracking-[0.08em] text-accent">{site.brand}</span>
-      <span class="text-[0.625rem] font-medium uppercase tracking-[0.22em] text-muted">
+    <a href="#top" class="flex min-w-0 shrink flex-col leading-none" aria-label={site.brand}>
+      <span class="truncate font-display text-[2.25rem] leading-none tracking-[0.14em] text-accent sm:text-[2.75rem]">RCC</span>
+      <span class="truncate text-[0.625rem] font-medium uppercase tracking-[0.22em] text-muted">
         <T path="brand.location" />
       </span>
     </a>
@@ -31,7 +31,7 @@ import { site } from "../../shared/config/site";
       }
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="flex shrink-0 items-center gap-3">
       <div class="inline-flex overflow-hidden border border-border-strong" role="group" aria-label="Language">
         {
           (["ru", "en", "kz"] as const).map((lang) => (
@@ -48,13 +48,13 @@ import { site } from "../../shared/config/site";
       </div>
 
       <a
-        class="hidden items-center gap-2 text-sm font-semibold transition hover:text-accent sm:inline-flex"
+        class="hidden items-center gap-2 text-sm font-semibold transition hover:text-accent lg:inline-flex"
         href={site.contact.phoneHref}
       >
         {site.contact.phone}
       </a>
 
-      <Button href="#contact" variant="primary" class="hidden md:inline-flex">
+      <Button href="#contact" variant="primary" class="hidden lg:inline-flex">
         <T path="cta.call" />
       </Button>
 

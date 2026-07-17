@@ -122,6 +122,11 @@ const en: Messages = {
       network: "Network error. Please call us directly.",
     },
   },
+  ctaBand: {
+    title: "Ready to build together?",
+    subtitle: "Tell us about your project — we’ll estimate cost and timeline.",
+    button: "Discuss your project",
+  },
   footer: {
     tagline: "Construction and installation in Atyrau",
     rights: "All rights reserved.",

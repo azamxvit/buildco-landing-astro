@@ -1,0 +1,37 @@
+---
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+---
+
+<section class="relative overflow-hidden bg-accent py-[clamp(3rem,7vw,5rem)] text-bg" aria-labelledby="cta-band">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto flex w-[min(100%-2.5rem,var(--container-max))] flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+    <div class="reveal max-w-2xl">
+      <h2 id="cta-band" class="font-display text-[clamp(2rem,5vw,3.5rem)] uppercase leading-[1.05] tracking-[0.03em]">
+        <T path="ctaBand.title" />
+      </h2>
+      <p class="mt-3 text-[1.0625rem] font-medium leading-relaxed text-bg/80">
+        <T path="ctaBand.subtitle" />
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1 flex shrink-0 flex-col gap-3 sm:flex-row">
+      <a
+        href="#contact"
+        class="inline-flex min-h-12 items-center justify-center gap-2 border border-bg bg-bg px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-fg transition duration-300 hover:-translate-y-0.5 hover:bg-transparent hover:text-bg"
+      >
+        <T path="ctaBand.button" />
+      </a>
+      <a
+        href={site.contact.phoneHref}
+        class="inline-flex min-h-12 items-center justify-center gap-2 border border-bg/50 px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-bg transition duration-300 hover:-translate-y-0.5 hover:border-bg"
+      >
+        {site.contact.phone}
+      </a>
+    </div>
+  </div>
+</section>

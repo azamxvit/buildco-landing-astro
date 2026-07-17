@@ -3,7 +3,7 @@ import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import { site } from "../../shared/config/site";
 ---
 
-<section class="py-[clamp(3rem,7vw,5rem)]" id="clients">
+<section class="bg-bg-elevated py-[clamp(3rem,7vw,5rem)]" id="clients">
   <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
     <SectionTitle
       eyebrow="clients.eyebrow"
@@ -26,7 +26,7 @@ import { site } from "../../shared/config/site";
               width="280"
               height="140"
               loading="lazy"
-              class="h-24 w-auto max-w-[90%] object-contain opacity-75 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:h-28"
+              class="h-24 w-auto max-w-[90%] object-contain opacity-100 transition duration-300 md:h-28 lg:opacity-70 lg:grayscale lg:group-hover:opacity-100 lg:group-hover:grayscale-0"
             />
             <p class="text-center text-xs leading-snug text-muted">{client.name}</p>
           </article>

@@ -5,12 +5,18 @@ import T from "../../shared/ui/T.astro";
 import { site } from "../../shared/config/site";
 ---
 
-<section class="py-[var(--spacing-section)]" id="services">
-  <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+<section class="relative overflow-hidden bg-accent py-[var(--spacing-section)]" id="services">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto w-[min(100%-2.5rem,var(--container-max))]">
     <SectionTitle
       eyebrow="services.eyebrow"
       title="services.title"
       subtitle="services.subtitle"
+      tone="onAccent"
     />
 
     <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -18,14 +24,14 @@ import { site } from "../../shared/config/site";
         site.services.map((service, index) => (
           <article
             class:list={[
-              "reveal group flex h-full flex-col gap-4 border border-border bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover hover:shadow-[0_12px_32px_rgb(0_0_0_/_0.35)]",
+              "reveal group flex h-full flex-col gap-4 border border-black/10 bg-bg p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
             <div class="flex h-12 w-12 items-center justify-center border border-border-strong bg-accent-dim text-accent transition group-hover:border-accent">
               <ServiceIcon name={service.icon} />
             </div>
-            <h3 class="font-display text-[clamp(1.25rem,2.2vw,1.75rem)] uppercase tracking-[0.05em]">
+            <h3 class="font-display text-[clamp(1.15rem,2vw,1.6rem)] uppercase leading-[1.1] tracking-[0.02em] text-fg break-words sm:min-h-[5.25rem]">
               <T path={`services.items.${service.id}.title`} />
             </h3>
             <p class="text-sm leading-relaxed text-muted">

@@ -95,6 +95,11 @@ export interface Messages {
       network: string;
     };
   };
+  ctaBand: {
+    title: string;
+    subtitle: string;
+    button: string;
+  };
   footer: {
     tagline: string;
     rights: string;
