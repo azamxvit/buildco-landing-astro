@@ -106,8 +106,8 @@ export class SiteConfig {
   ];
 
   readonly certifications: CertificationItem[] = [
-    new CertificationItem("iso9001", "ИСО 9001"),
-    new CertificationItem("iso14001", "ИСО 14001"),
+    new CertificationItem("iso9001", "ISO 9001"),
+    new CertificationItem("iso14001", "ISO 14001"),
     new CertificationItem("ohsas", "OHSAS 18001"),
     new CertificationItem("license", "ГСЛ №0002796"),
   ];
