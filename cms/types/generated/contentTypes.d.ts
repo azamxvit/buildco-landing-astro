@@ -629,52 +629,6 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiVacancyVacancy extends Struct.CollectionTypeSchema {
-  collectionName: 'vacancies';
-  info: {
-    displayName: 'Vacancy';
-    pluralName: 'vacancies';
-    singularName: 'vacancy';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    contact: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::vacancy.vacancy'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    requirements: Schema.Attribute.JSON &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1190,7 +1144,6 @@ declare module '@strapi/strapi' {
       'api::partner.partner': ApiPartnerPartner;
       'api::project.project': ApiProjectProject;
       'api::service.service': ApiServiceService;
-      'api::vacancy.vacancy': ApiVacancyVacancy;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

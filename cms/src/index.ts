@@ -66,19 +66,6 @@ async function seedIfEmpty(strapi: Core.Strapi) {
     });
   }
 
-  for (const item of seed.vacancies) {
-    await strapi.documents("api::vacancy.vacancy").create({
-      data: {
-        title: item.title,
-        requirements: item.requirements,
-        contact: item.contact,
-        active: item.active,
-      },
-      locale: "ru",
-      status: "published",
-    });
-  }
-
   strapi.log.info("Seed completed");
 }
 

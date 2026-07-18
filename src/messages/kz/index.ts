@@ -27,10 +27,6 @@ const kz: Messages = {
       title: "Серіктестер мен клиенттер — REAL CONSTRUCTION",
       description: "Қазақстанның мұнай-газ және өнеркәсіп секторындағы серіктестер.",
     },
-    vacancies: {
-      title: "Бос орындар — REAL CONSTRUCTION",
-      description: "REAL CONSTRUCTION бос орындары және өтінім нысаны.",
-    },
     contact: {
       title: "Байланыс — REAL CONSTRUCTION",
       description: "Атыраудағы мекенжай, телефон, email және өтінім нысаны.",
@@ -48,7 +44,6 @@ const kz: Messages = {
     projects: "Жобалар",
     clients: "Клиенттер",
     certifications: "Сертификаттар",
-    vacancies: "Бос орындар",
     contact: "Байланыс",
   },
   cta: {
@@ -225,25 +220,6 @@ const kz: Messages = {
       license: "II санатты құрылыс лицензиясы",
     },
   },
-  vacancies: {
-    eyebrow: "Бос орындар",
-    title: "REAL CONSTRUCTION-да жұмыс",
-    subtitle: "Командаға қосылыңыз — төмендегі нысан арқылы резюме жіберіңіз.",
-    empty: "Қазір ашық бос орын жоқ. Қарау үшін резюме жібере аласыз.",
-    requirements: "Талаптар",
-    applyTitle: "Өтінім беру",
-    form: {
-      name: "Атыңыз",
-      phone: "Телефон",
-      email: "Email",
-      resume: "Резюме (PDF/DOC)",
-      message: "Ілеспе хат",
-      submit: "Өтінім жіберу",
-      success: "Рахмет! Резюмеңізді қараймыз.",
-      error: "Жіберу мүмкін болмады. Қайта көріңіз немесе email жазыңыз.",
-    },
-    items: {},
-  },
   contact: {
     eyebrow: "Байланыс",
     title: "Жобаңызды талқылайық",
@@ -277,6 +253,8 @@ const kz: Messages = {
   floating: {
     whatsapp: "WhatsApp",
     call: "Қоңырау шалу",
+    whatsappMessage:
+      "Сәлеметсіз бе! REAL CONSTRUCTION сайтынан құрылыс / қызметтер туралы жазып тұрмын.",
   },
 };
 

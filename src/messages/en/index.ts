@@ -27,10 +27,6 @@ const en: Messages = {
       title: "Partners & clients — REAL CONSTRUCTION",
       description: "Key partners across Kazakhstan’s oil, gas, and industrial sectors.",
     },
-    vacancies: {
-      title: "Careers — REAL CONSTRUCTION",
-      description: "Open roles and application form at REAL CONSTRUCTION.",
-    },
     contact: {
       title: "Contact — REAL CONSTRUCTION",
       description: "Address, phone, email, and inquiry form for REAL CONSTRUCTION in Atyrau.",
@@ -48,7 +44,6 @@ const en: Messages = {
     projects: "Projects",
     clients: "Clients",
     certifications: "Certificates",
-    vacancies: "Careers",
     contact: "Contact",
   },
   cta: {
@@ -225,25 +220,6 @@ const en: Messages = {
       license: "Category II construction license",
     },
   },
-  vacancies: {
-    eyebrow: "Careers",
-    title: "Work at REAL CONSTRUCTION",
-    subtitle: "Join the team — send your CV using the form below.",
-    empty: "No open roles right now. You can still send your CV for consideration.",
-    requirements: "Requirements",
-    applyTitle: "Apply",
-    form: {
-      name: "Your name",
-      phone: "Phone",
-      email: "Email",
-      resume: "Resume (PDF/DOC)",
-      message: "Cover letter",
-      submit: "Submit application",
-      success: "Thank you! We will review your resume.",
-      error: "Could not send. Please try again or email us.",
-    },
-    items: {},
-  },
   contact: {
     eyebrow: "Contact",
     title: "Let’s discuss your project",
@@ -277,6 +253,8 @@ const en: Messages = {
   floating: {
     whatsapp: "WhatsApp",
     call: "Call",
+    whatsappMessage:
+      "Hello! I’m writing from the REAL CONSTRUCTION website about construction / services.",
   },
 };
 

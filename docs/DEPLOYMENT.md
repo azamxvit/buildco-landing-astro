@@ -4,7 +4,7 @@
 
 - **Frontend:** Astro static → CDN / хостинг (Vercel, Netlify, или nginx + `dist/`)
 - **CMS:** Strapi на VPS (Node 18–22) + SQLite (старт) или Postgres (прод)
-- **Формы:** Formspree → email `7779405@mail.ru`
+- **Формы:** Formspree → email `mn@realconstruction.kz`
 - **Домен:** `realconstruction.kz` + SSL (Let's Encrypt)
 
 ## Frontend

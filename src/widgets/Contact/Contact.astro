@@ -37,18 +37,22 @@ const { showMap = false } = Astro.props;
           <a class="block text-lg font-medium transition hover:text-accent" href={`mailto:${site.contact.email}`}>
             {site.contact.email}
           </a>
-          <a class="mt-1 block text-lg font-medium transition hover:text-accent" href={`mailto:${site.contact.emailAlt}`}>
-            {site.contact.emailAlt}
-          </a>
         </div>
         <div class="border-b border-border pb-4">
           <p class="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             <T path="contact.labels.address" />
           </p>
           <address class="text-lg font-medium not-italic">
-            <span data-i18n="ru">{site.contact.addressRu}</span>
-            <span data-i18n="en">{site.contact.addressEn}</span>
-            <span data-i18n="kz">{site.contact.addressKz}</span>
+            <a
+              href={site.contact.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition hover:text-accent"
+            >
+              <span data-i18n="ru">{site.contact.addressRu}</span>
+              <span data-i18n="en">{site.contact.addressEn}</span>
+              <span data-i18n="kz">{site.contact.addressKz}</span>
+            </a>
           </address>
         </div>
 
@@ -58,11 +62,11 @@ const { showMap = false } = Astro.props;
               <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
                 <T path="contact.mapTitle" />
               </p>
-              <div class="overflow-hidden border border-border">
+              <div class="overflow-hidden border border-border bg-surface">
                 <iframe
-                  title="2GIS map"
-                  src="https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22pos%22%3A%7B%22lat%22%3A47.1167%2C%22lon%22%3A51.8833%2C%22zoom%22%3A15%7D%2C%22opt%22%3A%7B%22city%22%3A%22atyrau%22%7D%7D"
-                  class="h-72 w-full"
+                  title="Map"
+                  src={site.contact.mapEmbedUrl}
+                  class="h-[min(24rem,50vh)] min-h-80 w-full"
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
                 />
@@ -70,7 +74,7 @@ const { showMap = false } = Astro.props;
               <p class="mt-2 text-sm text-muted">
                 <a
                   class="text-accent transition hover:underline"
-                  href="https://2gis.kz/atyrau/search/Атырау%20микрорайон%20188А"
+                  href={site.contact.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

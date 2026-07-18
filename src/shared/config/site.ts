@@ -19,14 +19,18 @@ export class ContactInfo {
   constructor(
     public readonly phone: string,
     public readonly phoneHref: string,
-    public readonly whatsapp: string,
+    public readonly whatsappPhone: string,
     public readonly email: string,
-    public readonly emailAlt: string,
     public readonly addressRu: string,
     public readonly addressEn: string,
     public readonly addressKz: string,
     public readonly mapEmbedUrl: string,
+    public readonly mapUrl: string,
   ) {}
+
+  whatsappUrl(text: string): string {
+    return `https://wa.me/${this.whatsappPhone}?text=${encodeURIComponent(text)}`;
+  }
 }
 
 export class ProjectItem {
@@ -75,13 +79,15 @@ export class SiteConfig {
   readonly contact = new ContactInfo(
     "+7 (701) 777-94-05",
     "tel:+77017779405",
-    "https://wa.me/77017779405",
-    "7779405@mail.ru",
+    "77017779405",
     "mn@realconstruction.kz",
     "060026, г. Атырау, микрорайон Атырау, 188А",
     "060026, Atyrau, Atyrau microdistrict, 188A",
     "060026, Атырау қ., Атырау ықшамауданы, 188А",
-    "https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22firmId%22%3A%22realconstruction%22%2C%22borderColor%22%3A%22%23f5a623%22%7D",
+    // OSM embed: виджет 2GIS firmsonmap требует org/firmId (карточки компании нет)
+    "https://www.openstreetmap.org/export/embed.html?bbox=51.89932%2C47.13135%2C51.91932%2C47.14135&layer=mapnik&marker=47.13635%2C51.90932",
+    // Точка у мкр. Атырау, 188 (Тайыра Нысанова / 188)
+    "https://2gis.kz/atyrau/geo/70030076164212906",
   );
 
   readonly nav = [
@@ -90,7 +96,6 @@ export class SiteConfig {
     { href: "/projects", key: "projects" as const },
     { href: "/partners", key: "clients" as const },
     { href: "/certificates", key: "certifications" as const },
-    { href: "/vacancies", key: "vacancies" as const },
     { href: "/contact", key: "contact" as const },
   ];
 

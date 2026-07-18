@@ -34,7 +34,6 @@ export interface Messages {
     projects: { title: string; description: string };
     certificates: { title: string; description: string };
     partners: { title: string; description: string };
-    vacancies: { title: string; description: string };
     contact: { title: string; description: string };
   };
   brand: {
@@ -49,7 +48,6 @@ export interface Messages {
     projects: string;
     clients: string;
     certifications: string;
-    vacancies: string;
     contact: string;
   };
   cta: {
@@ -113,25 +111,6 @@ export interface Messages {
       license: string;
     };
   };
-  vacancies: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    empty: string;
-    requirements: string;
-    applyTitle: string;
-    form: {
-      name: string;
-      phone: string;
-      email: string;
-      resume: string;
-      message: string;
-      submit: string;
-      success: string;
-      error: string;
-    };
-    items: Record<string, { title: string; requirements: string[] }>;
-  };
   contact: {
     eyebrow: string;
     title: string;
@@ -165,5 +144,6 @@ export interface Messages {
   floating: {
     whatsapp: string;
     call: string;
+    whatsappMessage: string;
   };
 }

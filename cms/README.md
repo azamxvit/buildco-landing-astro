@@ -16,9 +16,9 @@ npm run develop
 
 Open http://localhost:1337/admin and create the first administrator.
 
-При первом запуске bootstrap засеет услуги, проекты, партнёров, сертификаты и пример вакансии из `seed/data.ts` (если коллекции пустые).
+При первом запуске bootstrap засеет услуги, проекты, партнёров и сертификаты из `seed/data.ts` (если коллекции пустые).
 
-После создания admin: **Settings → Users & Permissions → Roles → Public** — включите `find` / `findOne` для Service, Project, Partner, Certificate, Vacancy.
+После создания admin: **Settings → Users & Permissions → Roles → Public** — включите `find` / `findOne` для Service, Project, Partner, Certificate.
 
 ## Content types
 
@@ -28,7 +28,6 @@ Already defined under `src/api/`:
 - **Project** — slug, title, category, photos, relation to Service
 - **Partner** — name, logo, order
 - **Certificate** — code, title, PDF file
-- **Vacancy** — title, requirements, active
 
 Locales: `ru` (default), `en`, `kk` (настроить в Admin → Internationalization).
 

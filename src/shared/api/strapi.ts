@@ -10,7 +10,6 @@ import {
   type ServiceIcon,
 } from "../config/site";
 import type { Locale, ServiceId } from "../../messages/types";
-import { messages } from "../../messages";
 
 const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL as string | undefined;
 const STRAPI_TOKEN = import.meta.env.STRAPI_API_TOKEN as string | undefined;
@@ -140,29 +139,6 @@ export async function getCertificates(locale: Locale = "ru"): Promise<Certificat
     }
     const id = (["iso9001", "iso14001", "ohsas", "license"] as const)[index % 4];
     return new CertificationItem(id, String(a.code ?? "CERT"), pdf);
-  });
-}
-
-export async function getVacancies(locale: Locale = "ru") {
-  const json = await strapiFetch<StrapiListResponse<Record<string, unknown>>>(
-    "vacancies?filters[active][$eq]=true",
-    locale,
-  );
-  if (!json?.data?.length) {
-    return Object.entries(messages[locale].vacancies.items).map(([id, item]) => ({
-      id,
-      title: item.title,
-      requirements: item.requirements,
-    }));
-  }
-
-  return json.data.map((row, index) => {
-    const a = unwrap(row);
-    return {
-      id: String(index),
-      title: String(a.title ?? ""),
-      requirements: Array.isArray(a.requirements) ? (a.requirements as string[]) : [],
-    };
   });
 }
 

@@ -27,10 +27,6 @@ const ru: Messages = {
       title: "Партнёры и клиенты — REAL CONSTRUCTION",
       description: "Ключевые партнёры нефтегазового и промышленного сектора Казахстана.",
     },
-    vacancies: {
-      title: "Вакансии — REAL CONSTRUCTION",
-      description: "Открытые вакансии и форма отклика REAL CONSTRUCTION.",
-    },
     contact: {
       title: "Контакты — REAL CONSTRUCTION",
       description: "Адрес, телефон, email и форма заявки REAL CONSTRUCTION в Атырау.",
@@ -48,7 +44,6 @@ const ru: Messages = {
     projects: "Проекты",
     clients: "Клиенты",
     certifications: "Сертификаты",
-    vacancies: "Вакансии",
     contact: "Контакты",
   },
   cta: {
@@ -225,25 +220,6 @@ const ru: Messages = {
       license: "Строительная лицензия II категории",
     },
   },
-  vacancies: {
-    eyebrow: "Вакансии",
-    title: "Работа в REAL CONSTRUCTION",
-    subtitle: "Присоединяйтесь к команде — отправьте резюме через форму ниже.",
-    empty: "Сейчас открытых вакансий нет. Вы можете отправить резюме на рассмотрение.",
-    requirements: "Требования",
-    applyTitle: "Откликнуться",
-    form: {
-      name: "Ваше имя",
-      phone: "Телефон",
-      email: "Email",
-      resume: "Резюме (PDF/DOC)",
-      message: "Сопроводительное письмо",
-      submit: "Отправить отклик",
-      success: "Спасибо! Мы рассмотрим ваше резюме.",
-      error: "Не удалось отправить. Попробуйте ещё раз или напишите на email.",
-    },
-    items: {},
-  },
   contact: {
     eyebrow: "Контакты",
     title: "Обсудим ваш проект",
@@ -277,6 +253,8 @@ const ru: Messages = {
   floating: {
     whatsapp: "WhatsApp",
     call: "Позвонить",
+    whatsappMessage:
+      "Здравствуйте! Пишу вам с сайта REAL CONSTRUCTION по поводу строительства / услуг.",
   },
 };
 
