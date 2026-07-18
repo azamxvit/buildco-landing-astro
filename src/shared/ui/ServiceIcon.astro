@@ -6,18 +6,19 @@ interface Props {
 }
 
 const { name } = Astro.props;
+const cls = "h-6 w-6";
 ---
 
 {
   name === "crane" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M4 20h16M6 20V8l6-4 2 2v14M12 10h6l2 4H12" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   )
 }
 {
   name === "rebuild" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M14 7l3-3 2 2-3 3" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
@@ -25,21 +26,21 @@ const { name } = Astro.props;
 }
 {
   name === "home" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9z" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   )
 }
 {
   name === "warehouse" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M3 21V9l9-5 9 5v12M7 21v-8h10v8" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   )
 }
 {
   name === "draft" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M14 3v6h6M8 13h8M8 17h5" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
@@ -47,8 +48,59 @@ const { name } = Astro.props;
 }
 {
   name === "wrench" && (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="h-6 w-6" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
       <path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.5-2.5 2.5-2.5z" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === "layers" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 12l10 5 10-5M2 17l10 5 10-5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === "pipe" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M4 10h16v4H4zM8 6v4M16 14v4" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === "box" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === "metal" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round" />
+    </svg>
+  )
+}
+{
+  name === "pipeline" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M3 12h6l3-4 3 8 3-4h3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )
+}
+{
+  name === "tank" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <rect x="5" y="4" width="14" height="16" rx="3" />
+      <path d="M9 8h6M9 12h6M9 16h4" stroke-linecap="round" />
+    </svg>
+  )
+}
+{
+  name === "steel" && (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class={cls} aria-hidden="true">
+      <path d="M4 20L12 4l8 16H4zM8 14h8" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   )
 }

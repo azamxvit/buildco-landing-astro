@@ -1,7 +1,14 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
-import { site } from "../../shared/config/site";
+import { site, type CertificationItem } from "../../shared/config/site";
+
+interface Props {
+  certifications?: CertificationItem[];
+}
+
+const { certifications: certsProp } = Astro.props;
+const certifications = certsProp ?? site.certifications;
 ---
 
 <section class="py-[clamp(3rem,7vw,5rem)]" id="certifications">
@@ -12,9 +19,13 @@ import { site } from "../../shared/config/site";
       subtitle="certifications.subtitle"
     />
 
+    <p class="reveal mb-8 max-w-3xl text-[1.0625rem] text-soft">
+      <T path="certifications.licenseNote" />
+    </p>
+
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
-        site.certifications.map((cert, index) => (
+        certifications.map((cert, index) => (
           <article
             class:list={[
               "reveal flex flex-col gap-3 border border-border bg-[linear-gradient(180deg,var(--color-accent-dim),transparent_40%),var(--color-surface)] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent",
@@ -28,6 +39,18 @@ import { site } from "../../shared/config/site";
             <p class="text-sm leading-relaxed text-muted">
               <T path={`certifications.items.${cert.id}`} />
             </p>
+            {
+              cert.pdf && (
+                <a
+                  href={cert.pdf}
+                  class="mt-auto text-xs font-semibold uppercase tracking-[0.14em] text-accent transition hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <T path="certifications.download" /> →
+                </a>
+              )
+            }
           </article>
         ))
       }

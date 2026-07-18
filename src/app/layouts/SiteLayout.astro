@@ -1,0 +1,23 @@
+---
+import Header from "../../widgets/Header/Header.astro";
+import Footer from "../../widgets/Footer/Footer.astro";
+import FloatingContact from "../../widgets/FloatingContact/FloatingContact.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  flush?: boolean;
+}
+
+const { title, description, flush = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main class:list={[!flush && "pt-[var(--spacing-header)]"]}>
+    <slot />
+  </main>
+  <Footer />
+  <FloatingContact />
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+import SiteLayout from "../../app/layouts/SiteLayout.astro";
+import ServiceIcon from "../../shared/ui/ServiceIcon.astro";
+import Button from "../../shared/ui/Button.astro";
+import T from "../../shared/ui/T.astro";
+import { site } from "../../shared/config/site";
+import { messages } from "../../messages";
+import { getServiceBySlug } from "../../shared/api/strapi";
+
+export async function getStaticPaths() {
+  return site.services.map((service) => ({
+    params: { slug: service.slug },
+    props: { slug: service.slug },
+  }));
+}
+
+const { slug } = Astro.props;
+const service = (await getServiceBySlug(slug, "ru")) ?? site.getServiceBySlug(slug)!;
+const copy = messages.ru.services.items[service.id];
+const title = `${copy.title} — ${site.brand}`;
+---
+
+<SiteLayout title={title} description={copy.description}>
+  <section class="py-[var(--spacing-section)]">
+    <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+        <a href="/services" class="transition hover:underline"><T path="nav.services" /></a>
+        <span class="mx-2 text-muted">/</span>
+        <T path={`services.items.${service.id}.title`} />
+      </p>
+
+      <div class="mb-8 flex items-start gap-4">
+        <div class="flex h-14 w-14 shrink-0 items-center justify-center border border-border-strong bg-accent-dim text-accent">
+          <ServiceIcon name={service.icon} />
+        </div>
+        <div>
+          <h1 class="font-display text-[clamp(2rem,5vw,3.75rem)] uppercase leading-[1.05] tracking-[0.02em]">
+            <T path={`services.items.${service.id}.title`} />
+          </h1>
+          <p class="mt-4 max-w-3xl text-[1.0625rem] leading-relaxed text-soft">
+            <T path={`services.items.${service.id}.description`} />
+          </p>
+        </div>
+      </div>
+
+      <h2 class="mb-4 font-display text-2xl uppercase tracking-wide text-accent">
+        <T path="services.featuresTitle" />
+      </h2>
+      <ul class="mb-10 grid gap-3 sm:grid-cols-3">
+        {
+          messages.ru.services.items[service.id].features.map((_, i) => (
+            <li class="border border-border bg-surface p-4 text-sm text-soft">
+              <T path={`services.items.${service.id}.features.${i}`} />
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="flex flex-wrap gap-3">
+        <Button href="/contact" variant="primary">
+          <T path="cta.apply" />
+        </Button>
+        <Button href="/projects" variant="outline">
+          <T path="cta.secondary" />
+        </Button>
+      </div>
+    </div>
+  </section>
+</SiteLayout>

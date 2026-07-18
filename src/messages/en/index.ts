@@ -4,7 +4,37 @@ const en: Messages = {
   meta: {
     title: "REAL CONSTRUCTION — Construction in Atyrau",
     description:
-      "REAL CONSTRUCTION LLP — construction, reconstruction, and design services in Atyrau, Kazakhstan.",
+      "REAL CONSTRUCTION LLP — construction, installation, and MRO supply for the oil & gas sector in Atyrau, Kazakhstan.",
+  },
+  pages: {
+    about: {
+      title: "About — REAL CONSTRUCTION",
+      description: "History, specialization, and values of REAL CONSTRUCTION in Atyrau.",
+    },
+    services: {
+      title: "Services — REAL CONSTRUCTION",
+      description: "Construction, installation, reconstruction, and material supply in Atyrau.",
+    },
+    projects: {
+      title: "Projects — REAL CONSTRUCTION",
+      description: "Portfolio of completed REAL CONSTRUCTION projects.",
+    },
+    certificates: {
+      title: "Licenses & certificates — REAL CONSTRUCTION",
+      description: "Category II construction license and ISO / OHSAS certificates.",
+    },
+    partners: {
+      title: "Partners & clients — REAL CONSTRUCTION",
+      description: "Key partners across Kazakhstan’s oil, gas, and industrial sectors.",
+    },
+    vacancies: {
+      title: "Careers — REAL CONSTRUCTION",
+      description: "Open roles and application form at REAL CONSTRUCTION.",
+    },
+    contact: {
+      title: "Contact — REAL CONSTRUCTION",
+      description: "Address, phone, email, and inquiry form for REAL CONSTRUCTION in Atyrau.",
+    },
   },
   brand: {
     name: "REAL CONSTRUCTION",
@@ -12,11 +42,13 @@ const en: Messages = {
     location: "Atyrau · Kazakhstan",
   },
   nav: {
+    home: "Home",
     about: "About",
     services: "Services",
     projects: "Projects",
     clients: "Clients",
     certifications: "Certificates",
+    vacancies: "Careers",
     contact: "Contact",
   },
   cta: {
@@ -24,6 +56,11 @@ const en: Messages = {
     secondary: "Our projects",
     call: "Call",
     submit: "Send request",
+    more: "Learn more",
+    apply: "Request a quote",
+    download: "Download",
+    allServices: "All services",
+    allProjects: "All projects",
   },
   hero: {
     slogan: "We build with quality, speed, and lasting strength",
@@ -32,8 +69,16 @@ const en: Messages = {
   about: {
     eyebrow: "About us",
     title: "A reliable partner in construction",
-    p1: "REAL CONSTRUCTION LLP is a diversified construction company based in Atyrau. We deliver construction and installation works, building reconstruction, low-rise and prefabricated construction, as well as design and technical maintenance.",
+    p1: "REAL CONSTRUCTION LLP is a diversified construction company based in Atyrau. We deliver construction and installation, reconstruction, low-rise and prefabricated buildings, design, maintenance, and supply of equipment and materials for the oil & gas sector.",
     p2: "We operate our own equipment, production facilities, and experienced teams. We value every client and build long-term partnerships based on quality, deadlines, and accountability.",
+    p3: "Our supply focus includes oil & gas, chemical, and construction equipment and materials: pipes, fittings, inert and building materials, and rolled metal.",
+    valuesTitle: "Our principles",
+    values: [
+      "Specialized, experienced teams",
+      "On-time and accountable delivery",
+      "Long-term mutually beneficial partnerships",
+      "Certified products and standards compliance",
+    ],
     stats: {
       years: "years in the market",
       clients: "clients",
@@ -43,32 +88,74 @@ const en: Messages = {
   services: {
     eyebrow: "Services",
     title: "What we do",
-    subtitle: "A full construction cycle — from design to project handover.",
+    subtitle: "Construction, installation, reconstruction, and material & technical supply.",
+    featuresTitle: "Key features",
     items: {
       construction: {
         title: "Construction & installation",
         description:
           "Industrial and civil construction with strict compliance to codes and schedules.",
+        features: ["Industrial facilities", "Civil construction", "Codes and deadlines"],
       },
       reconstruction: {
         title: "Building reconstruction",
-        description: "Modernization and restoration of existing buildings to extend their service life.",
+        description: "Modernization and restoration of existing buildings to extend service life.",
+        features: ["Structural reinforcement", "Systems upgrade", "Minimal downtime"],
       },
       lowRise: {
         title: "Low-rise construction",
         description: "Turnkey low-rise residential and commercial buildings.",
+        features: ["Turnkey delivery", "Residential & commercial", "Quality at every stage"],
       },
       prefabricated: {
         title: "Prefabricated buildings",
         description: "Rapid construction of modular and frame structures.",
+        features: ["Modular solutions", "Frame structures", "Fast installation"],
+      },
+      general: {
+        title: "General construction works",
+        description: "Full-scope general construction works on client sites.",
+        features: ["Earthworks & concrete", "Site preparation", "On-site support"],
+      },
+      pipeSupply: {
+        title: "Pipe & fittings supply",
+        description: "Supply of pipes and fittings for oil & gas and construction projects.",
+        features: ["Pipe products", "Fittings", "Spec-based kitting"],
+      },
+      materialsSupply: {
+        title: "Inert & building materials",
+        description: "Inert and building materials with certificates and quality passports.",
+        features: ["Inert materials", "Building materials", "Certificates"],
+      },
+      metalSupply: {
+        title: "Rolled metal supply",
+        description: "Rolled metal of various grades and related products.",
+        features: ["Rolled metal", "Delivery timelines", "Regional logistics"],
+      },
+      pipelineWelding: {
+        title: "Pipeline installation & welding",
+        description: "Installation and welding of pipeline lines at industrial sites.",
+        features: ["Pipeline lines", "Welding works", "Weld quality control"],
+      },
+      tankWelding: {
+        title: "Tank installation & welding",
+        description: "Installation and welding of tanks for industrial and oil & gas sites.",
+        features: ["Tanks", "On-site installation", "Regulatory compliance"],
+      },
+      steelWelding: {
+        title: "Steel structure installation & welding",
+        description: "Fabrication, installation, and welding of steel structures.",
+        features: ["Steel structures", "Installation & welding", "Industrial sites"],
       },
       design: {
         title: "Design & engineering",
         description: "Design documentation and engineering solutions tailored to the client.",
+        features: ["Design docs", "Engineering solutions", "Client alignment"],
       },
       maintenance: {
         title: "Technical maintenance",
         description: "Ongoing service and support after commissioning.",
+        features: ["Planned maintenance", "Emergency service", "Long-term support"],
       },
     },
   },
@@ -76,15 +163,48 @@ const en: Messages = {
     eyebrow: "Projects",
     title: "Completed works",
     subtitle: "Real projects across industrial and construction sites in Kazakhstan.",
+    filterAll: "All",
     items: {
-      p1: { title: "Steel structure installation", category: "Construction" },
-      p2: { title: "Industrial facility", category: "Installation" },
-      p3: { title: "Frame building", category: "Prefabricated" },
-      p4: { title: "Site reconstruction", category: "Reconstruction" },
-      p5: { title: "Warehouse complex", category: "Construction" },
-      p6: { title: "Engineering works", category: "Installation" },
-      p7: { title: "Construction site", category: "Construction" },
-      p8: { title: "Technical facility", category: "Maintenance" },
+      p1: {
+        title: "Steel structure installation",
+        category: "Construction",
+        description: "Steel structure installation at an industrial site.",
+      },
+      p2: {
+        title: "Industrial facility",
+        category: "Installation",
+        description: "Installation package at an industrial facility.",
+      },
+      p3: {
+        title: "Frame building",
+        category: "Prefabricated",
+        description: "Prefabricated frame building construction.",
+      },
+      p4: {
+        title: "Site reconstruction",
+        category: "Reconstruction",
+        description: "Reconstruction and upgrade of a production site.",
+      },
+      p5: {
+        title: "Warehouse complex",
+        category: "Construction",
+        description: "Warehouse complex construction.",
+      },
+      p6: {
+        title: "Engineering works",
+        category: "Installation",
+        description: "Engineering installation at the client site.",
+      },
+      p7: {
+        title: "Construction site",
+        category: "Construction",
+        description: "Construction and installation works on site.",
+      },
+      p8: {
+        title: "Technical facility",
+        category: "Maintenance",
+        description: "Technical maintenance of an industrial facility.",
+      },
     },
   },
   clients: {
@@ -96,6 +216,8 @@ const en: Messages = {
     eyebrow: "Certificates",
     title: "Quality certified",
     subtitle: "International management standards and a Category II construction license.",
+    licenseNote: "Category II construction license GSL No. 0002796 dated 28 May 2007.",
+    download: "Download PDF",
     items: {
       iso9001: "Quality management system",
       iso14001: "Environmental management",
@@ -103,10 +225,30 @@ const en: Messages = {
       license: "Category II construction license",
     },
   },
+  vacancies: {
+    eyebrow: "Careers",
+    title: "Work at REAL CONSTRUCTION",
+    subtitle: "Join the team — send your CV using the form below.",
+    empty: "No open roles right now. You can still send your CV for consideration.",
+    requirements: "Requirements",
+    applyTitle: "Apply",
+    form: {
+      name: "Your name",
+      phone: "Phone",
+      email: "Email",
+      resume: "Resume (PDF/DOC)",
+      message: "Cover letter",
+      submit: "Submit application",
+      success: "Thank you! We will review your resume.",
+      error: "Could not send. Please try again or email us.",
+    },
+    items: {},
+  },
   contact: {
     eyebrow: "Contact",
     title: "Let’s discuss your project",
     subtitle: "Leave a request — we’ll call back and prepare a commercial offer.",
+    mapTitle: "Find us",
     labels: {
       phone: "Phone",
       email: "Email",
@@ -117,6 +259,7 @@ const en: Messages = {
       phone: "Phone",
       email: "Email",
       message: "Message",
+      consent: "I agree to the processing of personal data",
       success: "Thank you! We will contact you shortly.",
       error: "Something went wrong. Please try again or call us.",
       network: "Network error. Please call us directly.",
@@ -130,6 +273,10 @@ const en: Messages = {
   footer: {
     tagline: "Construction and installation in Atyrau",
     rights: "All rights reserved.",
+  },
+  floating: {
+    whatsapp: "WhatsApp",
+    call: "Call",
   },
 };
 

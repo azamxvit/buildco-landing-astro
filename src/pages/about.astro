@@ -1,0 +1,33 @@
+---
+import SiteLayout from "../app/layouts/SiteLayout.astro";
+import About from "../widgets/About/About.astro";
+import T from "../shared/ui/T.astro";
+import { getMessages } from "../messages";
+import { messages } from "../messages";
+
+const page = getMessages("ru").pages.about;
+const values = messages.ru.about.values;
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <About />
+  <section class="bg-bg-elevated py-[var(--spacing-section)]">
+    <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+      <h2 class="mb-6 font-display text-[clamp(2rem,5vw,3rem)] uppercase tracking-[0.03em]">
+        <T path="about.valuesTitle" />
+      </h2>
+      <p class="mb-8 max-w-3xl text-[1.0625rem] leading-relaxed text-soft">
+        <T path="about.p3" />
+      </p>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          values.map((_, index) => (
+            <li class="border border-border border-l-4 border-l-accent bg-surface p-5 text-soft">
+              <T path={`about.values.${index}`} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</SiteLayout>

@@ -1,6 +1,5 @@
 ---
-import BaseLayout from "../app/layouts/BaseLayout.astro";
-import Header from "../widgets/Header/Header.astro";
+import SiteLayout from "../app/layouts/SiteLayout.astro";
 import Hero from "../widgets/Hero/Hero.astro";
 import About from "../widgets/About/About.astro";
 import Services from "../widgets/Services/Services.astro";
@@ -9,23 +8,25 @@ import Clients from "../widgets/Clients/Clients.astro";
 import Certifications from "../widgets/Certifications/Certifications.astro";
 import CTA from "../widgets/CTA/CTA.astro";
 import Contact from "../widgets/Contact/Contact.astro";
-import Footer from "../widgets/Footer/Footer.astro";
 import { getMessages } from "../messages";
+import { getServices, getProjects, getPartners, getCertificates } from "../shared/api/strapi";
 
 const meta = getMessages("ru").meta;
+const [services, projects, partners, certifications] = await Promise.all([
+  getServices("ru"),
+  getProjects("ru"),
+  getPartners(),
+  getCertificates("ru"),
+]);
 ---
 
-<BaseLayout title={meta.title} description={meta.description}>
-  <Header />
-  <main>
-    <Hero />
-    <About />
-    <Services />
-    <Projects />
-    <Clients />
-    <Certifications />
-    <CTA />
-    <Contact />
-  </main>
-  <Footer />
-</BaseLayout>
+<SiteLayout title={meta.title} description={meta.description} flush>
+  <Hero />
+  <About showMoreLink />
+  <Services limit={6} services={services} />
+  <Projects limit={6} projects={projects} />
+  <Clients withLogosOnly clients={partners} />
+  <Certifications certifications={certifications} />
+  <CTA />
+  <Contact />
+</SiteLayout>

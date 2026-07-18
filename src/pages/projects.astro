@@ -1,0 +1,13 @@
+---
+import SiteLayout from "../app/layouts/SiteLayout.astro";
+import Projects from "../widgets/Projects/Projects.astro";
+import { getMessages } from "../messages";
+import { getProjects } from "../shared/api/strapi";
+
+const page = getMessages("ru").pages.projects;
+const projects = await getProjects("ru");
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <Projects enableFilter enableLightbox projects={projects} />
+</SiteLayout>

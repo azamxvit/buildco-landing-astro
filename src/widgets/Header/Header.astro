@@ -11,7 +11,7 @@ import { site } from "../../shared/config/site";
   data-scrolled="false"
 >
   <div class="mx-auto flex h-full w-[min(100%-2.5rem,var(--container-max))] items-center justify-between gap-4">
-    <a href="#top" class="flex min-w-0 shrink flex-col leading-none" aria-label={site.brand}>
+    <a href="/" class="flex min-w-0 shrink flex-col leading-none" aria-label={site.brand}>
       <span class="truncate font-display text-[2.25rem] leading-none tracking-[0.14em] text-accent sm:text-[2.75rem]">RCC</span>
       <span class="truncate text-[0.625rem] font-medium uppercase tracking-[0.22em] text-muted">
         <T path="brand.location" />
@@ -54,7 +54,7 @@ import { site } from "../../shared/config/site";
         {site.contact.phone}
       </a>
 
-      <Button href="#contact" variant="primary" class="hidden lg:inline-flex">
+      <Button href="/contact" variant="primary" class="hidden lg:inline-flex">
         <T path="cta.call" />
       </Button>
 

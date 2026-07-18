@@ -9,7 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cms:install": "npm install --prefix cms",
+    "cms:develop": "npm run develop --prefix cms",
+    "cms:build": "npm run build --prefix cms",
+    "cms:start": "npm run start --prefix cms"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

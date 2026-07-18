@@ -2,29 +2,55 @@
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import ServiceIcon from "../../shared/ui/ServiceIcon.astro";
 import T from "../../shared/ui/T.astro";
-import { site } from "../../shared/config/site";
+import Button from "../../shared/ui/Button.astro";
+import { site, type ServiceItem } from "../../shared/config/site";
+
+interface Props {
+  limit?: number;
+  tone?: "accent" | "dark";
+  services?: ServiceItem[];
+}
+
+const { limit, tone = "accent", services: servicesProp } = Astro.props;
+const source = servicesProp ?? site.services;
+const items = limit ? source.slice(0, limit) : source;
+const onAccent = tone === "accent";
 ---
 
-<section class="relative overflow-hidden bg-accent py-[var(--spacing-section)]" id="services">
-  <div
-    class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
-    aria-hidden="true"
-  ></div>
+<section
+  class:list={[
+    "relative overflow-hidden py-[var(--spacing-section)]",
+    onAccent ? "bg-accent" : "bg-bg",
+  ]}
+  id="services"
+>
+  {
+    onAccent && (
+      <div
+        class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
+        aria-hidden="true"
+      />
+    )
+  }
 
   <div class="relative mx-auto w-[min(100%-2.5rem,var(--container-max))]">
     <SectionTitle
       eyebrow="services.eyebrow"
       title="services.title"
       subtitle="services.subtitle"
-      tone="onAccent"
+      tone={onAccent ? "onAccent" : "default"}
     />
 
     <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {
-        site.services.map((service, index) => (
-          <article
+        items.map((service, index) => (
+          <a
+            href={`/services/${service.slug}`}
             class:list={[
-              "reveal group flex h-full flex-col gap-4 border border-black/10 bg-bg p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]",
+              "reveal group flex h-full flex-col gap-4 border p-6 transition duration-300 hover:-translate-y-1",
+              onAccent
+                ? "border-black/10 bg-bg hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]"
+                : "border-border bg-surface hover:border-accent hover:bg-surface-hover",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
@@ -37,9 +63,26 @@ import { site } from "../../shared/config/site";
             <p class="text-sm leading-relaxed text-muted">
               <T path={`services.items.${service.id}.description`} />
             </p>
-          </article>
+            <span class="mt-auto text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              <T path="cta.more" /> →
+            </span>
+          </a>
         ))
       }
     </div>
+
+    {
+      limit && (
+        <div class="mt-10 flex justify-center">
+          <Button
+            href="/services"
+            variant={onAccent ? "outline" : "primary"}
+            class={onAccent ? "border-bg text-bg hover:border-bg hover:bg-bg hover:text-fg" : ""}
+          >
+            <T path="cta.allServices" />
+          </Button>
+        </div>
+      )
+    }
   </div>
 </section>

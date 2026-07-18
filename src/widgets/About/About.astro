@@ -1,7 +1,14 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
+import Button from "../../shared/ui/Button.astro";
 import { site } from "../../shared/config/site";
+
+interface Props {
+  showMoreLink?: boolean;
+}
+
+const { showMoreLink = false } = Astro.props;
 ---
 
 <section class="py-[var(--spacing-section)]" id="about">
@@ -29,6 +36,15 @@ import { site } from "../../shared/config/site";
             ))
           }
         </div>
+        {
+          showMoreLink && (
+            <div class="reveal mt-2">
+              <Button href="/about" variant="outline">
+                <T path="cta.more" />
+              </Button>
+            </div>
+          )
+        }
       </div>
     </div>
 

@@ -1,0 +1,11 @@
+---
+import SiteLayout from "../app/layouts/SiteLayout.astro";
+import Contact from "../widgets/Contact/Contact.astro";
+import { getMessages } from "../messages";
+
+const page = getMessages("ru").pages.contact;
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <Contact showMap />
+</SiteLayout>

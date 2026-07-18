@@ -1,7 +1,20 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
-import { site } from "../../shared/config/site";
+import Button from "../../shared/ui/Button.astro";
+import { site, type ProjectItem } from "../../shared/config/site";
+
+interface Props {
+  limit?: number;
+  enableFilter?: boolean;
+  enableLightbox?: boolean;
+  projects?: ProjectItem[];
+}
+
+const { limit, enableFilter = false, enableLightbox = true, projects: projectsProp } = Astro.props;
+const source = projectsProp ?? site.projects;
+const items = limit ? source.slice(0, limit) : source;
+const categories = [...new Set(source.map((p) => p.categoryKey))];
 ---
 
 <section class="py-[var(--spacing-section)]" id="projects">
@@ -12,9 +25,36 @@ import { site } from "../../shared/config/site";
       subtitle="projects.subtitle"
     />
 
-    <div class="grid grid-cols-12 gap-4">
+    {
+      enableFilter && (
+        <div class="mb-8 flex flex-wrap gap-2" data-project-filters>
+          <button
+            type="button"
+            class="border border-accent bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-bg"
+            data-filter="all"
+            data-active="true"
+          >
+            <T path="projects.filterAll" />
+          </button>
+          {
+            categories.map((cat) => (
+              <button
+                type="button"
+                class="border border-border-strong bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted transition hover:border-accent hover:text-accent"
+                data-filter={cat}
+                data-active="false"
+              >
+                <T path={`projects.items.${source.find((p) => p.categoryKey === cat)?.id}.category`} />
+              </button>
+            ))
+          }
+        </div>
+      )
+    }
+
+    <div class="grid grid-cols-12 gap-4" data-projects-grid>
       {
-        site.projects.map((project, index) => (
+        items.map((project, index) => (
           <article
             class:list={[
               "reveal group relative col-span-12 overflow-hidden sm:col-span-6",
@@ -22,7 +62,16 @@ import { site } from "../../shared/config/site";
               project.span === "tall" ? "min-h-[22rem]" : "min-h-64",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
+            data-category={project.categoryKey}
           >
+            <button
+              type="button"
+              class="absolute inset-0 z-10 cursor-zoom-in"
+              data-lightbox-trigger
+              data-src={project.image}
+              data-title-path={`projects.items.${project.id}.title`}
+              aria-label="Open image"
+            />
             <img
               src={project.image}
               alt=""
@@ -30,8 +79,9 @@ import { site } from "../../shared/config/site";
               height="600"
               loading="lazy"
               class="h-full min-h-[inherit] w-full object-cover transition duration-500 ease-out group-hover:scale-105"
+              data-i18n-alt={`projects.items.${project.id}.title`}
             />
-            <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/20 to-transparent p-5">
+            <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/20 to-transparent p-5">
               <p class="mb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-accent">
                 <T path={`projects.items.${project.id}.category`} />
               </p>
@@ -43,5 +93,94 @@ import { site } from "../../shared/config/site";
         ))
       }
     </div>
+
+    {
+      limit && (
+        <div class="mt-10 flex justify-center">
+          <Button href="/projects" variant="outline">
+            <T path="cta.allProjects" />
+          </Button>
+        </div>
+      )
+    }
   </div>
 </section>
+
+{
+  enableLightbox && (
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/90 p-4"
+      data-open="false"
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        type="button"
+        class="absolute right-4 top-4 text-2xl text-white"
+        data-lightbox-close
+        aria-label="Close"
+      >
+        ×
+      </button>
+      <img id="lightbox-image" src="" alt="" class="max-h-[85vh] max-w-full object-contain" />
+      <p id="lightbox-caption" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-white"></p>
+    </div>
+  )
+}
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement | null;
+  const lightboxCaption = document.getElementById("lightbox-caption");
+
+  document.querySelectorAll("[data-lightbox-trigger]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const el = btn as HTMLElement;
+      if (!lightbox || !lightboxImage) return;
+      lightboxImage.src = el.dataset.src ?? "";
+      if (lightboxCaption) lightboxCaption.textContent = "";
+      lightbox.classList.remove("hidden");
+      lightbox.classList.add("flex");
+      lightbox.dataset.open = "true";
+    });
+  });
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    lightbox.dataset.open = "false";
+  };
+
+  document.querySelector("[data-lightbox-close]")?.addEventListener("click", closeLightbox);
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+
+  const filters = document.querySelector("[data-project-filters]");
+  if (filters) {
+    filters.querySelectorAll("button[data-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = (button as HTMLElement).dataset.filter ?? "all";
+        filters.querySelectorAll("button").forEach((b) => {
+          const active = b === button;
+          (b as HTMLElement).dataset.active = String(active);
+          b.classList.toggle("border-accent", active);
+          b.classList.toggle("bg-accent", active);
+          b.classList.toggle("text-bg", active);
+          b.classList.toggle("text-muted", !active);
+          b.classList.toggle("bg-transparent", !active);
+        });
+        document.querySelectorAll("[data-projects-grid] [data-category]").forEach((card) => {
+          const cat = (card as HTMLElement).dataset.category;
+          const show = filter === "all" || cat === filter;
+          (card as HTMLElement).style.display = show ? "" : "none";
+        });
+      });
+    });
+  }
+</script>

@@ -1,0 +1,149 @@
+---
+import SiteLayout from "../app/layouts/SiteLayout.astro";
+import Button from "../shared/ui/Button.astro";
+import T from "../shared/ui/T.astro";
+import { site } from "../shared/config/site";
+import { getMessages, messages } from "../messages";
+import { getVacancies } from "../shared/api/strapi";
+
+const page = getMessages("ru").pages.vacancies;
+const vacancies = await getVacancies("ru");
+---
+
+<SiteLayout title={page.title} description={page.description}>
+  <section class="py-[var(--spacing-section)]">
+    <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))]">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+        <T path="vacancies.eyebrow" />
+      </p>
+      <h1 class="mb-4 font-display text-[clamp(2rem,5vw,3.75rem)] uppercase tracking-[0.02em]">
+        <T path="vacancies.title" />
+      </h1>
+      <p class="mb-10 max-w-2xl text-[1.0625rem] text-soft">
+        <T path="vacancies.subtitle" />
+      </p>
+
+      {
+        vacancies.length === 0 ? (
+          <p class="mb-12 border border-border bg-surface p-6 text-soft">
+            <T path="vacancies.empty" />
+          </p>
+        ) : (
+          <div class="mb-12 grid gap-4">
+            {vacancies.map((vacancy) => (
+              <article class="border border-border bg-surface p-6">
+                <h2 class="mb-3 font-display text-2xl uppercase tracking-wide">{vacancy.title}</h2>
+                <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                  <T path="vacancies.requirements" />
+                </p>
+                <ul class="list-disc space-y-1 pl-5 text-sm text-muted">
+                  {vacancy.requirements.map((req) => (
+                    <li>{req}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        )
+      }
+
+      <h2 class="mb-6 font-display text-2xl uppercase tracking-wide text-accent">
+        <T path="vacancies.applyTitle" />
+      </h2>
+
+      <form
+        class="flex max-w-xl flex-col gap-4 border border-border bg-surface p-6"
+        action={site.formspreeEndpoint}
+        method="POST"
+        enctype="multipart/form-data"
+        id="vacancy-form"
+        data-success-ru={messages.ru.vacancies.form.success}
+        data-success-en={messages.en.vacancies.form.success}
+        data-success-kz={messages.kz.vacancies.form.success}
+        data-error-ru={messages.ru.vacancies.form.error}
+        data-error-en={messages.en.vacancies.form.error}
+        data-error-kz={messages.kz.vacancies.form.error}
+      >
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="_subject" value="Отклик на вакансию — REAL CONSTRUCTION" />
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="v-name">
+            <T path="vacancies.form.name" />
+          </label>
+          <input id="v-name" name="name" type="text" required class="border border-border-strong bg-bg px-4 py-3 text-fg outline-none focus:border-accent" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="v-phone">
+            <T path="vacancies.form.phone" />
+          </label>
+          <input id="v-phone" name="phone" type="tel" required class="border border-border-strong bg-bg px-4 py-3 text-fg outline-none focus:border-accent" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="v-email">
+            <T path="vacancies.form.email" />
+          </label>
+          <input id="v-email" name="email" type="email" required class="border border-border-strong bg-bg px-4 py-3 text-fg outline-none focus:border-accent" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="v-resume">
+            <T path="vacancies.form.resume" />
+          </label>
+          <input id="v-resume" name="resume" type="file" accept=".pdf,.doc,.docx" class="text-sm text-muted" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="v-message">
+            <T path="vacancies.form.message" />
+          </label>
+          <textarea id="v-message" name="message" class="min-h-24 border border-border-strong bg-bg px-4 py-3 text-fg outline-none focus:border-accent"></textarea>
+        </div>
+        <Button type="submit" variant="primary">
+          <T path="vacancies.form.submit" />
+        </Button>
+        <p class="min-h-5 text-sm text-accent" id="vacancy-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</SiteLayout>
+
+<script>
+  const form = document.getElementById("vacancy-form") as HTMLFormElement | null;
+  const status = document.getElementById("vacancy-status");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form) return;
+    const honeypot = (form.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
+    if (honeypot) return;
+
+    const locale = document.documentElement.dataset.locale ?? "ru";
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        form.reset();
+        if (status) {
+          status.textContent =
+            locale === "en"
+              ? form.dataset.successEn ?? ""
+              : locale === "kz"
+                ? form.dataset.successKz ?? ""
+                : form.dataset.successRu ?? "";
+        }
+      } else if (status) {
+        status.textContent =
+          locale === "en"
+            ? form.dataset.errorEn ?? ""
+            : locale === "kz"
+              ? form.dataset.errorKz ?? ""
+              : form.dataset.errorRu ?? "";
+      }
+    } catch {
+      if (status) status.textContent = form.dataset.errorRu ?? "";
+    }
+  });
+</script>

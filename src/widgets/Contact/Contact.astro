@@ -4,6 +4,12 @@ import Button from "../../shared/ui/Button.astro";
 import T from "../../shared/ui/T.astro";
 import { site } from "../../shared/config/site";
 import { messages } from "../../messages";
+
+interface Props {
+  showMap?: boolean;
+}
+
+const { showMap = false } = Astro.props;
 ---
 
 <section class="bg-bg-elevated py-[var(--spacing-section)]" id="contact">
@@ -28,8 +34,11 @@ import { messages } from "../../messages";
           <p class="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             <T path="contact.labels.email" />
           </p>
-          <a class="text-lg font-medium transition hover:text-accent" href={`mailto:${site.contact.email}`}>
+          <a class="block text-lg font-medium transition hover:text-accent" href={`mailto:${site.contact.email}`}>
             {site.contact.email}
+          </a>
+          <a class="mt-1 block text-lg font-medium transition hover:text-accent" href={`mailto:${site.contact.emailAlt}`}>
+            {site.contact.emailAlt}
           </a>
         </div>
         <div class="border-b border-border pb-4">
@@ -42,6 +51,35 @@ import { messages } from "../../messages";
             <span data-i18n="kz">{site.contact.addressKz}</span>
           </address>
         </div>
+
+        {
+          showMap && (
+            <div class="reveal mt-2">
+              <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                <T path="contact.mapTitle" />
+              </p>
+              <div class="overflow-hidden border border-border">
+                <iframe
+                  title="2GIS map"
+                  src="https://widgets.2gis.com/widget?type=firmsonmap&options=%7B%22pos%22%3A%7B%22lat%22%3A47.1167%2C%22lon%22%3A51.8833%2C%22zoom%22%3A15%7D%2C%22opt%22%3A%7B%22city%22%3A%22atyrau%22%7D%7D"
+                  class="h-72 w-full"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <p class="mt-2 text-sm text-muted">
+                <a
+                  class="text-accent transition hover:underline"
+                  href="https://2gis.kz/atyrau/search/Атырау%20микрорайон%20188А"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  2GIS →
+                </a>
+              </p>
+            </div>
+          )
+        }
       </div>
 
       <form
@@ -59,6 +97,7 @@ import { messages } from "../../messages";
         data-network-en={messages.en.contact.form.network}
         data-network-kz={messages.kz.contact.form.network}
       >
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="name">
             <T path="contact.form.name" />
@@ -109,6 +148,10 @@ import { messages } from "../../messages";
             class="min-h-32 w-full resize-y border border-border-strong bg-bg px-4 py-3 text-fg outline-none transition focus:border-accent focus:shadow-[0_0_0_0.2rem_var(--color-accent-dim)]"
           ></textarea>
         </div>
+        <label class="flex items-start gap-3 text-sm text-muted">
+          <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-accent)]" />
+          <span><T path="contact.form.consent" /></span>
+        </label>
         <input type="hidden" name="_subject" value="Заявка с сайта REAL CONSTRUCTION" />
         <Button type="submit" variant="primary">
           <T path="cta.submit" />
@@ -135,6 +178,9 @@ import { messages } from "../../messages";
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form) return;
+
+    const honeypot = (form.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
+    if (honeypot) return;
 
     const locale = document.documentElement.dataset.locale ?? "ru";
     const data = new FormData(form);

@@ -1,6 +1,15 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
-import { site } from "../../shared/config/site";
+import { site, type ClientItem } from "../../shared/config/site";
+
+interface Props {
+  withLogosOnly?: boolean;
+  clients?: ClientItem[];
+}
+
+const { withLogosOnly = false, clients: clientsProp } = Astro.props;
+const source = clientsProp ?? site.clients;
+const clients = withLogosOnly ? source.filter((c) => c.logo) : source;
 ---
 
 <section class="bg-bg-elevated py-[clamp(3rem,7vw,5rem)]" id="clients">
@@ -11,23 +20,29 @@ import { site } from "../../shared/config/site";
       subtitle="clients.subtitle"
     />
 
-    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
+    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
       {
-        site.clients.map((client, index) => (
+        clients.map((client, index) => (
           <article
             class:list={[
-              "reveal group flex min-h-40 flex-col items-center justify-center gap-4 border border-border bg-bg-elevated px-4 py-8 transition duration-300 hover:border-accent hover:bg-surface",
+              "reveal group flex min-h-36 flex-col items-center justify-center gap-4 border border-border bg-bg px-4 py-8 transition duration-300 hover:border-accent hover:bg-surface",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
-            <img
-              src={client.logo}
-              alt={client.name}
-              width="280"
-              height="140"
-              loading="lazy"
-              class="h-24 w-auto max-w-[90%] object-contain opacity-100 transition duration-300 md:h-28 lg:opacity-70 lg:grayscale lg:group-hover:opacity-100 lg:group-hover:grayscale-0"
-            />
+            {
+              client.logo ? (
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  width="280"
+                  height="140"
+                  loading="lazy"
+                  class="h-20 w-auto max-w-[90%] object-contain opacity-100 transition duration-300 md:h-24 lg:opacity-70 lg:grayscale lg:group-hover:opacity-100 lg:group-hover:grayscale-0"
+                />
+              ) : (
+                <span class="font-display text-center text-2xl tracking-wide text-accent">{client.name.split("«")[1]?.replace("»", "") ?? client.name}</span>
+              )
+            }
             <p class="text-center text-xs leading-snug text-muted">{client.name}</p>
           </article>
         ))
