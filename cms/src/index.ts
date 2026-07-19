@@ -14,7 +14,7 @@ async function seedIfEmpty(strapi: Core.Strapi) {
     return;
   }
 
-  strapi.log.info("Seeding REAL CONSTRUCTION content…");
+  strapi.log.info("Seeding REAL CONSTRUCTION CO content…");
 
   for (const item of seed.services) {
     await strapi.documents("api::service.service").create({

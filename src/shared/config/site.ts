@@ -68,7 +68,7 @@ export class ServiceItem {
 }
 
 export class SiteConfig {
-  readonly brand = "REAL CONSTRUCTION";
+  readonly brand = "REAL CONSTRUCTION CO";
   readonly siteUrl = "https://realconstruction.kz";
 
   get formspreeEndpoint(): string {
@@ -81,13 +81,11 @@ export class SiteConfig {
     "tel:+77017779405",
     "77017779405",
     "mn@realconstruction.kz",
-    "060026, г. Атырау, микрорайон Атырау, 188А",
-    "060026, Atyrau, Atyrau microdistrict, 188A",
-    "060026, Атырау қ., Атырау ықшамауданы, 188А",
-    // OSM embed: виджет 2GIS firmsonmap требует org/firmId (карточки компании нет)
-    "https://www.openstreetmap.org/export/embed.html?bbox=51.89932%2C47.13135%2C51.91932%2C47.14135&layer=mapnik&marker=47.13635%2C51.90932",
-    // Точка у мкр. Атырау, 188 (Тайыра Нысанова / 188)
-    "https://2gis.kz/atyrau/geo/70030076164212906",
+    "г. Атырау, улица Байтурсынова 47А, офис 207",
+    "Atyrau, Baitursynov street 47A, office 207",
+    "Атырау қ., Байтурсынов көшесі 47А, офис 207",
+    "https://www.openstreetmap.org/export/embed.html?bbox=51.90172%2C47.09774%2C51.91172%2C47.10774&layer=mapnik&marker=47.10274%2C51.90672",
+    "https://2gis.kz/atyrau/geo/70030076163996775",
   );
 
   readonly nav = [

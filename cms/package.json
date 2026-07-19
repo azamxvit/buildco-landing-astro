@@ -2,7 +2,7 @@
   "name": "real-construction-cms",
   "private": true,
   "version": "0.1.0",
-  "description": "Strapi CMS for REAL CONSTRUCTION website",
+  "description": "Strapi CMS for REAL CONSTRUCTION CO website",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",

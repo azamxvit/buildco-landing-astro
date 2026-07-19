@@ -1,4 +1,4 @@
-# Strapi CMS — REAL CONSTRUCTION
+# Strapi CMS — REAL CONSTRUCTION CO
 
 > Требуется **Node.js 18–22** (Strapi 5). Рекомендуется `nvm use 20`. На Node 24 установка может не пройти.
 

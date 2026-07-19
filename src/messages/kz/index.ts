@@ -2,39 +2,39 @@ import type { Messages } from "../types";
 
 const kz: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION — Атыраудағы құрылыс",
+    title: "REAL CONSTRUCTION CO — Атыраудағы құрылыс",
     description:
-      "«REAL CONSTRUCTION» ЖШС — Атырауда құрылыс-монтаж, жабдықтау және мұнай-газ секторына МТО.",
+      "«REAL CONSTRUCTION CO» ЖШС — Атырауда құрылыс-монтаж, жабдықтау және мұнай-газ секторына МТО.",
   },
   pages: {
     about: {
-      title: "Компания туралы — REAL CONSTRUCTION",
-      description: "«REAL CONSTRUCTION» ЖШС тарихы, мамандануы және қағидаттары.",
+      title: "Компания туралы — REAL CONSTRUCTION CO",
+      description: "«REAL CONSTRUCTION CO» ЖШС тарихы, мамандануы және қағидаттары.",
     },
     services: {
-      title: "Қызметтер — REAL CONSTRUCTION",
+      title: "Қызметтер — REAL CONSTRUCTION CO",
       description: "Атырауда құрылыс, монтаж, реконструкция және материал жеткізу.",
     },
     projects: {
-      title: "Жобалар — REAL CONSTRUCTION",
-      description: "REAL CONSTRUCTION орындалған объектілер портфолиосы.",
+      title: "Жобалар — REAL CONSTRUCTION CO",
+      description: "REAL CONSTRUCTION CO орындалған объектілер портфолиосы.",
     },
     certificates: {
-      title: "Лицензиялар мен сертификаттар — REAL CONSTRUCTION",
+      title: "Лицензиялар мен сертификаттар — REAL CONSTRUCTION CO",
       description: "II санатты құрылыс лицензиясы және ISO / OHSAS сертификаттары.",
     },
     partners: {
-      title: "Серіктестер мен клиенттер — REAL CONSTRUCTION",
+      title: "Серіктестер мен клиенттер — REAL CONSTRUCTION CO",
       description: "Қазақстанның мұнай-газ және өнеркәсіп секторындағы серіктестер.",
     },
     contact: {
-      title: "Байланыс — REAL CONSTRUCTION",
+      title: "Байланыс — REAL CONSTRUCTION CO",
       description: "Атыраудағы мекенжай, телефон, email және өтінім нысаны.",
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION",
-    legal: "«REAL CONSTRUCTION» ЖШС",
+    name: "REAL CONSTRUCTION CO",
+    legal: "«REAL CONSTRUCTION CO» ЖШС",
     location: "Атырау · Қазақстан",
   },
   nav: {
@@ -64,7 +64,7 @@ const kz: Messages = {
   about: {
     eyebrow: "Компания туралы",
     title: "Құрылыстағы сенімді серіктес",
-    p1: "«REAL CONSTRUCTION» ЖШС — Атыраудағы көппрофильді құрылыс компаниясы. Біз құрылыс-монтаж, реконструкция, аз қабатты және жылдам салынатын құрылыс, жобалау, техникалық қызмет көрсету, сондай-ақ мұнай-газ секторына жабдық пен материал жеткізумен айналысамыз.",
+    p1: "«REAL CONSTRUCTION CO» ЖШС — Атыраудағы көппрофильді құрылыс компаниясы. Біз құрылыс-монтаж, реконструкция, аз қабатты және жылдам салынатын құрылыс, жобалау, техникалық қызмет көрсету, сондай-ақ мұнай-газ секторына жабдық пен материал жеткізумен айналысамыз.",
     p2: "Компанияның өз техникасы, өндірістік базасы және тәжірибелі кадрлары бар. Біз әр клиентті бағалаймыз және сапа, мерзім мен жауапкершілік қағидаттарына негізделген ұзақ мерзімді серіктестік орнатамыз.",
     p3: "Жеткізудің негізгі бағыты — мұнай-газ, химиялық және құрылыс жабдықтары мен материалдары: құбыр өнімдері, фитингтер, инертті және құрылыс материалдары, металлопрокат.",
     valuesTitle: "Біздің қағидаттар",
@@ -254,7 +254,7 @@ const kz: Messages = {
     whatsapp: "WhatsApp",
     call: "Қоңырау шалу",
     whatsappMessage:
-      "Сәлеметсіз бе! REAL CONSTRUCTION сайтынан құрылыс / қызметтер туралы жазып тұрмын.",
+      "Сәлеметсіз бе! REAL CONSTRUCTION CO сайтынан құрылыс / қызметтер туралы жазып тұрмын.",
   },
 };
 

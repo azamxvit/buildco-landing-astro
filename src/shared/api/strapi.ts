@@ -1,6 +1,3 @@
-/**
- * Strapi REST client with static fallback to site.ts / messages.
- */
 import {
   site,
   ServiceItem,

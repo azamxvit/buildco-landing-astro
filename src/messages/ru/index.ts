@@ -2,39 +2,39 @@ import type { Messages } from "../types";
 
 const ru: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION — Строительство в Атырау",
+    title: "REAL CONSTRUCTION CO — Строительство в Атырау",
     description:
-      "ТОО «REAL CONSTRUCTION» — строительно-монтажные работы, поставки и МТО для нефтегазового сектора в Атырау, Казахстан.",
+      "ТОО «REAL CONSTRUCTION CO» — строительно-монтажные работы, поставки и МТО для нефтегазового сектора в Атырау, Казахстан.",
   },
   pages: {
     about: {
-      title: "О компании — REAL CONSTRUCTION",
-      description: "История, специализация и принципы работы ТОО «REAL CONSTRUCTION» в Атырау.",
+      title: "О компании — REAL CONSTRUCTION CO",
+      description: "История, специализация и принципы работы ТОО «REAL CONSTRUCTION CO» в Атырау.",
     },
     services: {
-      title: "Услуги — REAL CONSTRUCTION",
+      title: "Услуги — REAL CONSTRUCTION CO",
       description: "Строительство, монтаж, реконструкция и поставки материалов в Атырау.",
     },
     projects: {
-      title: "Проекты — REAL CONSTRUCTION",
-      description: "Портфолио выполненных объектов REAL CONSTRUCTION.",
+      title: "Проекты — REAL CONSTRUCTION CO",
+      description: "Портфолио выполненных объектов REAL CONSTRUCTION CO.",
     },
     certificates: {
-      title: "Лицензии и сертификаты — REAL CONSTRUCTION",
+      title: "Лицензии и сертификаты — REAL CONSTRUCTION CO",
       description: "Строительная лицензия II категории и сертификаты ISO / OHSAS.",
     },
     partners: {
-      title: "Партнёры и клиенты — REAL CONSTRUCTION",
+      title: "Партнёры и клиенты — REAL CONSTRUCTION CO",
       description: "Ключевые партнёры нефтегазового и промышленного сектора Казахстана.",
     },
     contact: {
-      title: "Контакты — REAL CONSTRUCTION",
-      description: "Адрес, телефон, email и форма заявки REAL CONSTRUCTION в Атырау.",
+      title: "Контакты — REAL CONSTRUCTION CO",
+      description: "Адрес, телефон, email и форма заявки REAL CONSTRUCTION CO в Атырау.",
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION",
-    legal: "ТОО «REAL CONSTRUCTION»",
+    name: "REAL CONSTRUCTION CO",
+    legal: "ТОО «REAL CONSTRUCTION CO»",
     location: "Атырау · Казахстан",
   },
   nav: {
@@ -64,7 +64,7 @@ const ru: Messages = {
   about: {
     eyebrow: "О компании",
     title: "Надёжный партнёр в строительстве",
-    p1: "ТОО «REAL CONSTRUCTION» — многопрофильная строительная компания из Атырау. Мы выполняем строительно-монтажные работы, реконструкцию, малоэтажное и быстровозводимое строительство, проектирование, техническое обслуживание, а также поставки оборудования и материалов для нефтегазового сектора.",
+    p1: "ТОО «REAL CONSTRUCTION CO» — многопрофильная строительная компания из Атырау. Мы выполняем строительно-монтажные работы, реконструкцию, малоэтажное и быстровозводимое строительство, проектирование, техническое обслуживание, а также поставки оборудования и материалов для нефтегазового сектора.",
     p2: "Компания располагает собственной техникой, производственной базой и опытными кадрами. Мы дорожим каждым клиентом и строим долгосрочные партнёрские отношения — на принципах качества, сроков и ответственности.",
     p3: "Основное направление поставок — нефтегазовое, химическое и строительное оборудование и материалы: трубная продукция, фитинги, инертные и строительные материалы, металлопрокат.",
     valuesTitle: "Наши принципы",
@@ -254,7 +254,7 @@ const ru: Messages = {
     whatsapp: "WhatsApp",
     call: "Позвонить",
     whatsappMessage:
-      "Здравствуйте! Пишу вам с сайта REAL CONSTRUCTION по поводу строительства / услуг.",
+      "Здравствуйте! Пишу вам с сайта REAL CONSTRUCTION CO по поводу строительства / услуг.",
   },
 };
 

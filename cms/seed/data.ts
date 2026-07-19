@@ -1,7 +1,3 @@
-/**
- * Seed data mirroring src/shared/config/site.ts + messages/ru.
- * Used by bootstrap on first CMS start when collections are empty.
- */
 const seed = {
   services: [
     {

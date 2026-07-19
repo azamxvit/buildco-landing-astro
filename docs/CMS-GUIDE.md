@@ -1,4 +1,4 @@
-# Инструкция для редактора — REAL CONSTRUCTION (Strapi)
+# Инструкция для редактора — REAL CONSTRUCTION CO (Strapi)
 
 ## Вход
 

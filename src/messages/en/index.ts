@@ -2,39 +2,39 @@ import type { Messages } from "../types";
 
 const en: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION — Construction in Atyrau",
+    title: "REAL CONSTRUCTION CO — Construction in Atyrau",
     description:
-      "REAL CONSTRUCTION LLP — construction, installation, and MRO supply for the oil & gas sector in Atyrau, Kazakhstan.",
+      "REAL CONSTRUCTION CO LLP — construction, installation, and MRO supply for the oil & gas sector in Atyrau, Kazakhstan.",
   },
   pages: {
     about: {
-      title: "About — REAL CONSTRUCTION",
-      description: "History, specialization, and values of REAL CONSTRUCTION in Atyrau.",
+      title: "About — REAL CONSTRUCTION CO",
+      description: "History, specialization, and values of REAL CONSTRUCTION CO in Atyrau.",
     },
     services: {
-      title: "Services — REAL CONSTRUCTION",
+      title: "Services — REAL CONSTRUCTION CO",
       description: "Construction, installation, reconstruction, and material supply in Atyrau.",
     },
     projects: {
-      title: "Projects — REAL CONSTRUCTION",
-      description: "Portfolio of completed REAL CONSTRUCTION projects.",
+      title: "Projects — REAL CONSTRUCTION CO",
+      description: "Portfolio of completed REAL CONSTRUCTION CO projects.",
     },
     certificates: {
-      title: "Licenses & certificates — REAL CONSTRUCTION",
+      title: "Licenses & certificates — REAL CONSTRUCTION CO",
       description: "Category II construction license and ISO / OHSAS certificates.",
     },
     partners: {
-      title: "Partners & clients — REAL CONSTRUCTION",
+      title: "Partners & clients — REAL CONSTRUCTION CO",
       description: "Key partners across Kazakhstan’s oil, gas, and industrial sectors.",
     },
     contact: {
-      title: "Contact — REAL CONSTRUCTION",
-      description: "Address, phone, email, and inquiry form for REAL CONSTRUCTION in Atyrau.",
+      title: "Contact — REAL CONSTRUCTION CO",
+      description: "Address, phone, email, and inquiry form for REAL CONSTRUCTION CO in Atyrau.",
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION",
-    legal: "REAL CONSTRUCTION LLP",
+    name: "REAL CONSTRUCTION CO",
+    legal: "REAL CONSTRUCTION CO LLP",
     location: "Atyrau · Kazakhstan",
   },
   nav: {
@@ -64,7 +64,7 @@ const en: Messages = {
   about: {
     eyebrow: "About us",
     title: "A reliable partner in construction",
-    p1: "REAL CONSTRUCTION LLP is a diversified construction company based in Atyrau. We deliver construction and installation, reconstruction, low-rise and prefabricated buildings, design, maintenance, and supply of equipment and materials for the oil & gas sector.",
+    p1: "REAL CONSTRUCTION CO LLP is a diversified construction company based in Atyrau. We deliver construction and installation, reconstruction, low-rise and prefabricated buildings, design, maintenance, and supply of equipment and materials for the oil & gas sector.",
     p2: "We operate our own equipment, production facilities, and experienced teams. We value every client and build long-term partnerships based on quality, deadlines, and accountability.",
     p3: "Our supply focus includes oil & gas, chemical, and construction equipment and materials: pipes, fittings, inert and building materials, and rolled metal.",
     valuesTitle: "Our principles",
@@ -254,7 +254,7 @@ const en: Messages = {
     whatsapp: "WhatsApp",
     call: "Call",
     whatsappMessage:
-      "Hello! I’m writing from the REAL CONSTRUCTION website about construction / services.",
+      "Hello! I’m writing from the REAL CONSTRUCTION CO website about construction / services.",
   },
 };
 
