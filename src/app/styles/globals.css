@@ -137,4 +137,21 @@
   .reveal-delay-3 {
     transition-delay: 240ms;
   }
+
+  .project-filter[data-active="true"] {
+    border-color: var(--brand-accent);
+    background-color: var(--brand-accent);
+    color: var(--brand-bg);
+  }
+
+  .project-filter[data-active="false"] {
+    border-color: var(--brand-border-strong);
+    background-color: transparent;
+    color: var(--brand-muted);
+  }
+
+  .project-filter[data-active="false"]:hover {
+    border-color: var(--brand-accent);
+    color: var(--brand-accent);
+  }
 }

@@ -30,7 +30,7 @@ const categories = [...new Set(source.map((p) => p.categoryKey))];
         <div class="mb-8 flex flex-wrap gap-2" data-project-filters>
           <button
             type="button"
-            class="border border-accent bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-bg"
+            class="project-filter border px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition"
             data-filter="all"
             data-active="true"
           >
@@ -40,7 +40,7 @@ const categories = [...new Set(source.map((p) => p.categoryKey))];
             categories.map((cat) => (
               <button
                 type="button"
-                class="border border-border-strong bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted transition hover:border-accent hover:text-accent"
+                class="project-filter border px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition"
                 data-filter={cat}
                 data-active="false"
               >
@@ -167,13 +167,7 @@ const categories = [...new Set(source.map((p) => p.categoryKey))];
       button.addEventListener("click", () => {
         const filter = (button as HTMLElement).dataset.filter ?? "all";
         filters.querySelectorAll("button").forEach((b) => {
-          const active = b === button;
-          (b as HTMLElement).dataset.active = String(active);
-          b.classList.toggle("border-accent", active);
-          b.classList.toggle("bg-accent", active);
-          b.classList.toggle("text-bg", active);
-          b.classList.toggle("text-muted", !active);
-          b.classList.toggle("bg-transparent", !active);
+          (b as HTMLElement).dataset.active = String(b === button);
         });
         document.querySelectorAll("[data-projects-grid] [data-category]").forEach((card) => {
           const cat = (card as HTMLElement).dataset.category;
