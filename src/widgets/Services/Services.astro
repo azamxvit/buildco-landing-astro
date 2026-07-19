@@ -19,8 +19,8 @@ const onAccent = tone === "accent";
 
 <section
   class:list={[
-    "relative overflow-hidden py-[var(--spacing-section)]",
-    onAccent ? "bg-accent" : "bg-bg",
+    "theme relative overflow-hidden bg-bg py-[var(--spacing-section)]",
+    onAccent && "theme--band",
   ]}
   id="services"
 >
@@ -34,12 +34,7 @@ const onAccent = tone === "accent";
   }
 
   <div class="relative mx-auto w-[min(100%-2.5rem,var(--container-max))]">
-    <SectionTitle
-      eyebrow="services.eyebrow"
-      title="services.title"
-      subtitle="services.subtitle"
-      tone={onAccent ? "onAccent" : "default"}
-    />
+    <SectionTitle eyebrow="services.eyebrow" title="services.title" subtitle="services.subtitle" />
 
     <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
       {
@@ -47,10 +42,8 @@ const onAccent = tone === "accent";
           <a
             href={`/services/${service.slug}`}
             class:list={[
-              "reveal group flex h-full flex-col gap-4 border p-6 transition duration-300 hover:-translate-y-1",
-              onAccent
-                ? "border-black/10 bg-bg hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]"
-                : "border-border bg-surface hover:border-accent hover:bg-surface-hover",
+              "theme theme--panel reveal group flex h-full flex-col gap-4 border border-border bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover",
+              onAccent && "hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
@@ -74,11 +67,7 @@ const onAccent = tone === "accent";
     {
       limit && (
         <div class="mt-10 flex justify-center">
-          <Button
-            href="/services"
-            variant={onAccent ? "outline" : "primary"}
-            class={onAccent ? "border-bg text-bg hover:border-bg hover:bg-bg hover:text-fg" : ""}
-          >
+          <Button href="/services" variant={onAccent ? "outline" : "primary"}>
             <T path="cta.allServices" />
           </Button>
         </div>

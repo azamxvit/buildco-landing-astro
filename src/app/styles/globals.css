@@ -1,18 +1,83 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #0a0a0a;
-  --color-bg-elevated: #111111;
-  --color-surface: #1a1a1a;
-  --color-surface-hover: #222222;
-  --color-border: #2a2a2a;
-  --color-border-strong: #3a3a3a;
-  --color-muted: #9a9a9a;
-  --color-soft: #c8c8c8;
-  --color-fg: #f5f5f5;
-  --color-accent: #f5a623;
-  --color-accent-hover: #ffb84a;
-  --color-accent-dim: rgb(245 166 35 / 0.12);
+:root {
+  --brand-bg: #0a0a0a;
+  --brand-bg-elevated: #111111;
+  --brand-surface: #1a1a1a;
+  --brand-surface-hover: #222222;
+  --brand-border: #2a2a2a;
+  --brand-border-strong: #3a3a3a;
+  --brand-muted: #9a9a9a;
+  --brand-soft: #c8c8c8;
+  --brand-fg: #f5f5f5;
+  --brand-accent: #f5a623;
+  --brand-accent-hover: #ffb84a;
+  --brand-accent-dim: rgb(245 166 35 / 0.12);
+}
+
+:root,
+.theme {
+  --bg: var(--brand-bg);
+  --bg-elevated: var(--brand-bg-elevated);
+  --surface: var(--brand-surface);
+  --surface-hover: var(--brand-surface-hover);
+  --border: var(--brand-border);
+  --border-strong: var(--brand-border-strong);
+  --muted: var(--brand-muted);
+  --soft: var(--brand-soft);
+  --fg: var(--brand-fg);
+  --accent: var(--brand-accent);
+  --accent-hover: var(--brand-accent-hover);
+  --accent-dim: var(--brand-accent-dim);
+}
+
+.theme--elevated {
+  --bg: var(--brand-bg-elevated);
+}
+
+.theme--band {
+  --bg: var(--brand-accent);
+  --bg-elevated: color-mix(in srgb, var(--brand-accent) 88%, black);
+  --surface: color-mix(in srgb, var(--brand-accent) 82%, black);
+  --surface-hover: color-mix(in srgb, var(--brand-accent) 72%, black);
+  --border: rgb(10 10 10 / 0.12);
+  --border-strong: rgb(10 10 10 / 0.22);
+  --muted: rgb(10 10 10 / 0.55);
+  --soft: rgb(10 10 10 / 0.72);
+  --fg: var(--brand-bg);
+  --accent: var(--brand-bg);
+  --accent-hover: #1a1a1a;
+  --accent-dim: rgb(10 10 10 / 0.08);
+}
+
+.theme--panel {
+  --bg: var(--brand-bg);
+  --bg-elevated: var(--brand-bg-elevated);
+  --surface: var(--brand-surface);
+  --surface-hover: var(--brand-surface-hover);
+  --border: var(--brand-border);
+  --border-strong: var(--brand-border-strong);
+  --muted: var(--brand-muted);
+  --soft: var(--brand-soft);
+  --fg: var(--brand-fg);
+  --accent: var(--brand-accent);
+  --accent-hover: var(--brand-accent-hover);
+  --accent-dim: var(--brand-accent-dim);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-dim: var(--accent-dim);
 
   --font-display: "Bebas Neue", sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -31,8 +96,8 @@
   body {
     @apply bg-bg font-sans text-fg antialiased;
     background-image:
-      radial-gradient(ellipse 70% 45% at 0% 0%, rgb(245 166 35 / 0.07), transparent 55%),
-      radial-gradient(ellipse 50% 35% at 100% 10%, rgb(245 166 35 / 0.04), transparent 50%);
+      radial-gradient(ellipse 70% 45% at 0% 0%, color-mix(in srgb, var(--brand-accent) 7%, transparent), transparent 55%),
+      radial-gradient(ellipse 50% 35% at 100% 10%, color-mix(in srgb, var(--brand-accent) 4%, transparent), transparent 50%);
     background-attachment: fixed;
   }
 
