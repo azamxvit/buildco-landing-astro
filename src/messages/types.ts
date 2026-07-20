@@ -107,8 +107,12 @@ export interface Messages {
     items: {
       iso9001: string;
       iso14001: string;
-      ohsas: string;
+      iso45001: string;
       license: string;
+      containex: string;
+      zqRecommendation: string;
+      containexRecommendation: string;
+      containexLetter: string;
     };
   };
   contact: {

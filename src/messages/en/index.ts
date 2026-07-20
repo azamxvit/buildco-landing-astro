@@ -21,7 +21,7 @@ const en: Messages = {
     },
     certificates: {
       title: "Licenses & certificates — REAL CONSTRUCTION CO",
-      description: "Category II construction license and ISO / OHSAS certificates.",
+      description: "Category II construction license and ISO 9001, ISO 14001, ISO 45001 certificates.",
     },
     partners: {
       title: "Partners & clients — REAL CONSTRUCTION CO",
@@ -64,7 +64,7 @@ const en: Messages = {
   about: {
     eyebrow: "About us",
     title: "A reliable partner in construction",
-    p1: "REAL CONSTRUCTION CO LLP is a diversified construction company based in Atyrau. We deliver construction and installation, reconstruction, low-rise and prefabricated buildings, design, maintenance, and supply of equipment and materials for the oil & gas sector.",
+    p1: "REAL CONSTRUCTION CO LLP is a diversified construction company based in Atyrau. We deliver construction and installation, reconstruction, industrial and prefabricated buildings, design, maintenance, and supply of equipment and materials for the oil & gas sector.",
     p2: "We operate our own equipment, production facilities, and experienced teams. We value every client and build long-term partnerships based on quality, deadlines, and accountability.",
     p3: "Our supply focus includes oil & gas, chemical, and construction equipment and materials: pipes, fittings, inert and building materials, and rolled metal.",
     valuesTitle: "Our principles",
@@ -98,9 +98,10 @@ const en: Messages = {
         features: ["Structural reinforcement", "Systems upgrade", "Minimal downtime"],
       },
       lowRise: {
-        title: "Low-rise construction",
-        description: "Turnkey low-rise residential and commercial buildings.",
-        features: ["Turnkey delivery", "Residential & commercial", "Quality at every stage"],
+        title: "Industrial construction",
+        description:
+          "Industrial facilities for the oil & gas sector: production sites, process buildings, and infrastructure.",
+        features: ["Tengizchevroil", "NCOC", "KPO", "PNHZ — ANPZ"],
       },
       prefabricated: {
         title: "Prefabricated buildings",
@@ -210,14 +211,18 @@ const en: Messages = {
   certifications: {
     eyebrow: "Certificates",
     title: "Quality certified",
-    subtitle: "International management standards and a Category II construction license.",
+    subtitle: "International management standards, partner recommendations, and a Category II construction license.",
     licenseNote: "Category II construction license GSL No. 0002796 dated 28 May 2007.",
     download: "Download PDF",
     items: {
       iso9001: "Quality management system",
       iso14001: "Environmental management",
-      ohsas: "Occupational health & safety",
+      iso45001: "Occupational health & safety",
       license: "Category II construction license",
+      containex: "Containex partner certificate",
+      zqRecommendation: "ZamanQuantor recommendation letter",
+      containexRecommendation: "MA recommendation — Containex",
+      containexLetter: "Containex letter for RCC",
     },
   },
   contact: {

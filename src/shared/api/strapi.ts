@@ -134,7 +134,17 @@ export async function getCertificates(locale: Locale = "ru"): Promise<Certificat
       const u = file.data.attributes?.url ?? file.data.url;
       if (u) pdf = u.startsWith("http") ? u : `${STRAPI_URL}${u}`;
     }
-    const id = (["iso9001", "iso14001", "ohsas", "license"] as const)[index % 4];
+    const ids = [
+      "iso9001",
+      "iso14001",
+      "iso45001",
+      "license",
+      "containex",
+      "zqRecommendation",
+      "containexRecommendation",
+      "containexLetter",
+    ] as const;
+    const id = ids[index % ids.length];
     return new CertificationItem(id, String(a.code ?? "CERT"), pdf);
   });
 }
