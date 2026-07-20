@@ -5,36 +5,23 @@ interface Props {
   eyebrow: string;
   title: string;
   subtitle?: string;
-  tone?: "default" | "onAccent";
   class?: string;
 }
 
-const { eyebrow, title, subtitle, tone = "default", class: className = "" } = Astro.props;
-
-const onAccent = tone === "onAccent";
+const { eyebrow, title, subtitle, class: className = "" } = Astro.props;
 ---
 
 <header class:list={["mb-12 max-w-xl reveal", className]}>
-  <p
-    class:list={[
-      "mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em]",
-      onAccent ? "text-bg" : "text-accent",
-    ]}
-  >
-    <span class:list={["inline-block h-0.5 w-6", onAccent ? "bg-bg" : "bg-accent"]} aria-hidden="true"></span>
+  <p class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+    <span class="inline-block h-0.5 w-6 bg-accent" aria-hidden="true"></span>
     <T path={eyebrow} />
   </p>
-  <h2
-    class:list={[
-      "mb-3 font-display text-[clamp(2rem,5vw,3.75rem)] uppercase leading-[1.05] tracking-[0.02em]",
-      onAccent ? "text-bg" : "text-fg",
-    ]}
-  >
+  <h2 class="mb-3 font-display text-[clamp(2rem,5vw,3.75rem)] uppercase leading-[1.05] tracking-[0.02em] text-fg">
     <T path={title} />
   </h2>
   {
     subtitle && (
-      <p class:list={["text-[1.0625rem] leading-relaxed", onAccent ? "text-bg/80" : "text-soft"]}>
+      <p class="text-[1.0625rem] leading-relaxed text-soft">
         <T path={subtitle} />
       </p>
     )
