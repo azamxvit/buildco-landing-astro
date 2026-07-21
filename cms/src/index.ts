@@ -3,8 +3,8 @@ import seed from "../seed/data";
 
 async function seedIfEmpty(strapi: Core.Strapi) {
   try {
-    const existing = await strapi.documents("api::service.service").findMany({ limit: 1 });
-    if (existing?.length) {
+    const count = await strapi.db.query("api::service.service").count();
+    if (count > 0) {
       strapi.log.info("Seed skipped: content already present");
       return;
     }

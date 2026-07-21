@@ -106,7 +106,7 @@ export class SiteConfig {
   readonly services: ServiceItem[] = [
     new ServiceItem("construction", "crane", "construction"),
     new ServiceItem("reconstruction", "rebuild", "reconstruction"),
-    new ServiceItem("lowRise", "home", "low-rise"),
+    new ServiceItem("lowRise", "steel", "industrial"),
     new ServiceItem("prefabricated", "warehouse", "prefabricated"),
     new ServiceItem("general", "layers", "general-construction"),
     new ServiceItem("pipeSupply", "pipe", "pipe-supply"),
@@ -139,6 +139,10 @@ export class SiteConfig {
   ];
 
   readonly clients: ClientItem[] = [
+    new ClientItem("tengiz", "Tengizchevroil LLP"),
+    new ClientItem("ncoc", "NCOC"),
+    new ClientItem("kpo", "Karachaganak Petroleum Operating B.V."),
+    new ClientItem("pnhz", "ПНХЗ — АНПЗ"),
     new ClientItem("emba", "АО «Эмбамунайгаз»", "/images/clients/embamunaigas.png"),
     new ClientItem("mmg", "АО «Мангистаумунайгаз»", "/images/clients/mangistaumunaigaz.png"),
     new ClientItem("kto", "Западный филиал АО «Казтрансойл»", "/images/clients/kaztransoil.png"),
@@ -157,8 +161,16 @@ export class SiteConfig {
   readonly certifications: CertificationItem[] = [
     new CertificationItem("iso9001", "ISO 9001", "/certificates/iso-9001.pdf"),
     new CertificationItem("iso14001", "ISO 14001", "/certificates/iso-14001.pdf"),
-    new CertificationItem("ohsas", "OHSAS 18001", "/certificates/ohsas-18001.pdf"),
+    new CertificationItem("iso45001", "ISO 45001", "/certificates/iso-45001.pdf"),
     new CertificationItem("license", "ГСЛ №0002796", "/certificates/license-gsl.pdf"),
+    new CertificationItem("containex", "Containex", "/certificates/containex-certificate.pdf"),
+    new CertificationItem("zqRecommendation", "ZamanQuantor", "/certificates/zq-recommendation.pdf"),
+    new CertificationItem(
+      "containexRecommendation",
+      "Containex MA",
+      "/certificates/containex-recommendation-ma.pdf",
+    ),
+    new CertificationItem("containexLetter", "Containex", "/certificates/containex-letter.pdf"),
   ];
 
   getServiceBySlug(slug: string): ServiceItem | undefined {
