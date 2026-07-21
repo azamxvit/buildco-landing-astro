@@ -254,6 +254,9 @@ const ru: Messages = {
   footer: {
     tagline: "Строительство и монтаж в Атырау",
     rights: "Все права защищены.",
+    madeBy: "Сайт разработан",
+    developerTagline: "Современные IT-решения для бизнеса",
+    bin: "БИН",
   },
   floating: {
     whatsapp: "WhatsApp",

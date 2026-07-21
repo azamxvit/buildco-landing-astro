@@ -254,6 +254,9 @@ const en: Messages = {
   footer: {
     tagline: "Construction and installation in Atyrau",
     rights: "All rights reserved.",
+    madeBy: "Website by",
+    developerTagline: "Modern IT solutions for business",
+    bin: "BIN",
   },
   floating: {
     whatsapp: "WhatsApp",

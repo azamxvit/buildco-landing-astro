@@ -254,6 +254,9 @@ const kz: Messages = {
   footer: {
     tagline: "Атыраудағы құрылыс және монтаж",
     rights: "Барлық құқықтар қорғалған.",
+    madeBy: "Сайтты жасаған",
+    developerTagline: "Бизнеске арналған заманауи IT-шешімдер",
+    bin: "БСН",
   },
   floating: {
     whatsapp: "WhatsApp",

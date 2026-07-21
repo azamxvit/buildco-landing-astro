@@ -144,6 +144,9 @@ export interface Messages {
   footer: {
     tagline: string;
     rights: string;
+    madeBy: string;
+    developerTagline: string;
+    bin: string;
   };
   floating: {
     whatsapp: string;

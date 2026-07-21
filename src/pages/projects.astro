@@ -2,7 +2,7 @@
 import SiteLayout from "../app/layouts/SiteLayout.astro";
 import Projects from "../widgets/Projects/Projects.astro";
 import { getMessages } from "../messages";
-import { getProjects } from "../shared/api/strapi";
+import { getProjects } from "../shared/api/content";
 
 const page = getMessages("ru").pages.projects;
 const projects = await getProjects("ru");
