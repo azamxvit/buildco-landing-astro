@@ -22,9 +22,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-cms/.tmp/
-cms/.cache/
-cms/dist/
-cms/build/
-cms/.strapi/

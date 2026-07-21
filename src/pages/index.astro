@@ -9,7 +9,7 @@ import Certifications from "../widgets/Certifications/Certifications.astro";
 import CTA from "../widgets/CTA/CTA.astro";
 import Contact from "../widgets/Contact/Contact.astro";
 import { getMessages } from "../messages";
-import { getServices, getProjects, getPartners, getCertificates } from "../shared/api/strapi";
+import { getServices, getProjects, getPartners, getCertificates } from "../shared/api/content";
 
 const meta = getMessages("ru").meta;
 const [services, projects, partners, certifications] = await Promise.all([

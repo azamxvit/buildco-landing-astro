@@ -67,9 +67,27 @@ export class ServiceItem {
   ) {}
 }
 
+export class DeveloperCredit {
+  constructor(
+    public readonly name: string,
+    public readonly legal: string,
+    public readonly bin: string,
+    public readonly logo: string,
+    /** Optional public site — leave empty if not ready yet */
+    public readonly url: string | null = null,
+  ) {}
+}
+
 export class SiteConfig {
   readonly brand = "REAL CONSTRUCTION CO";
   readonly siteUrl = "https://realconstruction.kz";
+
+  readonly developer = new DeveloperCredit(
+    "SULTAN SMART SYSTEM",
+    "ТОО «SULTAN SMART SYSTEM»",
+    "260640036619",
+    "/images/sss-logo.svg",
+  );
 
   get formspreeEndpoint(): string {
     const id = import.meta.env.PUBLIC_FORMSPREE_ID || "your-form-id";
