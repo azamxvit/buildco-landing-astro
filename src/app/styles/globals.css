@@ -10,9 +10,12 @@
   --brand-muted: #9a9a9a;
   --brand-soft: #c8c8c8;
   --brand-fg: #f5f5f5;
-  --brand-accent: #f5a623;
-  --brand-accent-hover: #ffb84a;
-  --brand-accent-dim: rgb(245 166 35 / 0.12);
+  /* RCC logo blue */
+  --brand-accent: #005db7;
+  --brand-accent-hover: #1a74d1;
+  --brand-accent-dim: rgb(0 93 183 / 0.14);
+  --brand-on-accent: #ffffff;
+  --brand-sss: #23d2a4;
 }
 
 :root,
@@ -29,6 +32,7 @@
   --accent: var(--brand-accent);
   --accent-hover: var(--brand-accent-hover);
   --accent-dim: var(--brand-accent-dim);
+  --on-accent: var(--brand-on-accent);
 }
 
 .theme--elevated {
@@ -40,14 +44,15 @@
   --bg-elevated: color-mix(in srgb, var(--brand-accent) 88%, black);
   --surface: color-mix(in srgb, var(--brand-accent) 82%, black);
   --surface-hover: color-mix(in srgb, var(--brand-accent) 72%, black);
-  --border: rgb(10 10 10 / 0.12);
-  --border-strong: rgb(10 10 10 / 0.22);
-  --muted: rgb(10 10 10 / 0.55);
-  --soft: rgb(10 10 10 / 0.72);
-  --fg: var(--brand-bg);
-  --accent: var(--brand-bg);
-  --accent-hover: #1a1a1a;
-  --accent-dim: rgb(10 10 10 / 0.08);
+  --border: rgb(255 255 255 / 0.18);
+  --border-strong: rgb(255 255 255 / 0.3);
+  --muted: rgb(255 255 255 / 0.72);
+  --soft: rgb(255 255 255 / 0.88);
+  --fg: var(--brand-on-accent);
+  --accent: var(--brand-on-accent);
+  --accent-hover: #f0f0f0;
+  --accent-dim: rgb(255 255 255 / 0.12);
+  --on-accent: var(--brand-accent);
 }
 
 .theme--panel {
@@ -63,6 +68,7 @@
   --accent: var(--brand-accent);
   --accent-hover: var(--brand-accent-hover);
   --accent-dim: var(--brand-accent-dim);
+  --on-accent: var(--brand-on-accent);
 }
 
 @theme inline {
@@ -78,6 +84,8 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-dim: var(--accent-dim);
+  --color-on-accent: var(--on-accent);
+  --color-sss: var(--brand-sss);
 
   --font-display: "Bebas Neue", sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -96,19 +104,35 @@
   body {
     @apply bg-bg font-sans text-fg antialiased;
     background-image:
-      radial-gradient(ellipse 70% 45% at 0% 0%, color-mix(in srgb, var(--brand-accent) 7%, transparent), transparent 55%),
-      radial-gradient(ellipse 50% 35% at 100% 10%, color-mix(in srgb, var(--brand-accent) 4%, transparent), transparent 50%);
+      radial-gradient(ellipse 70% 45% at 0% 0%, color-mix(in srgb, var(--brand-accent) 10%, transparent), transparent 55%),
+      radial-gradient(ellipse 50% 35% at 100% 10%, color-mix(in srgb, var(--brand-accent) 6%, transparent), transparent 50%);
     background-attachment: fixed;
   }
 
   ::selection {
-    @apply bg-accent text-bg;
+    @apply bg-accent text-on-accent;
   }
 
   [data-locale="ru"] [data-i18n]:not([data-i18n="ru"]),
   [data-locale="en"] [data-i18n]:not([data-i18n="en"]),
   [data-locale="kz"] [data-i18n]:not([data-i18n="kz"]) {
     display: none !important;
+  }
+}
+
+@layer components {
+  .page-container {
+    width: min(100% - 2.5rem, var(--container-max));
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest text-accent;
+  }
+
+  .display-title {
+    @apply font-display uppercase leading-tight tracking-wide text-fg;
+    font-size: clamp(2rem, 5vw, 3.75rem);
   }
 }
 
@@ -141,7 +165,7 @@
   .project-filter[data-active="true"] {
     border-color: var(--brand-accent);
     background-color: var(--brand-accent);
-    color: var(--brand-bg);
+    color: var(--brand-on-accent);
   }
 
   .project-filter[data-active="false"] {

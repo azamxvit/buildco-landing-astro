@@ -10,7 +10,7 @@ import { site } from "../../shared/config/site";
   role="banner"
   data-scrolled="false"
 >
-  <div class="mx-auto flex h-full w-[min(100%-2.5rem,var(--container-max))] items-center justify-between gap-4">
+  <div class="page-container flex h-full items-center justify-between gap-4">
     <a href="/" class="flex min-w-0 shrink flex-col leading-none" aria-label={site.brand}>
       <span class="truncate font-display text-[2.25rem] leading-none tracking-[0.14em] text-accent sm:text-[2.75rem]">RCC</span>
       <span class="truncate text-[0.625rem] font-medium uppercase tracking-[0.22em] text-muted">
@@ -37,7 +37,7 @@ import { site } from "../../shared/config/site";
           (["ru", "en", "kz"] as const).map((lang) => (
             <button
               type="button"
-              class="cursor-pointer border-0 bg-transparent px-2.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-muted transition data-[active=true]:bg-accent data-[active=true]:text-bg"
+              class="cursor-pointer border-0 bg-transparent px-2.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-muted transition data-[active=true]:bg-accent data-[active=true]:text-on-accent"
               data-lang-btn={lang}
               data-active={lang === "ru" ? "true" : "false"}
             >

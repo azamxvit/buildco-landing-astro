@@ -12,16 +12,16 @@ const { eyebrow, title, subtitle, class: className = "" } = Astro.props;
 ---
 
 <header class:list={["mb-12 max-w-xl reveal", className]}>
-  <p class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+  <p class="eyebrow mb-4 inline-flex items-center gap-2">
     <span class="inline-block h-0.5 w-6 bg-accent" aria-hidden="true"></span>
     <T path={eyebrow} />
   </p>
-  <h2 class="mb-3 font-display text-[clamp(2rem,5vw,3.75rem)] uppercase leading-[1.05] tracking-[0.02em] text-fg">
+  <h2 class="display-title mb-3">
     <T path={title} />
   </h2>
   {
     subtitle && (
-      <p class="text-[1.0625rem] leading-relaxed text-soft">
+      <p class="text-base leading-relaxed text-soft">
         <T path={subtitle} />
       </p>
     )
