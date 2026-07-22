@@ -15,7 +15,7 @@ const creditAttrs = developer.url
 ---
 
 <footer class="theme theme--elevated border-t border-border bg-bg" role="contentinfo">
-  <div class="mx-auto flex w-[min(100%-2.5rem,var(--container-max))] flex-col gap-8 py-12 md:flex-row md:items-end md:justify-between">
+  <div class="page-container flex flex-col gap-8 py-12 md:flex-row md:items-end md:justify-between">
     <div class="flex flex-col gap-2">
       <p class="font-display text-[clamp(1.25rem,2.2vw,1.75rem)] uppercase tracking-[0.05em] text-accent">
         {site.brand}
@@ -40,13 +40,13 @@ const creditAttrs = developer.url
   </div>
 
   <div class="border-t border-border/80">
-    <div class="mx-auto w-[min(100%-2.5rem,var(--container-max))] py-5">
+    <div class="page-container py-5">
       <CreditTag
         class="sss-credit group relative flex flex-col gap-4 overflow-hidden pl-4 sm:flex-row sm:items-center sm:gap-5"
         {...creditAttrs}
       >
         <span
-          class="pointer-events-none absolute inset-y-1 left-0 w-0.5 rounded-full bg-[#23D2A4]/80"
+          class="pointer-events-none absolute inset-y-1 left-0 w-0.5 rounded-full bg-sss/80"
           aria-hidden="true"
         ></span>
 
@@ -62,7 +62,7 @@ const creditAttrs = developer.url
         </div>
 
         <div class="relative min-w-0 flex-1">
-          <p class="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-[#23D2A4]">
+          <p class="eyebrow text-sss">
             <T path="footer.madeBy" />
           </p>
           <p class="mt-1 font-display text-[clamp(1.15rem,2vw,1.45rem)] uppercase tracking-[0.06em] text-fg">
@@ -79,7 +79,7 @@ const creditAttrs = developer.url
         {
           developer.url && (
             <span
-              class="relative hidden text-[#23D2A4] transition duration-300 group-hover:translate-x-0.5 sm:inline-flex"
+              class="relative hidden text-sss transition duration-300 group-hover:translate-x-0.5 sm:inline-flex"
               aria-hidden="true"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
