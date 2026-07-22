@@ -134,6 +134,7 @@ export interface Messages {
       success: string;
       error: string;
       network: string;
+      sending: string;
     };
   };
   ctaBand: {

@@ -88,7 +88,7 @@ const { showMap = false } = Astro.props;
 
       <form
         class="reveal reveal-delay-2 flex flex-col gap-4 border border-border bg-surface p-6 md:p-8"
-        action={site.formspreeEndpoint}
+        action={site.formEndpoint}
         method="POST"
         id="contact-form"
         data-success-ru={messages.ru.contact.form.success}
@@ -100,8 +100,14 @@ const { showMap = false } = Astro.props;
         data-network-ru={messages.ru.contact.form.network}
         data-network-en={messages.en.contact.form.network}
         data-network-kz={messages.kz.contact.form.network}
+        data-sending-ru={messages.ru.contact.form.sending}
+        data-sending-en={messages.en.contact.form.sending}
+        data-sending-kz={messages.kz.contact.form.sending}
       >
         <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="Заявка с сайта REAL CONSTRUCTION CO" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="name">
             <T path="contact.form.name" />
@@ -156,8 +162,7 @@ const { showMap = false } = Astro.props;
           <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-accent)]" />
           <span><T path="contact.form.consent" /></span>
         </label>
-        <input type="hidden" name="_subject" value="Заявка с сайта REAL CONSTRUCTION CO" />
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" class="w-full" id="contact-submit">
           <T path="cta.submit" />
         </Button>
         <p class="min-h-5 text-sm text-accent" id="form-status" role="status" aria-live="polite"></p>
@@ -169,14 +174,15 @@ const { showMap = false } = Astro.props;
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const status = document.getElementById("form-status");
+  const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
 
-  const pick = (prefix: "success" | "error" | "network", locale: string) => {
-    const map: Record<string, string | undefined> = {
+  const pick = (prefix: "success" | "error" | "network" | "sending", locale: string) => {
+    const byLocale: Record<string, string | undefined> = {
       ru: form?.dataset[`${prefix}Ru`],
       en: form?.dataset[`${prefix}En`],
       kz: form?.dataset[`${prefix}Kz`],
     };
-    return map[locale] ?? map.ru ?? "";
+    return byLocale[locale] ?? byLocale.ru ?? "";
   };
 
   form?.addEventListener("submit", async (event) => {
@@ -189,6 +195,9 @@ const { showMap = false } = Astro.props;
     const locale = document.documentElement.dataset.locale ?? "ru";
     const data = new FormData(form);
 
+    if (submitBtn) submitBtn.disabled = true;
+    if (status) status.textContent = pick("sending", locale);
+
     try {
       const response = await fetch(form.action, {
         method: "POST",
@@ -196,7 +205,10 @@ const { showMap = false } = Astro.props;
         headers: { Accept: "application/json" },
       });
 
-      if (response.ok) {
+      const payload = await response.json().catch(() => null);
+      const ok = response.ok || payload?.success === "true" || payload?.success === true;
+
+      if (ok) {
         form.reset();
         if (status) status.textContent = pick("success", locale);
       } else if (status) {
@@ -204,6 +216,8 @@ const { showMap = false } = Astro.props;
       }
     } catch {
       if (status) status.textContent = pick("network", locale);
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 </script>
