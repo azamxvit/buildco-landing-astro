@@ -25,7 +25,7 @@ const [services, projects, partners, certifications] = await Promise.all([
   <About showMoreLink />
   <Services limit={6} services={services} />
   <Projects limit={6} projects={projects} />
-  <Clients limit={6} clients={partners} />
+  <Clients clients={partners} />
   <Certifications certifications={certifications} />
   <CTA />
   <Contact />

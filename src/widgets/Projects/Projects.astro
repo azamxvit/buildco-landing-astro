@@ -15,7 +15,7 @@ const { limit, enableFilter = false, enableLightbox = true, projects: projectsPr
 const source = projectsProp ?? site.projects;
 const items = limit ? source.slice(0, limit) : source;
 const categories = [...new Set(source.map((p) => p.categoryKey))];
-const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.name]));
+const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
 ---
 
 <section class="py-[var(--spacing-section)]" id="projects">
