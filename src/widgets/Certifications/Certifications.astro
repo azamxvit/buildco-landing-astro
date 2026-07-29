@@ -11,8 +11,17 @@ const { certifications: certsProp } = Astro.props;
 const certifications = certsProp ?? site.certifications;
 ---
 
-<section class="theme py-[clamp(3rem,7vw,5rem)]" id="certifications">
-  <div class="page-container">
+<section class="theme relative overflow-hidden py-[clamp(3rem,7vw,5rem)]" id="certifications">
+  <img
+    src="/images/decor/crane.svg"
+    alt=""
+    width="420"
+    height="520"
+    aria-hidden="true"
+    class="pointer-events-none absolute -right-[6%] top-[8%] z-0 w-[min(70vw,34rem)] opacity-[0.14] select-none sm:right-0 sm:top-[4%] sm:w-[min(58vw,40rem)] sm:opacity-[0.16] lg:right-[1%] lg:w-[min(50%,42rem)]"
+  />
+
+  <div class="page-container relative z-10">
     <SectionTitle
       eyebrow="certifications.eyebrow"
       title="certifications.title"
@@ -28,7 +37,7 @@ const certifications = certsProp ?? site.certifications;
         certifications.map((cert, index) => (
           <article
             class:list={[
-              "reveal flex flex-col gap-3 border border-border bg-[linear-gradient(180deg,var(--color-accent-dim),transparent_40%),var(--color-surface)] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent",
+              "reveal flex flex-col gap-3 border border-border bg-[linear-gradient(180deg,var(--color-accent-dim),transparent_55%),rgb(26_26_26_/_0.55)] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >

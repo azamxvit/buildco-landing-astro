@@ -3,15 +3,13 @@ import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import { site, type ClientItem } from "../../shared/config/site";
 
 interface Props {
-  withLogosOnly?: boolean;
   limit?: number;
   clients?: ClientItem[];
 }
 
-const { withLogosOnly = false, limit, clients: clientsProp } = Astro.props;
+const { limit, clients: clientsProp } = Astro.props;
 const source = clientsProp ?? site.clients;
-let clients = withLogosOnly ? source.filter((c) => c.logo) : source;
-if (limit) clients = clients.slice(0, limit);
+const clients = limit ? source.slice(0, limit) : source;
 ---
 
 <section class="theme theme--elevated bg-bg py-[clamp(3rem,7vw,5rem)]" id="clients">
@@ -22,30 +20,34 @@ if (limit) clients = clients.slice(0, limit);
       subtitle="clients.subtitle"
     />
 
-    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {
         clients.map((client, index) => (
           <article
             class:list={[
-              "reveal group flex min-h-36 flex-col items-center justify-center gap-4 border border-border bg-bg px-4 py-8 transition duration-300 hover:border-accent hover:bg-surface",
+              "reveal group flex min-h-[7.5rem] flex-col items-center justify-center gap-3 border border-border bg-bg px-5 py-7 transition duration-300 hover:border-accent/60 hover:bg-surface",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
             {
               client.logo ? (
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  width="280"
-                  height="140"
-                  loading="lazy"
-                  class="h-20 w-auto max-w-[90%] object-contain opacity-100 transition duration-300 md:h-24 lg:opacity-70 lg:grayscale lg:group-hover:opacity-100 lg:group-hover:grayscale-0"
-                />
+                <div class="flex h-14 w-full items-center justify-center">
+                  <img
+                    src={client.logo}
+                    alt={client.label}
+                    width="240"
+                    height="56"
+                    loading="lazy"
+                    class="max-h-14 w-auto max-w-[88%] object-contain opacity-80 transition duration-300 group-hover:opacity-100"
+                  />
+                </div>
               ) : (
-                <span class="font-display text-center text-2xl tracking-wide text-accent">{client.name.split("«")[1]?.replace("»", "") ?? client.name}</span>
+                <span class="font-display text-center text-xl tracking-[0.12em] text-accent">{client.label}</span>
               )
             }
-            <p class="text-center text-xs leading-snug text-muted">{client.name}</p>
+            <p class="text-center text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-muted">
+              {client.label}
+            </p>
           </article>
         ))
       }
