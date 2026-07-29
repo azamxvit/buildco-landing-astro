@@ -50,6 +50,8 @@ export class ClientItem {
     public readonly name: string,
     public readonly logo: string | null = null,
     public readonly shortName: string | null = null,
+    /** Display scale for compact marks that need more visual weight */
+    public readonly logoLarge: boolean = false,
   ) {}
 
   get label(): string {
@@ -203,25 +205,25 @@ export class SiteConfig {
 
   readonly clients: ClientItem[] = [
     new ClientItem("tengiz", "Tengizchevroil LLP", "/images/clients/tengizchevroil.svg", "Tengizchevroil"),
-    new ClientItem("ncoc", "NCOC", "/images/clients/ncoc.png", "NCOC"),
-    new ClientItem("kpo", "Karachaganak Petroleum Operating B.V.", "/images/clients/kpo.svg", "KPO"),
-    new ClientItem("pnhz", "ПНХЗ", "/images/clients/pnhz.svg", "ПНХЗ"),
+    new ClientItem("ncoc", "NCOC", "/images/clients/ncoc.png", "NCOC", true),
+    new ClientItem("kpo", "Karachaganak Petroleum Operating B.V.", "/images/clients/kpo.png", "KPO", true),
+    new ClientItem("pnhz", "ПНХЗ", "/images/clients/pnhz.png", "ПНХЗ"),
     new ClientItem("anpz", "АНПЗ", "/images/clients/anpz.png", "АНПЗ"),
     new ClientItem("kto", "АО «Казтрансойл»", "/images/clients/kaztransoil.svg", "Казтрансойл"),
-    new ClientItem("zamanquantor", "ZamanQuantor LLP", "/images/clients/zamanquantor.svg", "ZamanQuantor"),
-    new ClientItem("sicim", "Sicim S.p.A. Kazakhstan", "/images/clients/sicim.svg", "Sicim"),
-    new ClientItem("cct", "ТОО «Caspian Contractors Trust»", "/images/clients/cct.svg", "CCT"),
     new ClientItem("hyundai", "Hyundai", "/images/clients/hyundai.svg", "Hyundai"),
+    new ClientItem("bigroup", "BI Group", "/images/clients/bigroup.png", "BI Group"),
     new ClientItem("mcdonalds", "McDonald's Kazakhstan", "/images/clients/mcdonalds.svg", "McDonald's"),
-    new ClientItem("mimas", "Mimas Muhendislik Insaat LLP", "/images/clients/mimas.svg", "Mimas"),
-    new ClientItem("tyanshan", "Tyan-Shan Engineering LLP", "/images/clients/tyanshan.svg", "Tyan-Shan"),
-    new ClientItem("metso", "Metso Kazakhstan LLP", "/images/clients/metso.svg", "Metso"),
-    new ClientItem("kentech", "Kentech LLP", "/images/clients/kentech.svg", "Kentech"),
-    new ClientItem("bonatti", "Bonatti S.p.A.", "/images/clients/bonatti.svg", "Bonatti"),
-    new ClientItem("foodpackaging", "Food Packaging KZ LLP", "/images/clients/foodpackaging.svg", "Food Packaging"),
-    new ClientItem("bigroup", "BI Group", "/images/clients/bigroup.svg", "BI Group"),
     new ClientItem("airliquide", "Air Liquide", "/images/clients/airliquide.svg", "Air Liquide"),
+    new ClientItem("metso", "Metso Kazakhstan LLP", "/images/clients/metso.svg", "Metso"),
     new ClientItem("cpc", "CPC-Kazakhstan", "/images/clients/cpc.svg", "CPC"),
+    new ClientItem("foodpackaging", "Food Packaging KZ LLP", "/images/clients/foodpackaging.png", "Food Packaging"),
+    new ClientItem("zamanquantor", "ZamanQuantor LLP", "/images/clients/zamanquantor.png", "ZamanQuantor", true),
+    new ClientItem("sicim", "Sicim S.p.A. Kazakhstan", "/images/clients/sicim.svg", "Sicim"),
+    new ClientItem("cct", "ТОО «Caspian Contractors Trust»", "/images/clients/cct.png", "CCT"),
+    new ClientItem("bonatti", "Bonatti S.p.A.", "/images/clients/bonatti.png", "Bonatti"),
+    new ClientItem("mimas", "Mimas Muhendislik Insaat LLP", "/images/clients/mimas.png", "Mimas"),
+    new ClientItem("tyanshan", "Tyan-Shan Engineering LLP", "/images/clients/tyanshan.svg", "Tyan-Shan"),
+    new ClientItem("kentech", "Kentech LLP", "/images/clients/kentech.svg", "Kentech"),
   ];
 
   readonly certifications: CertificationItem[] = [

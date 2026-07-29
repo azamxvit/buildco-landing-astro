@@ -25,20 +25,29 @@ const clients = limit ? source.slice(0, limit) : source;
         clients.map((client, index) => (
           <article
             class:list={[
-              "reveal group flex min-h-[7.5rem] flex-col items-center justify-center gap-3 border border-border bg-bg px-5 py-7 transition duration-300 hover:border-accent/60 hover:bg-surface",
+              "reveal group flex flex-col items-center justify-center gap-3 border border-border bg-bg px-5 py-7 transition duration-300 hover:border-accent/60 hover:bg-surface",
+              client.logoLarge ? "min-h-[10rem]" : "min-h-[7.5rem]",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
             {
               client.logo ? (
-                <div class="flex h-14 w-full items-center justify-center">
+                <div
+                  class:list={[
+                    "flex w-full items-center justify-center",
+                    client.logoLarge ? "h-24" : "h-14",
+                  ]}
+                >
                   <img
                     src={client.logo}
                     alt={client.label}
                     width="240"
-                    height="56"
+                    height={client.logoLarge ? 96 : 56}
                     loading="lazy"
-                    class="max-h-14 w-auto max-w-[88%] object-contain opacity-80 transition duration-300 group-hover:opacity-100"
+                    class:list={[
+                      "w-auto object-contain opacity-80 transition duration-300 group-hover:opacity-100",
+                      client.logoLarge ? "max-h-24 max-w-[94%]" : "max-h-14 max-w-[88%]",
+                    ]}
                   />
                 </div>
               ) : (
