@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../../app/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Загрузка изображений" description="Внутренний инструмент загрузки изображений" noindex={true}>
+  <main class="mx-auto flex min-h-screen max-w-xl flex-col gap-6 px-5 py-16">
+    <div>
+      <h1 class="font-display text-3xl uppercase tracking-[0.04em]">Загрузка изображений</h1>
+      <p class="mt-2 text-sm text-soft">
+        Файл загружается напрямую в Vercel Blob. После загрузки скопируй ссылку и вставь её в
+        <code class="rounded bg-surface px-1 py-0.5">src/shared/config/site.ts</code> вместо локального пути.
+      </p>
+    </div>
+
+    <label class="flex flex-col gap-1 text-sm">
+      Пароль
+      <input
+        type="password"
+        id="secret"
+        autocomplete="off"
+        class="border border-border bg-surface px-3 py-2 text-base outline-none focus:border-accent"
+      />
+    </label>
+
+    <label class="flex flex-col gap-1 text-sm">
+      Папка (необязательно)
+      <input
+        type="text"
+        id="folder"
+        placeholder="projects, clients, hero…"
+        class="border border-border bg-surface px-3 py-2 text-base outline-none focus:border-accent"
+      />
+    </label>
+
+    <label class="flex flex-col gap-1 text-sm">
+      Файл
+      <input
+        type="file"
+        id="file"
+        accept="image/jpeg,image/png,image/webp,image/svg+xml,image/gif"
+        class="border border-border bg-surface px-3 py-2 text-base outline-none focus:border-accent"
+      />
+    </label>
+
+    <button
+      type="button"
+      id="upload"
+      class="border border-accent bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      Загрузить
+    </button>
+
+    <p id="status" class="text-sm text-soft"></p>
+
+    <div id="result" class="hidden flex-col gap-3">
+      <img id="preview" alt="" class="max-h-64 w-auto border border-border object-contain" />
+      <div class="flex items-center gap-2">
+        <input
+          id="url"
+          type="text"
+          readonly
+          class="flex-1 border border-border bg-surface px-3 py-2 text-xs"
+        />
+        <button
+          type="button"
+          id="copy"
+          class="border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] hover:border-accent"
+        >
+          Копировать
+        </button>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import { upload } from "@vercel/blob/client";
+
+  const secretInput = document.getElementById("secret") as HTMLInputElement;
+  const folderInput = document.getElementById("folder") as HTMLInputElement;
+  const fileInput = document.getElementById("file") as HTMLInputElement;
+  const uploadButton = document.getElementById("upload") as HTMLButtonElement;
+  const statusEl = document.getElementById("status") as HTMLParagraphElement;
+  const resultEl = document.getElementById("result") as HTMLDivElement;
+  const previewEl = document.getElementById("preview") as HTMLImageElement;
+  const urlEl = document.getElementById("url") as HTMLInputElement;
+  const copyButton = document.getElementById("copy") as HTMLButtonElement;
+
+  const STORAGE_KEY = "admin-upload-secret";
+  const savedSecret = sessionStorage.getItem(STORAGE_KEY);
+  if (savedSecret) secretInput.value = savedSecret;
+
+  uploadButton.addEventListener("click", async () => {
+    const file = fileInput.files?.[0];
+    const secret = secretInput.value.trim();
+    const folder = folderInput.value.trim().replace(/^\/+|\/+$/g, "");
+
+    if (!secret) {
+      statusEl.textContent = "Введите пароль.";
+      return;
+    }
+    if (!file) {
+      statusEl.textContent = "Выберите файл.";
+      return;
+    }
+
+    sessionStorage.setItem(STORAGE_KEY, secret);
+
+    uploadButton.disabled = true;
+    statusEl.textContent = "Загрузка...";
+    resultEl.classList.add("hidden");
+
+    try {
+      const pathname = folder ? `${folder}/${file.name}` : file.name;
+      const blob = await upload(pathname, file, {
+        access: "public",
+        handleUploadUrl: "/api/upload-token",
+        clientPayload: secret,
+      });
+
+      statusEl.textContent = "Готово.";
+      previewEl.src = blob.url;
+      urlEl.value = blob.url;
+      resultEl.classList.remove("hidden");
+      resultEl.classList.add("flex");
+    } catch (error) {
+      statusEl.textContent = error instanceof Error ? error.message : "Ошибка загрузки.";
+    } finally {
+      uploadButton.disabled = false;
+    }
+  });
+
+  copyButton.addEventListener("click", async () => {
+    await navigator.clipboard.writeText(urlEl.value);
+    copyButton.textContent = "Скопировано";
+    setTimeout(() => (copyButton.textContent = "Копировать"), 1500);
+  });
+</script>
