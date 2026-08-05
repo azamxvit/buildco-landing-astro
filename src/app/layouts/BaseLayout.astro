@@ -6,26 +6,95 @@ import { site } from "../../shared/config/site";
 interface Props {
   title?: string;
   description?: string;
+  /** Path for canonical URL, e.g. `/about` or `` for home */
+  path?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
 const messages = getMessages("ru");
-const { title = messages.meta.title, description = messages.meta.description } = Astro.props;
+const {
+  title = messages.meta.title,
+  description = messages.meta.description,
+  path = "",
+  ogImage = "https://1gsfckjyk1ky44yh.public.blob.vercel-storage.com/images/og-default.jpg",
+  noindex = false,
+} = Astro.props;
+
+const canonicalPath = path === "/" ? "" : path.replace(/\/$/, "");
+const canonicalUrl = `${site.siteUrl}${canonicalPath}`;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${site.siteUrl}${ogImage}`;
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.brand,
-  legalName: "ТОО «REAL CONSTRUCTION CO»",
-  url: site.siteUrl,
-  telephone: site.contact.phone,
-  email: site.contact.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "улица Байтурсынова 47А, офис 207",
-    addressLocality: "Атырау",
-    addressCountry: "KZ",
-  },
-  areaServed: "Atyrau, Kazakhstan",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.siteUrl}/#organization`,
+      name: site.brand,
+      legalName: "ТОО «REAL CONSTRUCTION CO»",
+      url: site.siteUrl,
+      logo: `${site.siteUrl}/images/rcc-logo.svg`,
+      email: site.contact.email,
+      telephone: site.contact.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "улица Байтурсынова 47А, офис 207",
+        addressLocality: "Атырау",
+        addressRegion: "Атырауская область",
+        addressCountry: "KZ",
+      },
+      sameAs: [],
+    },
+    {
+      "@type": "ConstructionBusiness",
+      "@id": `${site.siteUrl}/#localbusiness`,
+      name: site.brand,
+      legalName: "ТОО «REAL CONSTRUCTION CO»",
+      url: site.siteUrl,
+      image: ogImageUrl,
+      telephone: site.contact.phone,
+      email: site.contact.email,
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "улица Байтурсынова 47А, офис 207",
+        addressLocality: "Атырау",
+        addressRegion: "Атырауская область",
+        postalCode: "060011",
+        addressCountry: "KZ",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 47.10274,
+        longitude: 51.90672,
+      },
+      areaServed: [
+        { "@type": "City", name: "Atyrau" },
+        { "@type": "Country", name: "Kazakhstan" },
+      ],
+      parentOrganization: { "@id": `${site.siteUrl}/#organization` },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.siteUrl}/#website`,
+      url: site.siteUrl,
+      name: site.brand,
+      description: messages.meta.description,
+      publisher: { "@id": `${site.siteUrl}/#organization` },
+      inLanguage: ["ru", "en", "kk"],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      isPartOf: { "@id": `${site.siteUrl}/#website` },
+      about: { "@id": `${site.siteUrl}/#localbusiness` },
+      inLanguage: "ru",
+    },
+  ],
 };
 ---
 
@@ -35,9 +104,31 @@ const schema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={messages.meta.keywords} />
+    <meta name="author" content={site.brand} />
     <meta name="theme-color" content="#005db7" />
-    <link rel="canonical" href={site.siteUrl} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+    <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:locale" content="ru_KZ" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="kk_KZ" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={messages.meta.ogImageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -47,7 +138,6 @@ const schema = {
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     {
       import.meta.env.PUBLIC_GA_ID && (

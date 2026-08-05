@@ -2,9 +2,12 @@ import type { Messages } from "../types";
 
 const kz: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION CO — Атыраудағы құрылыс",
+    title: "REAL CONSTRUCTION CO — Атыраудағы құрылыс және монтаж",
     description:
-      "«REAL CONSTRUCTION CO» ЖШС — Атырауда құрылыс-монтаж, жабдықтау және мұнай-газ секторына МТО.",
+      "«REAL CONSTRUCTION CO» ЖШС — Атырауда құрылыс-монтаж, дәнекерлеу, реконструкция және мұнай-газ жабдықтауы. II санатты лицензия, ISO, 500 000+ жарақатсыз адам-сағат.",
+    keywords:
+      "Атырау құрылыс, СМР Атырау, мұнай-газ монтаж, REAL CONSTRUCTION CO, RCC Қазақстан, құбыр дәнекерлеу",
+    ogImageAlt: "REAL CONSTRUCTION CO — Атыраудағы құрылыс компаниясы",
   },
   pages: {
     about: {
@@ -20,8 +23,9 @@ const kz: Messages = {
       description: "REAL CONSTRUCTION CO орындалған объектілер портфолиосы.",
     },
     certificates: {
-      title: "Лицензиялар мен сертификаттар — REAL CONSTRUCTION CO",
-      description: "II санатты құрылыс лицензиясы және ISO 9001, ISO 14001, ISO 45001 сертификаттары.",
+      title: "Лицензиялар, сертификаттар және марапаттар — REAL CONSTRUCTION CO",
+      description:
+        "II санатты құрылыс лицензиясы, ISO 9001/14001/45001 және HPU Recognition Award — 500 000 жарақатсыз адам-сағат.",
     },
     partners: {
       title: "Серіктестер мен клиенттер — REAL CONSTRUCTION CO",
@@ -78,6 +82,7 @@ const kz: Messages = {
       years: "нарықтағы жыл",
       clients: "клиент",
       projects: "жоба",
+      manHours: "жарақатсыз адам-сағат",
     },
   },
   services: {
@@ -214,11 +219,14 @@ const kz: Messages = {
     subtitle: "Қазақстанның мұнай-газ және өнеркәсіп секторындағы серіктестер.",
   },
   certifications: {
-    eyebrow: "Сертификаттар",
+    eyebrow: "Сертификаттар мен марапаттар",
     title: "Сапа расталған",
-    subtitle: "Халықаралық менеджмент стандарттары, серіктестердің ұсыныстары және II санатты құрылыс лицензиясы.",
+    subtitle:
+      "Халықаралық менеджмент стандарттары, қауіпсіздік марапаттары, серіктестердің ұсыныстары және II санатты құрылыс лицензиясы.",
     licenseNote: "II санатты құрылыс лицензиясы ГСЛ №0002796, 2007 жылғы 28 мамыр.",
     download: "PDF жүктеу",
+    awardBadge: "Марапат",
+    awardEyebrow: "Қауіпсіздік",
     items: {
       iso9001: "Сапа менеджменті жүйесі",
       iso14001: "Экологиялық менеджмент",
@@ -228,6 +236,7 @@ const kz: Messages = {
       zqRecommendation: "ZamanQuantor ұсыныс хаты",
       containexRecommendation: "MA ұсынысы — Containex",
       containexLetter: "Containex хаты RCC үшін",
+      hpuRecognition: "HPU Recognition Award — 500 000 жарақатсыз адам-сағат (Lost Time Incident Free).",
     },
   },
   contact: {

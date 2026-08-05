@@ -9,6 +9,8 @@ interface Props {
 
 const { certifications: certsProp } = Astro.props;
 const certifications = certsProp ?? site.certifications;
+const awards = certifications.filter((c) => c.kind === "award");
+const certificates = certifications.filter((c) => c.kind !== "award");
 ---
 
 <section class="theme relative overflow-hidden py-[clamp(3rem,7vw,5rem)]" id="certifications">
@@ -32,9 +34,68 @@ const certifications = certsProp ?? site.certifications;
       <T path="certifications.licenseNote" />
     </p>
 
+    {
+      awards.length > 0 && (
+        <div class="mb-8 grid gap-4">
+          {awards.map((award, index) => (
+            <article
+              class:list={[
+                "reveal grid overflow-hidden border border-accent/40 bg-[linear-gradient(135deg,var(--color-accent-dim),transparent_55%),rgb(26_26_26_/_0.7)] transition duration-300 hover:border-accent md:grid-cols-[minmax(0,14rem)_1fr]",
+                `reveal-delay-${(index % 3) + 1}`,
+              ]}
+            >
+              {award.image && (
+                <a
+                  href={award.pdf ?? award.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block border-b border-border md:border-b-0 md:border-r"
+                >
+                  <img
+                    src={award.image}
+                    alt={award.code}
+                    width="400"
+                    height="560"
+                    loading="lazy"
+                    class="h-48 w-full object-cover object-top md:h-full md:min-h-[14rem]"
+                  />
+                </a>
+              )}
+              <div class="flex flex-col gap-3 p-6 sm:p-8">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="inline-flex border border-accent/50 bg-accent-dim px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-accent">
+                    <T path="certifications.awardBadge" />
+                  </span>
+                  <span class="text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-muted">
+                    <T path="certifications.awardEyebrow" />
+                  </span>
+                </div>
+                <p class="font-display text-[clamp(1.75rem,4vw,2.75rem)] leading-none tracking-wide text-accent">
+                  {award.code}
+                </p>
+                <p class="max-w-2xl text-sm leading-relaxed text-soft sm:text-[1.0625rem]">
+                  <T path={`certifications.items.${award.id}`} />
+                </p>
+                {award.pdf && (
+                  <a
+                    href={award.pdf}
+                    class="mt-auto pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-accent transition hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <T path="certifications.download" /> →
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    }
+
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {
-        certifications.map((cert, index) => (
+        certificates.map((cert, index) => (
           <article
             class:list={[
               "reveal flex flex-col gap-3 border border-border bg-[linear-gradient(180deg,var(--color-accent-dim),transparent_55%),rgb(26_26_26_/_0.55)] p-6 transition duration-300 hover:-translate-y-0.5 hover:border-accent",

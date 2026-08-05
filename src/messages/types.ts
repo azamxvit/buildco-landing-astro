@@ -27,6 +27,8 @@ export interface Messages {
   meta: {
     title: string;
     description: string;
+    keywords: string;
+    ogImageAlt: string;
   };
   pages: {
     about: { title: string; description: string };
@@ -77,6 +79,7 @@ export interface Messages {
       years: string;
       clients: string;
       projects: string;
+      manHours: string;
     };
   };
   services: {
@@ -104,6 +107,8 @@ export interface Messages {
     subtitle: string;
     licenseNote: string;
     download: string;
+    awardBadge: string;
+    awardEyebrow: string;
     items: {
       iso9001: string;
       iso14001: string;
@@ -113,6 +118,7 @@ export interface Messages {
       zqRecommendation: string;
       containexRecommendation: string;
       containexLetter: string;
+      hpuRecognition: string;
     };
   };
   contact: {

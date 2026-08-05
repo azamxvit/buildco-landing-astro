@@ -2,34 +2,43 @@ import type { Messages } from "../types";
 
 const en: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION CO — Construction in Atyrau",
+    title: "REAL CONSTRUCTION CO — Construction & installation in Atyrau",
     description:
-      "REAL CONSTRUCTION CO LLP — construction, installation, and MRO supply for the oil & gas sector in Atyrau, Kazakhstan.",
+      "REAL CONSTRUCTION CO LLP — construction, welding, reconstruction, and oil & gas supply in Atyrau, Kazakhstan. Category II license, ISO, 500,000+ incident-free man-hours.",
+    keywords:
+      "construction Atyrau, oil gas construction Kazakhstan, REAL CONSTRUCTION CO, RCC Atyrau, pipeline welding, industrial installation",
+    ogImageAlt: "REAL CONSTRUCTION CO — construction company in Atyrau",
   },
   pages: {
     about: {
-      title: "About — REAL CONSTRUCTION CO",
-      description: "History, specialization, and values of REAL CONSTRUCTION CO in Atyrau.",
+      title: "About — REAL CONSTRUCTION CO | Atyrau",
+      description:
+        "REAL CONSTRUCTION CO in Atyrau: 20+ years of oil & gas construction, 500,000+ incident-free man-hours, Category II license.",
     },
     services: {
-      title: "Services — REAL CONSTRUCTION CO",
-      description: "Construction, installation, reconstruction, and material supply in Atyrau.",
+      title: "Construction & installation services — REAL CONSTRUCTION CO",
+      description:
+        "Construction, reconstruction, pipeline and tank welding, MTO and steel supply in Atyrau and Western Kazakhstan.",
     },
     projects: {
-      title: "Projects — REAL CONSTRUCTION CO",
-      description: "Portfolio of completed REAL CONSTRUCTION CO projects.",
+      title: "Projects — REAL CONSTRUCTION CO | Atyrau",
+      description:
+        "Completed REAL CONSTRUCTION CO projects for Tengizchevroil, NCOC, Hyundai and other industrial clients in Kazakhstan.",
     },
     certificates: {
-      title: "Licenses & certificates — REAL CONSTRUCTION CO",
-      description: "Category II construction license and ISO 9001, ISO 14001, ISO 45001 certificates.",
+      title: "Licenses, certificates & awards — REAL CONSTRUCTION CO",
+      description:
+        "Category II construction license, ISO 9001/14001/45001, and HPU Recognition Award — 500,000 incident-free man-hours.",
     },
     partners: {
-      title: "Partners & clients — REAL CONSTRUCTION CO",
-      description: "Key partners across Kazakhstan’s oil, gas, and industrial sectors.",
+      title: "Partners & clients — REAL CONSTRUCTION CO | Atyrau",
+      description:
+        "RCC clients and partners: Tengizchevroil, NCOC, KPO, KazTransOil, Hyundai, BI Group and more across Kazakhstan.",
     },
     contact: {
-      title: "Contact — REAL CONSTRUCTION CO",
-      description: "Address, phone, email, and inquiry form for REAL CONSTRUCTION CO in Atyrau.",
+      title: "Contact — REAL CONSTRUCTION CO | Atyrau",
+      description:
+        "Contact REAL CONSTRUCTION CO: Atyrau, Baitursynov 47A, office 207. Tel. +7 (701) 777-94-05, mn@realconstruction.kz.",
     },
   },
   brand: {
@@ -78,6 +87,7 @@ const en: Messages = {
       years: "years in the market",
       clients: "clients",
       projects: "projects",
+      manHours: "incident-free man-hours",
     },
   },
   services: {
@@ -214,11 +224,14 @@ const en: Messages = {
     subtitle: "Partners across Kazakhstan’s oil, gas, and industrial sectors.",
   },
   certifications: {
-    eyebrow: "Certificates",
+    eyebrow: "Certificates & awards",
     title: "Quality certified",
-    subtitle: "International management standards, partner recommendations, and a Category II construction license.",
+    subtitle:
+      "International management standards, safety awards, partner recommendations, and a Category II construction license.",
     licenseNote: "Category II construction license GSL No. 0002796 dated 28 May 2007.",
     download: "Download PDF",
+    awardBadge: "Award",
+    awardEyebrow: "Safety",
     items: {
       iso9001: "Quality management system",
       iso14001: "Environmental management",
@@ -228,6 +241,7 @@ const en: Messages = {
       zqRecommendation: "ZamanQuantor recommendation letter",
       containexRecommendation: "MA recommendation — Containex",
       containexLetter: "Containex letter for RCC",
+      hpuRecognition: "HPU Recognition Award — 500,000 Lost Time Incident Free man-hours.",
     },
   },
   contact: {

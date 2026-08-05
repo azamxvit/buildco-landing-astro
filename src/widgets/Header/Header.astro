@@ -1,5 +1,4 @@
 ---
-import Button from "../../shared/ui/Button.astro";
 import T from "../../shared/ui/T.astro";
 import { site } from "../../shared/config/site";
 ---
@@ -10,18 +9,18 @@ import { site } from "../../shared/config/site";
   role="banner"
   data-scrolled="false"
 >
-  <div class="page-container flex h-full items-center justify-between gap-4">
-    <a href="/" class="flex min-w-0 shrink items-center" aria-label={site.brand}>
+  <div class="page-container flex h-full items-center gap-2 sm:gap-4">
+    <a href="/" class="relative z-10 flex min-w-0 shrink items-center" aria-label={site.brand}>
       <img
         src="/images/rcc-logo.svg"
         alt={site.brand}
         width="180"
         height="64"
-        class="h-9 w-auto max-w-[min(40vw,10rem)] object-contain object-left sm:h-10 sm:max-w-[11rem]"
+        class="h-8 w-auto max-w-[7.25rem] object-contain object-left sm:h-10 sm:max-w-[11rem]"
       />
     </a>
 
-    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+    <nav class="ml-auto hidden items-center gap-6 lg:flex" aria-label="Primary">
       {
         site.nav.map((item) => (
           <a
@@ -34,13 +33,17 @@ import { site } from "../../shared/config/site";
       }
     </nav>
 
-    <div class="flex shrink-0 items-center gap-3">
-      <div class="inline-flex overflow-hidden border border-border-strong" role="group" aria-label="Language">
+    <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-3 lg:ml-0">
+      <div
+        class="inline-flex overflow-hidden border border-border-strong"
+        role="group"
+        aria-label="Language"
+      >
         {
           (["ru", "en", "kz"] as const).map((lang) => (
             <button
               type="button"
-              class="cursor-pointer border-0 bg-transparent px-2.5 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-muted transition data-[active=true]:bg-accent data-[active=true]:text-on-accent"
+              class="cursor-pointer border-0 bg-transparent px-1.5 py-1 text-[0.625rem] font-bold uppercase tracking-[0.1em] text-muted transition data-[active=true]:bg-accent data-[active=true]:text-on-accent sm:px-2.5 sm:py-1.5 sm:text-[0.6875rem] sm:tracking-[0.12em]"
               data-lang-btn={lang}
               data-active={lang === "ru" ? "true" : "false"}
             >
@@ -57,13 +60,16 @@ import { site } from "../../shared/config/site";
         {site.contact.phone}
       </a>
 
-      <Button href="/contact" variant="primary" class="hidden lg:inline-flex">
+      <a
+        href="/contact"
+        class="hidden min-h-12 items-center justify-center border border-transparent bg-accent px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-on-accent shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_35%,transparent)] transition duration-300 hover:-translate-y-0.5 hover:bg-accent-hover lg:inline-flex"
+      >
         <T path="cta.call" />
-      </Button>
+      </a>
 
       <button
         type="button"
-        class="inline-flex h-10 w-10 cursor-pointer items-center justify-center border border-border-strong bg-transparent text-fg lg:hidden"
+        class="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center border border-border-strong bg-transparent text-fg sm:h-10 sm:w-10 lg:hidden"
         id="menu-toggle"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -90,6 +96,13 @@ import { site } from "../../shared/config/site";
       ))
     }
     <a class="text-sm font-semibold" href={site.contact.phoneHref}>{site.contact.phone}</a>
+    <a
+      href="/contact"
+      class="inline-flex min-h-11 items-center justify-center bg-accent px-4 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-on-accent"
+      data-mobile-link
+    >
+      <T path="cta.call" />
+    </a>
   </nav>
 </header>
 

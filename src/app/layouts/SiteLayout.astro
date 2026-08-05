@@ -8,12 +8,14 @@ interface Props {
   title: string;
   description: string;
   flush?: boolean;
+  path?: string;
+  ogImage?: string;
 }
 
-const { title, description, flush = false } = Astro.props;
+const { title, description, flush = false, path = Astro.url.pathname, ogImage } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} path={path} ogImage={ogImage}>
   <Header />
   <main class:list={[!flush && "pt-[var(--spacing-header)]"]}>
     <slot />

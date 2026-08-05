@@ -2,34 +2,43 @@ import type { Messages } from "../types";
 
 const ru: Messages = {
   meta: {
-    title: "REAL CONSTRUCTION CO — Строительство в Атырау",
+    title: "REAL CONSTRUCTION CO — Строительство и монтаж в Атырау",
     description:
-      "ТОО «REAL CONSTRUCTION CO» — строительно-монтажные работы, поставки и МТО для нефтегазового сектора в Атырау, Казахстан.",
+      "ТОО «REAL CONSTRUCTION CO» — строительно-монтажные работы, сварка, реконструкция и поставки для нефтегаза в Атырау. Лицензия II категории, ISO, 500 000+ человеко-часов без травм.",
+    keywords:
+      "строительство Атырау, СМР Атырау, монтаж нефтегаз, REAL CONSTRUCTION CO, RCC Казахстан, сварка трубопроводов, поставки МТО",
+    ogImageAlt: "REAL CONSTRUCTION CO — строительная компания в Атырау",
   },
   pages: {
     about: {
-      title: "О компании — REAL CONSTRUCTION CO",
-      description: "История, специализация и принципы работы ТОО «REAL CONSTRUCTION CO» в Атырау.",
+      title: "О компании — REAL CONSTRUCTION CO | Атырау",
+      description:
+        "ТОО «REAL CONSTRUCTION CO» в Атырау: 20+ лет СМР и монтажа для нефтегаза, 500 000+ человеко-часов без травм, лицензия II категории.",
     },
     services: {
-      title: "Услуги — REAL CONSTRUCTION CO",
-      description: "Строительство, монтаж, реконструкция и поставки материалов в Атырау.",
+      title: "Услуги СМР и монтажа — REAL CONSTRUCTION CO | Атырау",
+      description:
+        "Строительство, реконструкция, сварка трубопроводов и резервуаров, поставки МТО и металлопроката в Атырау и Западном Казахстане.",
     },
     projects: {
-      title: "Проекты — REAL CONSTRUCTION CO",
-      description: "Портфолио выполненных объектов REAL CONSTRUCTION CO.",
+      title: "Проекты — REAL CONSTRUCTION CO | Атырау",
+      description:
+        "Реализованные объекты REAL CONSTRUCTION CO: промышленное строительство, монтаж и сварка для Tengizchevroil, NCOC, Hyundai и других заказчиков.",
     },
     certificates: {
-      title: "Лицензии и сертификаты — REAL CONSTRUCTION CO",
-      description: "Строительная лицензия II категории и сертификаты ISO 9001, ISO 14001, ISO 45001.",
+      title: "Лицензии, сертификаты и награды — REAL CONSTRUCTION CO",
+      description:
+        "Строительная лицензия II категории, ISO 9001/14001/45001 и Recognition Award HPU — 500 000 человеко-часов без травм.",
     },
     partners: {
-      title: "Партнёры и клиенты — REAL CONSTRUCTION CO",
-      description: "Ключевые партнёры нефтегазового и промышленного сектора Казахстана.",
+      title: "Партнёры и клиенты — REAL CONSTRUCTION CO | Атырау",
+      description:
+        "Клиенты и партнёры RCC: Tengizchevroil, NCOC, KPO, Казтрансойл, Hyundai, BI Group и другие компании нефтегаза Казахстана.",
     },
     contact: {
-      title: "Контакты — REAL CONSTRUCTION CO",
-      description: "Адрес, телефон, email и форма заявки REAL CONSTRUCTION CO в Атырау.",
+      title: "Контакты — REAL CONSTRUCTION CO | Атырау",
+      description:
+        "Связаться с REAL CONSTRUCTION CO: Атырау, Байтурсынова 47А, офис 207. Тел. +7 (701) 777-94-05, mn@realconstruction.kz.",
     },
   },
   brand: {
@@ -78,6 +87,7 @@ const ru: Messages = {
       years: "лет на рынке",
       clients: "клиентов",
       projects: "проектов",
+      manHours: "чел.-часов без травм",
     },
   },
   services: {
@@ -214,11 +224,14 @@ const ru: Messages = {
     subtitle: "Партнёры из нефтегазового и промышленного сектора Казахстана.",
   },
   certifications: {
-    eyebrow: "Сертификаты",
+    eyebrow: "Сертификаты и награды",
     title: "Качество подтверждено",
-    subtitle: "Международные стандарты менеджмента, рекомендации партнёров и строительная лицензия II категории.",
+    subtitle:
+      "Международные стандарты менеджмента, награды за безопасность, рекомендации партнёров и строительная лицензия II категории.",
     licenseNote: "Строительная лицензия II категории ГСЛ №0002796 от 28 мая 2007 года.",
     download: "Скачать PDF",
+    awardBadge: "Награда",
+    awardEyebrow: "Безопасность",
     items: {
       iso9001: "Система менеджмента качества",
       iso14001: "Экологический менеджмент",
@@ -228,6 +241,8 @@ const ru: Messages = {
       zqRecommendation: "Рекомендательное письмо ZamanQuantor",
       containexRecommendation: "Рекомендация MA — Containex",
       containexLetter: "Письмо Containex для RCC",
+      hpuRecognition:
+        "Recognition Award HPU — 500 000 человеко-часов без травм (Lost Time Incident Free).",
     },
   },
   contact: {
