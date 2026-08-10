@@ -78,6 +78,7 @@ const ru: Messages = {
       years: "лет на рынке",
       clients: "клиентов",
       projects: "проектов",
+      manHours: "чел.-часов без травм",
     },
   },
   services: {
@@ -214,11 +215,14 @@ const ru: Messages = {
     subtitle: "Партнёры из нефтегазового и промышленного сектора Казахстана.",
   },
   certifications: {
-    eyebrow: "Сертификаты",
+    eyebrow: "Сертификаты и награды",
     title: "Качество подтверждено",
-    subtitle: "Международные стандарты менеджмента, рекомендации партнёров и строительная лицензия II категории.",
+    subtitle:
+      "Международные стандарты менеджмента, награды за безопасность, рекомендации партнёров и строительная лицензия II категории.",
     licenseNote: "Строительная лицензия II категории ГСЛ №0002796 от 28 мая 2007 года.",
     download: "Скачать PDF",
+    awardBadge: "Награда",
+    awardEyebrow: "Безопасность · Air Liquide HPU",
     items: {
       iso9001: "Система менеджмента качества",
       iso14001: "Экологический менеджмент",
@@ -228,6 +232,8 @@ const ru: Messages = {
       zqRecommendation: "Рекомендательное письмо ZamanQuantor",
       containexRecommendation: "Рекомендация MA — Containex",
       containexLetter: "Письмо Containex для RCC",
+      hpuRecognition:
+        "Recognition Award от Air Liquide — 500 000 человеко-часов без травм на проекте Pavlodar New HPU.",
     },
   },
   contact: {

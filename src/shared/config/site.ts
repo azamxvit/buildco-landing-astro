@@ -64,6 +64,8 @@ export class CertificationItem {
     public readonly id: keyof import("../../messages/types").Messages["certifications"]["items"],
     public readonly code: string,
     public readonly pdf: string | null = null,
+    public readonly kind: "certificate" | "award" = "certificate",
+    public readonly image: string | null = null,
   ) {}
 }
 
@@ -127,7 +129,7 @@ export class SiteConfig {
 
   readonly stats = [
     { value: "20+", labelKey: "years" as const },
-    { value: "50+", labelKey: "clients" as const },
+    { value: "500K+", labelKey: "manHours" as const },
     { value: "100+", labelKey: "projects" as const },
   ];
 
@@ -227,6 +229,13 @@ export class SiteConfig {
   ];
 
   readonly certifications: CertificationItem[] = [
+    new CertificationItem(
+      "hpuRecognition",
+      "500 000 M.H.",
+      "/certificates/hpu-500000-mh-recognition.pdf",
+      "award",
+      "/images/awards/hpu-500000-mh.jpg",
+    ),
     new CertificationItem("iso9001", "ISO 9001", "/certificates/iso-9001.pdf"),
     new CertificationItem("iso14001", "ISO 14001", "/certificates/iso-14001.pdf"),
     new CertificationItem("iso45001", "ISO 45001", "/certificates/iso-45001.pdf"),
