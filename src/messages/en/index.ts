@@ -78,6 +78,7 @@ const en: Messages = {
       years: "years in the market",
       clients: "clients",
       projects: "projects",
+      manHours: "incident-free man-hours",
     },
   },
   services: {
@@ -214,11 +215,14 @@ const en: Messages = {
     subtitle: "Partners across Kazakhstan’s oil, gas, and industrial sectors.",
   },
   certifications: {
-    eyebrow: "Certificates",
+    eyebrow: "Certificates & awards",
     title: "Quality certified",
-    subtitle: "International management standards, partner recommendations, and a Category II construction license.",
+    subtitle:
+      "International management standards, safety awards, partner recommendations, and a Category II construction license.",
     licenseNote: "Category II construction license GSL No. 0002796 dated 28 May 2007.",
     download: "Download PDF",
+    awardBadge: "Award",
+    awardEyebrow: "Safety · Air Liquide HPU",
     items: {
       iso9001: "Quality management system",
       iso14001: "Environmental management",
@@ -228,6 +232,8 @@ const en: Messages = {
       zqRecommendation: "ZamanQuantor recommendation letter",
       containexRecommendation: "MA recommendation — Containex",
       containexLetter: "Containex letter for RCC",
+      hpuRecognition:
+        "Air Liquide Recognition Award — 500,000 Lost Time Accident Free man-hours on the Pavlodar New HPU Project.",
     },
   },
   contact: {

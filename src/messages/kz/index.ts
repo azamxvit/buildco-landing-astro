@@ -78,6 +78,7 @@ const kz: Messages = {
       years: "нарықтағы жыл",
       clients: "клиент",
       projects: "жоба",
+      manHours: "жарақатсыз адам-сағат",
     },
   },
   services: {
@@ -214,11 +215,14 @@ const kz: Messages = {
     subtitle: "Қазақстанның мұнай-газ және өнеркәсіп секторындағы серіктестер.",
   },
   certifications: {
-    eyebrow: "Сертификаттар",
+    eyebrow: "Сертификаттар мен марапаттар",
     title: "Сапа расталған",
-    subtitle: "Халықаралық менеджмент стандарттары, серіктестердің ұсыныстары және II санатты құрылыс лицензиясы.",
+    subtitle:
+      "Халықаралық менеджмент стандарттары, қауіпсіздік марапаттары, серіктестердің ұсыныстары және II санатты құрылыс лицензиясы.",
     licenseNote: "II санатты құрылыс лицензиясы ГСЛ №0002796, 2007 жылғы 28 мамыр.",
     download: "PDF жүктеу",
+    awardBadge: "Марапат",
+    awardEyebrow: "Қауіпсіздік · Air Liquide HPU",
     items: {
       iso9001: "Сапа менеджменті жүйесі",
       iso14001: "Экологиялық менеджмент",
@@ -228,6 +232,8 @@ const kz: Messages = {
       zqRecommendation: "ZamanQuantor ұсыныс хаты",
       containexRecommendation: "MA ұсынысы — Containex",
       containexLetter: "Containex хаты RCC үшін",
+      hpuRecognition:
+        "Air Liquide Recognition Award — Pavlodar New HPU жобасында 500 000 жарақатсыз адам-сағат.",
     },
   },
   contact: {

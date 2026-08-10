@@ -77,6 +77,7 @@ export interface Messages {
       years: string;
       clients: string;
       projects: string;
+      manHours: string;
     };
   };
   services: {
@@ -104,6 +105,8 @@ export interface Messages {
     subtitle: string;
     licenseNote: string;
     download: string;
+    awardBadge: string;
+    awardEyebrow: string;
     items: {
       iso9001: string;
       iso14001: string;
@@ -113,6 +116,7 @@ export interface Messages {
       zqRecommendation: string;
       containexRecommendation: string;
       containexLetter: string;
+      hpuRecognition: string;
     };
   };
   contact: {
