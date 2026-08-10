@@ -151,6 +151,7 @@ export interface Messages {
     rights: string;
     madeBy: string;
     developerTagline: string;
+    developerContact: string;
     bin: string;
   };
   floating: {

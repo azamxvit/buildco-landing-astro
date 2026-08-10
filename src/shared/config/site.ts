@@ -83,6 +83,8 @@ export class DeveloperCredit {
     public readonly legal: string,
     public readonly bin: string,
     public readonly logo: string,
+    public readonly phone: string | null = null,
+    public readonly phoneHref: string | null = null,
     public readonly url: string | null = null,
   ) {}
 }
@@ -96,6 +98,8 @@ export class SiteConfig {
     "ТОО «SULTAN SMART SYSTEM»",
     "260640036619",
     "/images/sss-logo.svg",
+    "+7 778 102 6710",
+    "tel:+77781026710",
   );
 
   get formEndpoint(): string {
