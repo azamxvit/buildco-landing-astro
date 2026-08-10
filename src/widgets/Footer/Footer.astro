@@ -79,6 +79,20 @@ const creditAttrs = developer.url
           <p class="mt-1 text-sm leading-snug text-muted">
             <T path="footer.developerTagline" />
           </p>
+          {
+            developer.phone && developer.phoneHref && (
+              <p class="mt-2 text-sm text-muted">
+                <T path="footer.developerContact" />
+                {": "}
+                <a
+                  href={developer.phoneHref}
+                  class="font-semibold text-sss transition hover:underline"
+                >
+                  {developer.phone}
+                </a>
+              </p>
+            )
+          }
           <p class="mt-2 font-mono text-[0.6875rem] tracking-wide text-muted/80">
             {developer.legal} · <T path="footer.bin" /> {developer.bin}
           </p>

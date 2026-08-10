@@ -220,7 +220,7 @@ const kz: Messages = {
     subtitle:
       "Халықаралық менеджмент стандарттары, қауіпсіздік марапаттары, серіктестердің ұсыныстары және II санатты құрылыс лицензиясы.",
     licenseNote: "II санатты құрылыс лицензиясы ГСЛ №0002796, 2007 жылғы 28 мамыр.",
-    download: "PDF жүктеу",
+    download: "PDF қарау",
     awardBadge: "Марапат",
     awardEyebrow: "Қауіпсіздік · Air Liquide HPU",
     items: {
@@ -268,6 +268,7 @@ const kz: Messages = {
     rights: "Барлық құқықтар қорғалған.",
     madeBy: "Сайтты жасаған",
     developerTagline: "Бизнеске арналған заманауи IT-шешімдер",
+    developerContact: "Осы нөмірге хабарласуға болады",
     bin: "БСН",
   },
   floating: {

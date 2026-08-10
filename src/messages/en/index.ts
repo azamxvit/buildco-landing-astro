@@ -220,7 +220,7 @@ const en: Messages = {
     subtitle:
       "International management standards, safety awards, partner recommendations, and a Category II construction license.",
     licenseNote: "Category II construction license GSL No. 0002796 dated 28 May 2007.",
-    download: "Download PDF",
+    download: "View PDF",
     awardBadge: "Award",
     awardEyebrow: "Safety · Air Liquide HPU",
     items: {
@@ -268,6 +268,7 @@ const en: Messages = {
     rights: "All rights reserved.",
     madeBy: "Website by",
     developerTagline: "Modern IT solutions for business",
+    developerContact: "Feel free to contact us at",
     bin: "BIN",
   },
   floating: {

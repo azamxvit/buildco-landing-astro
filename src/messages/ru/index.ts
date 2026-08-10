@@ -220,7 +220,7 @@ const ru: Messages = {
     subtitle:
       "Международные стандарты менеджмента, награды за безопасность, рекомендации партнёров и строительная лицензия II категории.",
     licenseNote: "Строительная лицензия II категории ГСЛ №0002796 от 28 мая 2007 года.",
-    download: "Скачать PDF",
+    download: "Посмотреть PDF",
     awardBadge: "Награда",
     awardEyebrow: "Безопасность · Air Liquide HPU",
     items: {
@@ -268,6 +268,7 @@ const ru: Messages = {
     rights: "Все права защищены.",
     madeBy: "Сайт разработан",
     developerTagline: "Современные IT-решения для бизнеса",
+    developerContact: "Можете обратиться по телефону",
     bin: "БИН",
   },
   floating: {
