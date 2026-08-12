@@ -103,11 +103,15 @@ const { showMap = false } = Astro.props;
         data-sending-ru={messages.ru.contact.form.sending}
         data-sending-en={messages.en.contact.form.sending}
         data-sending-kz={messages.kz.contact.form.sending}
+        data-activate-ru={messages.ru.contact.form.activate}
+        data-activate-en={messages.en.contact.form.activate}
+        data-activate-kz={messages.kz.contact.form.activate}
       >
-        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <input type="hidden" name="_subject" value="Заявка с сайта REAL CONSTRUCTION CO" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_replyto" id="contact-replyto" value="" />
         <div class="flex flex-col gap-2">
           <label class="text-xs font-semibold uppercase tracking-[0.1em] text-muted" for="name">
             <T path="contact.form.name" />
@@ -176,7 +180,7 @@ const { showMap = false } = Astro.props;
   const status = document.getElementById("form-status");
   const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
 
-  const pick = (prefix: "success" | "error" | "network" | "sending", locale: string) => {
+  const pick = (prefix: "success" | "error" | "network" | "sending" | "activate", locale: string) => {
     const byLocale: Record<string, string | undefined> = {
       ru: form?.dataset[`${prefix}Ru`],
       en: form?.dataset[`${prefix}En`],
@@ -185,15 +189,45 @@ const { showMap = false } = Astro.props;
     return byLocale[locale] ?? byLocale.ru ?? "";
   };
 
+  const isSuccessPayload = (payload: unknown, responseOk: boolean) => {
+    if (payload && typeof payload === "object") {
+      const data = payload as { success?: unknown; ok?: unknown; error?: unknown };
+      if ("success" in data) {
+        return data.success === true || data.success === "true";
+      }
+      if ("ok" in data) {
+        return data.ok === true || data.ok === "true";
+      }
+      if (data.error) return false;
+    }
+    return responseOk;
+  };
+
+  const needsActivation = (payload: unknown) => {
+    if (!payload || typeof payload !== "object") return false;
+    const message = String((payload as { message?: unknown }).message ?? "").toLowerCase();
+    return (
+      message.includes("confirm") ||
+      message.includes("activate") ||
+      message.includes("activation") ||
+      message.includes("check your email")
+    );
+  };
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form) return;
 
-    const honeypot = (form.elements.namedItem("_gotcha") as HTMLInputElement | null)?.value;
+    const honeypot = (form.elements.namedItem("_honey") as HTMLInputElement | null)?.value;
     if (honeypot) return;
 
     const locale = document.documentElement.dataset.locale ?? "ru";
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement | null;
+    const replyTo = form.elements.namedItem("_replyto") as HTMLInputElement | null;
+    if (replyTo && emailInput) replyTo.value = emailInput.value;
+
     const data = new FormData(form);
+    const payloadBody = Object.fromEntries(data.entries());
 
     if (submitBtn) submitBtn.disabled = true;
     if (status) status.textContent = pick("sending", locale);
@@ -201,14 +235,21 @@ const { showMap = false } = Astro.props;
     try {
       const response = await fetch(form.action, {
         method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
+        body: JSON.stringify(payloadBody),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       });
 
       const payload = await response.json().catch(() => null);
-      const ok = response.ok || payload?.success === "true" || payload?.success === true;
 
-      if (ok) {
+      if (needsActivation(payload)) {
+        if (status) status.textContent = pick("activate", locale);
+        return;
+      }
+
+      if (isSuccessPayload(payload, response.ok)) {
         form.reset();
         if (status) status.textContent = pick("success", locale);
       } else if (status) {

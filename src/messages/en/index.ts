@@ -256,6 +256,8 @@ const en: Messages = {
       error: "Something went wrong. Please try again or call us.",
       network: "Network error. Please call us directly.",
       sending: "Sending…",
+      activate:
+        "Check rcc@rcckz.kz and confirm FormSubmit via the link in the email — then submissions will be delivered.",
     },
   },
   ctaBand: {
