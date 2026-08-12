@@ -252,12 +252,12 @@ const en: Messages = {
       email: "Email",
       message: "Message",
       consent: "I agree to the processing of personal data",
+      successTitle: "Request sent",
       success: "Thank you! We will contact you shortly.",
-      error: "Something went wrong. Please try again or call us.",
+      errorTitle: "Could not send",
+      error: "Please try again or call us.",
       network: "Network error. Please call us directly.",
       sending: "Sending…",
-      activate:
-        "Check rcc@rcckz.kz and confirm FormSubmit via the link in the email — then submissions will be delivered.",
     },
   },
   ctaBand: {

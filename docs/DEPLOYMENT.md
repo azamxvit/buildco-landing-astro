@@ -4,7 +4,7 @@
 
 - **Frontend:** Astro static → CDN / хостинг (Vercel, Netlify, или nginx + `dist/`)
 - **Контент:** статика в репозитории (`src/shared/config/site.ts`, `public/images/`, `public/certificates/`)
-- **Формы:** FormSubmit → email `rcc@rcckz.kz` (первый сабмит шлёт письмо активации на этот ящик)
+- **Формы:** FormSubmit → email `rcc@rcckz.kz` (один раз подтвердить адрес по письму FormSubmit на `rcc@rcckz.kz`)
 - **Домен:** `realconstruction.kz` + SSL (Let's Encrypt)
 
 ## Frontend

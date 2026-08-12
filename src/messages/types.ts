@@ -135,11 +135,12 @@ export interface Messages {
       email: string;
       message: string;
       consent: string;
+      successTitle: string;
       success: string;
+      errorTitle: string;
       error: string;
       network: string;
       sending: string;
-      activate: string;
     };
   };
   ctaBand: {

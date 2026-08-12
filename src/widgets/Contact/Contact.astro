@@ -94,18 +94,21 @@ const { showMap = false } = Astro.props;
         data-success-ru={messages.ru.contact.form.success}
         data-success-en={messages.en.contact.form.success}
         data-success-kz={messages.kz.contact.form.success}
+        data-success-title-ru={messages.ru.contact.form.successTitle}
+        data-success-title-en={messages.en.contact.form.successTitle}
+        data-success-title-kz={messages.kz.contact.form.successTitle}
         data-error-ru={messages.ru.contact.form.error}
         data-error-en={messages.en.contact.form.error}
         data-error-kz={messages.kz.contact.form.error}
+        data-error-title-ru={messages.ru.contact.form.errorTitle}
+        data-error-title-en={messages.en.contact.form.errorTitle}
+        data-error-title-kz={messages.kz.contact.form.errorTitle}
         data-network-ru={messages.ru.contact.form.network}
         data-network-en={messages.en.contact.form.network}
         data-network-kz={messages.kz.contact.form.network}
         data-sending-ru={messages.ru.contact.form.sending}
         data-sending-en={messages.en.contact.form.sending}
         data-sending-kz={messages.kz.contact.form.sending}
-        data-activate-ru={messages.ru.contact.form.activate}
-        data-activate-en={messages.en.contact.form.activate}
-        data-activate-kz={messages.kz.contact.form.activate}
       >
         <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <input type="hidden" name="_subject" value="Заявка с сайта REAL CONSTRUCTION CO" />
@@ -169,7 +172,29 @@ const { showMap = false } = Astro.props;
         <Button type="submit" variant="primary" class="w-full" id="contact-submit">
           <T path="cta.submit" />
         </Button>
-        <p class="min-h-5 text-sm text-accent" id="form-status" role="status" aria-live="polite"></p>
+        <div
+          id="form-status"
+          class="hidden border px-4 py-3.5 data-[state=error]:border-[#8a3a3a]/70 data-[state=error]:bg-[rgb(138_58_58_/_0.14)] data-[state=network]:border-[#8a3a3a]/70 data-[state=network]:bg-[rgb(138_58_58_/_0.14)] data-[state=sending]:border-border-strong data-[state=sending]:bg-bg data-[state=success]:border-accent/45 data-[state=success]:bg-accent-dim"
+          role="status"
+          aria-live="polite"
+          data-state=""
+          hidden
+        >
+          <div class="flex items-start gap-3">
+            <span
+              id="form-status-icon"
+              class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center border border-current/25 bg-bg/40 text-accent data-[state=error]:text-[#e08a8a] data-[state=network]:text-[#e08a8a] data-[state=sending]:text-muted"
+              aria-hidden="true"
+            ></span>
+            <div class="min-w-0 flex-1 pt-0.5">
+              <p
+                id="form-status-title"
+                class="mb-1 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-accent data-[state=error]:text-[#e08a8a] data-[state=network]:text-[#e08a8a] data-[state=sending]:text-muted"
+              ></p>
+              <p id="form-status-text" class="text-sm leading-relaxed text-soft"></p>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -178,20 +203,74 @@ const { showMap = false } = Astro.props;
 <script>
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const status = document.getElementById("form-status");
+  const statusTitle = document.getElementById("form-status-title");
+  const statusText = document.getElementById("form-status-text");
+  const statusIcon = document.getElementById("form-status-icon");
   const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement | null;
 
-  const pick = (prefix: "success" | "error" | "network" | "sending" | "activate", locale: string) => {
+  type StatusState = "success" | "error" | "network" | "sending";
+
+  const icons: Record<StatusState, string> = {
+    sending:
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke-linecap="round"/></svg>',
+    success:
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    error:
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>',
+    network:
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01" stroke-linecap="round"/></svg>',
+  };
+
+  const pick = (key: string, locale: string) => {
     const byLocale: Record<string, string | undefined> = {
-      ru: form?.dataset[`${prefix}Ru`],
-      en: form?.dataset[`${prefix}En`],
-      kz: form?.dataset[`${prefix}Kz`],
+      ru: form?.dataset[`${key}Ru`],
+      en: form?.dataset[`${key}En`],
+      kz: form?.dataset[`${key}Kz`],
     };
     return byLocale[locale] ?? byLocale.ru ?? "";
   };
 
+  const setStatus = (state: StatusState, locale: string) => {
+    if (!status || !statusText || !statusTitle || !statusIcon) return;
+
+    status.hidden = false;
+    status.classList.remove("hidden");
+    status.dataset.state = state;
+    statusTitle.dataset.state = state;
+    statusIcon.dataset.state = state;
+    statusIcon.innerHTML = icons[state];
+
+    if (state === "success") {
+      statusTitle.hidden = false;
+      statusTitle.textContent = pick("successTitle", locale);
+      statusText.textContent = pick("success", locale);
+      return;
+    }
+
+    if (state === "error") {
+      statusTitle.hidden = false;
+      statusTitle.textContent = pick("errorTitle", locale);
+      statusText.textContent = pick("error", locale);
+      return;
+    }
+
+    statusTitle.hidden = true;
+    statusTitle.textContent = "";
+    statusText.textContent = pick(state, locale);
+  };
+
   const isSuccessPayload = (payload: unknown, responseOk: boolean) => {
     if (payload && typeof payload === "object") {
-      const data = payload as { success?: unknown; ok?: unknown; error?: unknown };
+      const data = payload as { success?: unknown; ok?: unknown; error?: unknown; message?: unknown };
+      const message = String(data.message ?? "").toLowerCase();
+      if (
+        message.includes("confirm") ||
+        message.includes("activate") ||
+        message.includes("activation") ||
+        message.includes("check your email")
+      ) {
+        return true;
+      }
       if ("success" in data) {
         return data.success === true || data.success === "true";
       }
@@ -201,17 +280,6 @@ const { showMap = false } = Astro.props;
       if (data.error) return false;
     }
     return responseOk;
-  };
-
-  const needsActivation = (payload: unknown) => {
-    if (!payload || typeof payload !== "object") return false;
-    const message = String((payload as { message?: unknown }).message ?? "").toLowerCase();
-    return (
-      message.includes("confirm") ||
-      message.includes("activate") ||
-      message.includes("activation") ||
-      message.includes("check your email")
-    );
   };
 
   form?.addEventListener("submit", async (event) => {
@@ -230,7 +298,7 @@ const { showMap = false } = Astro.props;
     const payloadBody = Object.fromEntries(data.entries());
 
     if (submitBtn) submitBtn.disabled = true;
-    if (status) status.textContent = pick("sending", locale);
+    setStatus("sending", locale);
 
     try {
       const response = await fetch(form.action, {
@@ -244,19 +312,14 @@ const { showMap = false } = Astro.props;
 
       const payload = await response.json().catch(() => null);
 
-      if (needsActivation(payload)) {
-        if (status) status.textContent = pick("activate", locale);
-        return;
-      }
-
       if (isSuccessPayload(payload, response.ok)) {
         form.reset();
-        if (status) status.textContent = pick("success", locale);
-      } else if (status) {
-        status.textContent = pick("error", locale);
+        setStatus("success", locale);
+      } else {
+        setStatus("error", locale);
       }
     } catch {
-      if (status) status.textContent = pick("network", locale);
+      setStatus("network", locale);
     } finally {
       if (submitBtn) submitBtn.disabled = false;
     }
