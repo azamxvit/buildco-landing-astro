@@ -4,7 +4,7 @@
 
 - **Frontend:** Astro static → CDN / хостинг (Vercel, Netlify, или nginx + `dist/`)
 - **Контент:** статика в репозитории (`src/shared/config/site.ts`, `public/images/`, `public/certificates/`)
-- **Формы:** Formspree → email `mn@realconstruction.kz`
+- **Формы:** Formspree → email `rcc@rcckz.kz`
 - **Домен:** `realconstruction.kz` + SSL (Let's Encrypt)
 
 ## Frontend

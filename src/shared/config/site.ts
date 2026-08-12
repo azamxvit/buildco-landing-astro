@@ -114,7 +114,7 @@ export class SiteConfig {
     "+7 (701) 777-94-05",
     "tel:+77017779405",
     "77017779405",
-    "mn@realconstruction.kz",
+    "rcc@rcckz.kz",
     "г. Атырау, улица Байтурсынова 47А, офис 207",
     "Atyrau, Baitursynov street 47A, office 207",
     "Атырау қ., Байтурсынов көшесі 47А, офис 207",
