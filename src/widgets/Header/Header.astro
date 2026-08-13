@@ -33,9 +33,9 @@ import { site } from "../../shared/config/site";
       }
     </nav>
 
-    <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-3 lg:ml-0">
+    <div class="ml-auto flex shrink-0 items-center gap-2 sm:gap-2.5 lg:ml-0 lg:gap-5">
       <div
-        class="inline-flex overflow-hidden border border-border-strong"
+        class="inline-flex overflow-hidden border border-border"
         role="group"
         aria-label="Language"
       >
@@ -53,12 +53,16 @@ import { site } from "../../shared/config/site";
         }
       </div>
 
+      <span class="hidden h-5 w-px shrink-0 bg-muted/45 lg:block" aria-hidden="true"></span>
+
       <a
-        class="hidden items-center gap-2 text-sm font-semibold transition hover:text-accent lg:inline-flex"
+        class="hidden items-center text-sm font-medium tracking-wide text-soft transition hover:text-accent lg:inline-flex"
         href={site.contact.phoneHref}
       >
         {site.contact.phone}
       </a>
+
+      <span class="hidden h-5 w-px shrink-0 bg-muted/45 lg:block" aria-hidden="true"></span>
 
       <a
         href="/contact"

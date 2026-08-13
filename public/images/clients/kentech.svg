@@ -1,3 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="KENTECH">
-  <text x="160" y="56" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f5f5f5" letter-spacing="0.06em">KENTECH</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140" role="img" aria-label="KENTECH">
+  <g transform="translate(12,12)">
+    <polygon fill="#5BA3C9" points="60,0 110,29 110,58 70,82 20,58 20,29"/>
+    <polygon fill="#007A78" points="70,82 110,58 110,87 60,116 20,87 20,58"/>
+    <polygon fill="#0a0a0a" points="44,36 70,36 90,58 70,80 44,80 64,58"/>
+    <rect fill="#5BA3C9" x="30" y="30" width="20" height="56"/>
+  </g>
+  <text x="148" y="90" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="800" letter-spacing="0.06em" fill="#F2F7FB">KENTECH</text>
 </svg>
