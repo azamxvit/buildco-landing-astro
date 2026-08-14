@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="8" fill="#0A0A0A"/>
-  <path d="M12 48V22l20-12 20 12v26H12z" stroke="#005DB7" stroke-width="3"/>
-  <path d="M26 48V34h12v14" stroke="#005DB7" stroke-width="3"/>
-  <path d="M12 48h40" stroke="#005DB7" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="RCC">
+  <rect width="48" height="48" fill="#0A0A0A"/>
+  <text
+    x="24"
+    y="31"
+    text-anchor="middle"
+    fill="#005DB7"
+    font-family="Arial Black, Helvetica Neue, Helvetica, sans-serif"
+    font-size="13"
+    font-weight="800"
+    letter-spacing="0.5"
+  >RCC</text>
 </svg>
