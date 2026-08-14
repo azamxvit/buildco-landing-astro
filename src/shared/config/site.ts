@@ -41,6 +41,8 @@ export class ProjectItem {
     public readonly serviceId: ServiceId,
     public readonly span: "normal" | "tall" | "wide" = "normal",
     public readonly clientId: string | null = null,
+    /** Shown in the shortlist on the home page */
+    public readonly featured: boolean = false,
   ) {}
 }
 
@@ -162,29 +164,29 @@ export class SiteConfig {
   ];
 
   readonly projects: ProjectItem[] = [
-    new ProjectItem("p1", "/images/projects/rcc/rcc-01.jpg", "construction", "steelWelding", "normal", "hyundai"),
-    new ProjectItem("p2", "/images/projects/rcc/rcc-02.jpg", "construction", "steelWelding", "wide", "hyundai"),
-    new ProjectItem("p3", "/images/projects/rcc/rcc-03.jpg", "construction", "general", "tall", "airliquide"),
-    new ProjectItem("p4", "/images/projects/rcc/rcc-04.jpg", "construction", "construction", "tall", "airliquide"),
+    new ProjectItem("p1", "/images/projects/rcc/rcc-01.jpg", "construction", "steelWelding", "normal", "mcdonalds"),
+    new ProjectItem("p2", "/images/projects/rcc/rcc-02.jpg", "construction", "steelWelding", "wide", "mcdonalds"),
+    new ProjectItem("p3", "/images/projects/rcc/rcc-03.jpg", "construction", "general", "tall", "mcdonalds"),
+    new ProjectItem("p4", "/images/projects/rcc/rcc-04.jpg", "construction", "steelWelding", "tall", "sicim"),
     new ProjectItem("p5", "/images/projects/rcc/rcc-05.jpg", "installation", "pipelineWelding", "normal", "mcdonalds"),
     new ProjectItem("p6", "/images/projects/rcc/rcc-06.jpg", "installation", "steelWelding", "wide", "mcdonalds"),
     new ProjectItem("p7", "/images/projects/rcc/rcc-07.jpg", "installation", "pipelineWelding", "tall", "tengiz"),
     new ProjectItem("p8", "/images/projects/rcc/rcc-08.jpg", "installation", "tankWelding", "tall", "tengiz"),
-    new ProjectItem("p9", "/images/projects/rcc/rcc-09.jpg", "installation", "pipelineWelding", "tall", "kentech"),
-    new ProjectItem("p10", "/images/projects/rcc/rcc-10.jpg", "construction", "lowRise", "tall", "ncoc"),
-    new ProjectItem("p11", "/images/projects/rcc/rcc-11.jpg", "installation", "pipelineWelding", "normal", "sicim"),
+    new ProjectItem("p9", "/images/projects/rcc/rcc-09.jpg", "installation", "pipelineWelding", "tall", "kentech", true),
+    new ProjectItem("p10", "/images/projects/rcc/rcc-10.jpg", "construction", "lowRise", "tall", "ncoc", true),
+    new ProjectItem("p11", "/images/projects/rcc/rcc-11.jpg", "installation", "pipelineWelding", "tall", "sicim", true),
     new ProjectItem("p12", "/images/projects/rcc/rcc-12.jpg", "installation", "steelWelding", "tall", "sicim"),
-    new ProjectItem("p13", "/images/projects/rcc/rcc-13.jpg", "installation", "tankWelding", "tall", "zamanquantor"),
+    new ProjectItem("p13", "/images/projects/rcc/rcc-13.jpg", "installation", "tankWelding", "tall", "zamanquantor", true),
     new ProjectItem("p14", "/images/projects/rcc/rcc-14.jpg", "construction", "construction", "wide", "kto"),
     new ProjectItem("p15", "/images/projects/rcc/rcc-15.jpg", "installation", "pipelineWelding", "normal", "metso"),
-    new ProjectItem("p16", "/images/projects/rcc/rcc-16.jpg", "installation", "steelWelding", "tall", "metso"),
+    new ProjectItem("p16", "/images/projects/rcc/rcc-16.jpg", "installation", "steelWelding", "tall", "metso", true),
     new ProjectItem("p17", "/images/projects/rcc/rcc-17.jpg", "maintenance", "maintenance", "tall", "mimas"),
     new ProjectItem("p18", "/images/projects/rcc/rcc-18.jpg", "installation", "pipelineWelding", "tall", "tyanshan"),
     new ProjectItem("p19", "/images/projects/rcc/rcc-19.jpg", "installation", "tankWelding", "tall", "bonatti"),
     new ProjectItem("p20", "/images/projects/rcc/rcc-20.jpg", "construction", "general", "tall", "foodpackaging"),
     new ProjectItem("p21", "/images/projects/rcc/rcc-21.jpg", "installation", "pipelineWelding", "wide", "bigroup"),
     new ProjectItem("p22", "/images/projects/rcc/rcc-22.jpg", "installation", "steelWelding", "normal", "cct"),
-    new ProjectItem("p23", "/images/projects/rcc/rcc-23.jpg", "installation", "pipelineWelding", "tall", "pnhz"),
+    new ProjectItem("p23", "/images/projects/rcc/rcc-23.jpg", "installation", "pipelineWelding", "tall", "pnhz", true),
     new ProjectItem("p24", "/images/projects/rcc/rcc-24.jpg", "construction", "construction", "normal", "anpz"),
     new ProjectItem("p25", "/images/projects/rcc/rcc-25.jpg", "installation", "tankWelding", "tall", "tengiz"),
     new ProjectItem("p26", "/images/projects/rcc/rcc-26.jpg", "installation", "pipelineWelding", "tall", "ncoc"),
@@ -253,6 +255,11 @@ export class SiteConfig {
     ),
     new CertificationItem("containexLetter", "Containex", "/certificates/containex-letter.pdf"),
   ];
+
+  get featuredProjects(): ProjectItem[] {
+    const featured = this.projects.filter((project) => project.featured);
+    return featured.length > 0 ? featured : this.projects;
+  }
 
   getServiceBySlug(slug: string): ServiceItem | undefined {
     return this.services.find((s) => s.slug === slug);

@@ -19,6 +19,10 @@ export function getProjects(_locale: Locale = "ru"): ProjectItem[] {
   return site.projects;
 }
 
+export function getFeaturedProjects(_locale: Locale = "ru"): ProjectItem[] {
+  return site.featuredProjects;
+}
+
 export function getPartners(): ClientItem[] {
   return site.clients;
 }
