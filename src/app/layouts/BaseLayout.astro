@@ -11,6 +11,8 @@ interface Props {
 const messages = getMessages("ru");
 const { title = messages.meta.title, description = messages.meta.description } = Astro.props;
 
+const canonical = new URL(Astro.url.pathname, site.siteUrl).href;
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -37,7 +39,7 @@ const schema = {
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#005db7" />
-    <link rel="canonical" href={site.siteUrl} />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

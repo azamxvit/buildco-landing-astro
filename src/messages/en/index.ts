@@ -33,12 +33,10 @@ const en: Messages = {
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION CO",
     legal: "REAL CONSTRUCTION CO LLP",
     location: "Atyrau · Kazakhstan",
   },
   nav: {
-    home: "Home",
     about: "About",
     services: "Services",
     projects: "Projects",
@@ -53,7 +51,6 @@ const en: Messages = {
     submit: "Send request",
     more: "Learn more",
     apply: "Request a quote",
-    download: "Download",
     allServices: "All services",
     allProjects: "All projects",
   },
@@ -76,7 +73,6 @@ const en: Messages = {
     ],
     stats: {
       years: "years in the market",
-      clients: "clients",
       projects: "projects",
       manHours: "incident-free man-hours",
     },
@@ -275,7 +271,6 @@ const en: Messages = {
   },
   floating: {
     whatsapp: "WhatsApp",
-    call: "Call",
     whatsappMessage:
       "Hello! I’m writing from the REAL CONSTRUCTION CO website about construction / services.",
   },

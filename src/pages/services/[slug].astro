@@ -5,17 +5,15 @@ import Button from "../../shared/ui/Button.astro";
 import T from "../../shared/ui/T.astro";
 import { site } from "../../shared/config/site";
 import { messages } from "../../messages";
-import { getServiceBySlug } from "../../shared/api/content";
 
 export async function getStaticPaths() {
   return site.services.map((service) => ({
     params: { slug: service.slug },
-    props: { slug: service.slug },
+    props: { service },
   }));
 }
 
-const { slug } = Astro.props;
-const service = (await getServiceBySlug(slug, "ru")) ?? site.getServiceBySlug(slug)!;
+const { service } = Astro.props;
 const copy = messages.ru.services.items[service.id];
 const title = `${copy.title} — ${site.brand}`;
 ---

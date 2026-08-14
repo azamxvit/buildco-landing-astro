@@ -7,31 +7,23 @@ import { site, type ServiceItem } from "../../shared/config/site";
 
 interface Props {
   limit?: number;
-  tone?: "accent" | "dark";
   services?: ServiceItem[];
 }
 
-const { limit, tone = "accent", services: servicesProp } = Astro.props;
+const { limit, services: servicesProp } = Astro.props;
 const source = servicesProp ?? site.services;
 const items = limit ? source.slice(0, limit) : source;
-const onAccent = tone === "accent";
 ---
 
 <section
-  class:list={[
-    "theme relative overflow-hidden bg-bg py-[var(--spacing-section)]",
-    onAccent && "theme--band",
-  ]}
+  class="theme theme--band relative overflow-hidden bg-bg py-[var(--spacing-section)]"
   id="services"
 >
-  {
-    onAccent && (
-      <div
-        class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
-        aria-hidden="true"
-      />
-    )
-  }
+  <div
+    class="pointer-events-none absolute inset-0 opacity-10 [background-image:repeating-linear-gradient(45deg,#000_0,#000_2px,transparent_2px,transparent_14px)]"
+    aria-hidden="true"
+  >
+  </div>
 
   <div class="page-container relative">
     <SectionTitle eyebrow="services.eyebrow" title="services.title" subtitle="services.subtitle" />
@@ -42,8 +34,7 @@ const onAccent = tone === "accent";
           <a
             href={`/services/${service.slug}`}
             class:list={[
-              "theme theme--panel reveal group flex h-full flex-col gap-4 border border-border bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover",
-              onAccent && "hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]",
+              "theme theme--panel reveal group flex h-full flex-col gap-4 border border-border bg-surface p-6 transition duration-300 hover:-translate-y-1 hover:border-accent hover:bg-surface-hover hover:shadow-[0_16px_40px_rgb(0_0_0_/_0.4)]",
               `reveal-delay-${(index % 3) + 1}`,
             ]}
           >
@@ -67,7 +58,7 @@ const onAccent = tone === "accent";
     {
       limit && (
         <div class="mt-10 flex justify-center">
-          <Button href="/services" variant={onAccent ? "outline" : "primary"}>
+          <Button href="/services" variant="outline">
             <T path="cta.allServices" />
           </Button>
         </div>

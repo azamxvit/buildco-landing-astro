@@ -3,7 +3,6 @@ import type { ServiceId } from "../../messages/types";
 export type ServiceIcon =
   | "crane"
   | "rebuild"
-  | "home"
   | "warehouse"
   | "draft"
   | "wrench"

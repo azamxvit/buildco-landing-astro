@@ -33,12 +33,10 @@ const kz: Messages = {
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION CO",
     legal: "«REAL CONSTRUCTION CO» ЖШС",
     location: "Атырау · Қазақстан",
   },
   nav: {
-    home: "Басты бет",
     about: "Біз туралы",
     services: "Қызметтер",
     projects: "Жобалар",
@@ -53,7 +51,6 @@ const kz: Messages = {
     submit: "Өтінім жіберу",
     more: "Толығырақ",
     apply: "Өтінім қалдыру",
-    download: "Жүктеу",
     allServices: "Барлық қызметтер",
     allProjects: "Барлық жобалар",
   },
@@ -76,7 +73,6 @@ const kz: Messages = {
     ],
     stats: {
       years: "нарықтағы жыл",
-      clients: "клиент",
       projects: "жоба",
       manHours: "жарақатсыз адам-сағат",
     },
@@ -275,7 +271,6 @@ const kz: Messages = {
   },
   floating: {
     whatsapp: "WhatsApp",
-    call: "Қоңырау шалу",
     whatsappMessage:
       "Сәлеметсіз бе! REAL CONSTRUCTION CO сайтынан құрылыс / қызметтер туралы жазып тұрмын.",
   },

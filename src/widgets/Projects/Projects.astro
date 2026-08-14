@@ -96,7 +96,6 @@ const cards = await Promise.all(
               class="absolute inset-0 z-10 cursor-zoom-in"
               data-lightbox-trigger
               data-src={fullSrc}
-              data-title-path={`projects.items.${project.id}.title`}
               aria-label="Open image"
             />
             <Photo
@@ -107,7 +106,6 @@ const cards = await Promise.all(
               loading={priority && index < 2 ? "eager" : "lazy"}
               fetchpriority={priority && index === 0 ? "high" : undefined}
               class="h-full min-h-[inherit] w-full object-cover transition duration-500 ease-out group-hover:scale-105"
-              data-i18n-alt={`projects.items.${project.id}.title`}
             />
             <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/20 to-transparent p-5">
               {
@@ -159,7 +157,6 @@ const cards = await Promise.all(
         ×
       </button>
       <img id="lightbox-image" src="" alt="" class="max-h-[85vh] max-w-full object-contain" />
-      <p id="lightbox-caption" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-white"></p>
     </div>
   )
 }
@@ -167,14 +164,12 @@ const cards = await Promise.all(
 <script>
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement | null;
-  const lightboxCaption = document.getElementById("lightbox-caption");
 
   document.querySelectorAll("[data-lightbox-trigger]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const el = btn as HTMLElement;
       if (!lightbox || !lightboxImage) return;
       lightboxImage.src = el.dataset.src ?? "";
-      if (lightboxCaption) lightboxCaption.textContent = "";
       lightbox.classList.remove("hidden");
       lightbox.classList.add("flex");
       lightbox.dataset.open = "true";

@@ -58,7 +58,8 @@
 }
 
 :root,
-.theme {
+.theme,
+.theme--panel {
   --bg: var(--brand-bg);
   --bg-elevated: var(--brand-bg-elevated);
   --surface: var(--brand-surface);
@@ -92,22 +93,6 @@
   --accent-hover: #f0f0f0;
   --accent-dim: rgb(255 255 255 / 0.12);
   --on-accent: var(--brand-accent);
-}
-
-.theme--panel {
-  --bg: var(--brand-bg);
-  --bg-elevated: var(--brand-bg-elevated);
-  --surface: var(--brand-surface);
-  --surface-hover: var(--brand-surface-hover);
-  --border: var(--brand-border);
-  --border-strong: var(--brand-border-strong);
-  --muted: var(--brand-muted);
-  --soft: var(--brand-soft);
-  --fg: var(--brand-fg);
-  --accent: var(--brand-accent);
-  --accent-hover: var(--brand-accent-hover);
-  --accent-dim: var(--brand-accent-dim);
-  --on-accent: var(--brand-on-accent);
 }
 
 @theme inline {

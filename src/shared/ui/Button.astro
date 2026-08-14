@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: "primary" | "outline" | "ghost";
+  variant?: "primary" | "outline";
   type?: "button" | "submit" | "reset";
   class?: string;
   id?: string;
@@ -17,13 +17,12 @@ const {
 
 const variants: Record<NonNullable<Props["variant"]>, string> = {
   primary:
-    "border-transparent bg-accent text-on-accent shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_35%,transparent)] hover:bg-accent-hover disabled:pointer-events-none disabled:opacity-60",
-  outline: "border-fg/30 bg-transparent text-fg hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-60",
-  ghost: "border-transparent bg-transparent px-3 text-fg hover:text-accent disabled:pointer-events-none disabled:opacity-60",
+    "border-transparent bg-accent text-on-accent shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_35%,transparent)] hover:bg-accent-hover",
+  outline: "border-fg/30 bg-transparent text-fg hover:border-accent hover:text-accent",
 };
 
 const classes = [
-  "inline-flex min-h-12 items-center justify-center gap-2 border px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] transition duration-300 hover:-translate-y-0.5 active:translate-y-0",
+  "inline-flex min-h-12 items-center justify-center gap-2 border px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] transition duration-300 hover:-translate-y-0.5 active:translate-y-0 disabled:pointer-events-none disabled:opacity-60",
   variants[variant],
   className,
 ]
