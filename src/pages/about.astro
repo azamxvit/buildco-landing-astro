@@ -3,10 +3,10 @@ import SiteLayout from "../app/layouts/SiteLayout.astro";
 import About from "../widgets/About/About.astro";
 import T from "../shared/ui/T.astro";
 import { getMessages } from "../messages";
-import { messages } from "../messages";
 
-const page = getMessages("ru").pages.about;
-const values = messages.ru.about.values;
+const copy = getMessages("ru");
+const page = copy.pages.about;
+const values = copy.about.values;
 ---
 
 <SiteLayout title={page.title} description={page.description}>

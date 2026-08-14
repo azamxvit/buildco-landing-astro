@@ -33,12 +33,10 @@ const en: Messages = {
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION CO",
     legal: "REAL CONSTRUCTION CO LLP",
     location: "Atyrau · Kazakhstan",
   },
   nav: {
-    home: "Home",
     about: "About",
     services: "Services",
     projects: "Projects",
@@ -53,7 +51,6 @@ const en: Messages = {
     submit: "Send request",
     more: "Learn more",
     apply: "Request a quote",
-    download: "Download",
     allServices: "All services",
     allProjects: "All projects",
   },
@@ -76,7 +73,6 @@ const en: Messages = {
     ],
     stats: {
       years: "years in the market",
-      clients: "clients",
       projects: "projects",
       manHours: "incident-free man-hours",
     },
@@ -162,12 +158,12 @@ const en: Messages = {
     subtitle: "Real projects across industrial and construction sites in Kazakhstan.",
     filterAll: "All",
     items: {
-      p1: { title: "Hyundai Premium Dealership, Atyrau", category: "Construction", description: "External utilities for Hyundai dealership in Atyrau." },
-      p2: { title: "Hyundai Premium Dealership, Shymkent", category: "Construction", description: "EPC contract for Hyundai dealership in Shymkent." },
-      p3: { title: "Air Liquide, Pavlodar Refinery", category: "Construction", description: "Construction works for Air Liquide at PNHZ." },
-      p4: { title: "Air Liquide, Atyrau Refinery", category: "Construction", description: "Site works for Air Liquide at ANPZ." },
-      p5: { title: "McDonald's, Astana", category: "Installation", description: "Installation and construction works for McDonald’s in Aktobe." },
-      p6: { title: "McDonald's, Astana", category: "Installation", description: "Construction and finishing of McDonald’s in Astana." },
+      p1: { title: "McDonald's, Almaty", category: "Construction", description: "Steel frame erection for McDonald’s in Almaty." },
+      p2: { title: "McDonald's, Almaty", category: "Construction", description: "Base and steel structures for McDonald’s in Almaty." },
+      p3: { title: "McDonald's Atakent, Almaty", category: "Construction", description: "Construction and installation works for McDonald’s Atakent in Almaty." },
+      p4: { title: "Sicim — Plant", category: "Construction", description: "Steel structure erection at the Sicim plant." },
+      p5: { title: "McDonald's, Almaty", category: "Installation", description: "Installation and construction works for McDonald’s in Almaty." },
+      p6: { title: "McDonald's, Aktobe", category: "Installation", description: "Construction and finishing of McDonald’s in Aktobe." },
       p7: { title: "Tengizchevroil — Turnaround Office", category: "Installation", description: "Supply and construction of TCO Turnaround office." },
       p8: { title: "Tengizchevroil — Social Project", category: "Installation", description: "Dormitory construction for TCO social project." },
       p9: { title: "Kentech / TCO FGP", category: "Installation", description: "Welding, coating and steelworks on TCO FGP/3GP substations." },
@@ -275,7 +271,6 @@ const en: Messages = {
   },
   floating: {
     whatsapp: "WhatsApp",
-    call: "Call",
     whatsappMessage:
       "Hello! I’m writing from the REAL CONSTRUCTION CO website about construction / services.",
   },

@@ -1,21 +1,47 @@
 ---
+import { getImage } from "astro:assets";
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
 import Button from "../../shared/ui/Button.astro";
+import Photo from "../../shared/ui/Photo.astro";
 import { site, type ProjectItem } from "../../shared/config/site";
+import { resolveImage } from "../../shared/lib/images";
 
 interface Props {
   limit?: number;
   enableFilter?: boolean;
   enableLightbox?: boolean;
   projects?: ProjectItem[];
+  /** Set on pages where the grid is the first thing above the fold. */
+  priority?: boolean;
 }
 
-const { limit, enableFilter = false, enableLightbox = true, projects: projectsProp } = Astro.props;
+const {
+  limit,
+  enableFilter = false,
+  enableLightbox = true,
+  projects: projectsProp,
+  priority = false,
+} = Astro.props;
 const source = projectsProp ?? site.projects;
 const items = limit ? source.slice(0, limit) : source;
 const categories = [...new Set(source.map((p) => p.categoryKey))];
 const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
+
+// The lightbox needs a larger rendition than the card itself.
+const cards = await Promise.all(
+  items.map(async (project) => {
+    const asset = resolveImage(project.image);
+    if (!asset) return { project, fullSrc: project.image };
+    const full = await getImage({
+      src: asset,
+      format: "webp",
+      width: Math.min(asset.width, 1280),
+      quality: 68,
+    });
+    return { project, fullSrc: full.src };
+  }),
+);
 ---
 
 <section class="py-[var(--spacing-section)]" id="projects">
@@ -55,7 +81,7 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
 
     <div class="grid grid-cols-12 gap-4" data-projects-grid>
       {
-        items.map((project, index) => (
+        cards.map(({ project, fullSrc }, index) => (
           <article
             class:list={[
               "reveal group relative col-span-12 overflow-hidden sm:col-span-6",
@@ -69,18 +95,17 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
               type="button"
               class="absolute inset-0 z-10 cursor-zoom-in"
               data-lightbox-trigger
-              data-src={project.image}
-              data-title-path={`projects.items.${project.id}.title`}
+              data-src={fullSrc}
               aria-label="Open image"
             />
-            <img
+            <Photo
               src={project.image}
               alt=""
-              width="800"
-              height="600"
-              loading="lazy"
+              widths={[400, 640, 800]}
+              sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+              loading={priority && index < 2 ? "eager" : "lazy"}
+              fetchpriority={priority && index === 0 ? "high" : undefined}
               class="h-full min-h-[inherit] w-full object-cover transition duration-500 ease-out group-hover:scale-105"
-              data-i18n-alt={`projects.items.${project.id}.title`}
             />
             <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/20 to-transparent p-5">
               {
@@ -93,7 +118,7 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
               <p class="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-soft">
                 <T path={`projects.items.${project.id}.category`} />
               </p>
-              <h3 class="font-display text-[clamp(1.25rem,2.2vw,1.75rem)] uppercase tracking-[0.05em]">
+              <h3 class="font-display text-[clamp(1.25rem,2.2vw,1.75rem)] uppercase tracking-[0.05em] break-words hyphens-auto">
                 <T path={`projects.items.${project.id}.title`} />
               </h3>
             </div>
@@ -132,7 +157,6 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
         ×
       </button>
       <img id="lightbox-image" src="" alt="" class="max-h-[85vh] max-w-full object-contain" />
-      <p id="lightbox-caption" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-sm text-white"></p>
     </div>
   )
 }
@@ -140,14 +164,12 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
 <script>
   const lightbox = document.getElementById("lightbox");
   const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement | null;
-  const lightboxCaption = document.getElementById("lightbox-caption");
 
   document.querySelectorAll("[data-lightbox-trigger]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const el = btn as HTMLElement;
       if (!lightbox || !lightboxImage) return;
       lightboxImage.src = el.dataset.src ?? "";
-      if (lightboxCaption) lightboxCaption.textContent = "";
       lightbox.classList.remove("hidden");
       lightbox.classList.add("flex");
       lightbox.dataset.open = "true";

@@ -2,12 +2,10 @@
 import SiteLayout from "../app/layouts/SiteLayout.astro";
 import Certifications from "../widgets/Certifications/Certifications.astro";
 import { getMessages } from "../messages";
-import { getCertificates } from "../shared/api/content";
 
 const page = getMessages("ru").pages.certificates;
-const certifications = await getCertificates("ru");
 ---
 
 <SiteLayout title={page.title} description={page.description}>
-  <Certifications certifications={certifications} />
+  <Certifications />
 </SiteLayout>

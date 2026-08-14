@@ -1,6 +1,7 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
+import Photo from "../../shared/ui/Photo.astro";
 import { site, type CertificationItem } from "../../shared/config/site";
 
 interface Props {
@@ -79,12 +80,11 @@ const certificates = certifications.filter((c) => c.kind !== "award");
                     rel="noopener noreferrer"
                     class="block w-full shrink-0 overflow-hidden border border-border bg-white lg:w-[min(58%,36rem)]"
                   >
-                    <img
+                    <Photo
                       src={award.image}
                       alt={award.code}
-                      width="1400"
-                      height="989"
-                      loading="lazy"
+                      widths={[560, 840, 1200]}
+                      sizes="(min-width: 1024px) 36rem, 100vw"
                       class="aspect-[14/10] h-auto w-full object-contain object-center"
                     />
                   </a>

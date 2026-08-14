@@ -1,5 +1,6 @@
 ---
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
+import Photo from "../../shared/ui/Photo.astro";
 import { site, type ClientItem } from "../../shared/config/site";
 
 interface Props {
@@ -38,12 +39,13 @@ const clients = limit ? source.slice(0, limit) : source;
                     client.logoLarge ? "h-24" : "h-14",
                   ]}
                 >
-                  <img
+                  <Photo
                     src={client.logo}
                     alt={client.label}
+                    widths={[240, 360]}
+                    sizes="240px"
                     width="240"
                     height={client.logoLarge ? 96 : 56}
-                    loading="lazy"
                     class:list={[
                       "w-auto object-contain opacity-80 transition duration-300 group-hover:opacity-100",
                       client.logoLarge ? "max-h-24 max-w-[94%]" : "max-h-14 max-w-[88%]",

@@ -37,12 +37,10 @@ export interface Messages {
     contact: { title: string; description: string };
   };
   brand: {
-    name: string;
     legal: string;
     location: string;
   };
   nav: {
-    home: string;
     about: string;
     services: string;
     projects: string;
@@ -57,7 +55,6 @@ export interface Messages {
     submit: string;
     more: string;
     apply: string;
-    download: string;
     allServices: string;
     allProjects: string;
   };
@@ -75,7 +72,6 @@ export interface Messages {
     values: string[];
     stats: {
       years: string;
-      clients: string;
       projects: string;
       manHours: string;
     };
@@ -158,7 +154,6 @@ export interface Messages {
   };
   floating: {
     whatsapp: string;
-    call: string;
     whatsappMessage: string;
   };
 }

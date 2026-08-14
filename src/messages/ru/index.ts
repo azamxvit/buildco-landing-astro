@@ -33,12 +33,10 @@ const ru: Messages = {
     },
   },
   brand: {
-    name: "REAL CONSTRUCTION CO",
     legal: "ТОО «REAL CONSTRUCTION CO»",
     location: "Атырау · Казахстан",
   },
   nav: {
-    home: "Главная",
     about: "О компании",
     services: "Услуги",
     projects: "Проекты",
@@ -53,7 +51,6 @@ const ru: Messages = {
     submit: "Отправить заявку",
     more: "Подробнее",
     apply: "Оставить заявку",
-    download: "Скачать",
     allServices: "Все услуги",
     allProjects: "Все проекты",
   },
@@ -76,7 +73,6 @@ const ru: Messages = {
     ],
     stats: {
       years: "лет на рынке",
-      clients: "клиентов",
       projects: "проектов",
       manHours: "чел.-часов без травм",
     },
@@ -162,12 +158,12 @@ const ru: Messages = {
     subtitle: "Реальные объекты на промышленных и строительных площадках Казахстана.",
     filterAll: "Все",
     items: {
-      p1: { title: "Hyundai Premium Dealership, Atyrau", category: "Строительство", description: "Внешние сети для дилерского центра Hyundai в Атырау." },
-      p2: { title: "Hyundai Premium Dealership, Shymkent", category: "Строительство", description: "EPC-контракт дилерского центра Hyundai в Шымкенте." },
-      p3: { title: "Air Liquide, Pavlodar Refinery", category: "Строительство", description: "Строительные работы для Air Liquide на ПНХЗ." },
-      p4: { title: "Air Liquide, Atyrau Refinery", category: "Строительство", description: "Площадочные работы для Air Liquide на АНПЗ." },
-      p5: { title: "McDonald's, Astana", category: "Монтаж", description: "Монтажные и строительные работы McDonald’s в Актобе." },
-      p6: { title: "McDonald's, Astana", category: "Монтаж", description: "Строительство и отделка ресторана McDonald’s в Астане." },
+      p1: { title: "McDonald's, Almaty", category: "Строительство", description: "Монтаж металлокаркаса ресторана McDonald’s в Алматы." },
+      p2: { title: "McDonald's, Almaty", category: "Строительство", description: "Устройство основания и металлоконструкций McDonald’s в Алматы." },
+      p3: { title: "McDonald's Atakent, Almaty", category: "Строительство", description: "Строительно-монтажные работы для McDonald’s на Атакенте в Алматы." },
+      p4: { title: "Sicim — Plant", category: "Строительство", description: "Монтаж металлоконструкций на заводе для Sicim." },
+      p5: { title: "McDonald's, Almaty", category: "Монтаж", description: "Монтажные и строительные работы McDonald’s в Алматы." },
+      p6: { title: "McDonald's, Aktobe", category: "Монтаж", description: "Строительство и отделка ресторана McDonald’s в Актобе." },
       p7: { title: "Tengizchevroil — Turnaround Office", category: "Монтаж", description: "Поставка и строительство офиса Turnaround для TCO." },
       p8: { title: "Tengizchevroil — Social Project", category: "Монтаж", description: "Строительство общежития для колледжа (соцпроект TCO)." },
       p9: { title: "Kentech / TCO FGP", category: "Монтаж", description: "Сварка, покрытие и металлоконструкции на подстанциях TCO FGP/3GP." },
@@ -275,7 +271,6 @@ const ru: Messages = {
   },
   floating: {
     whatsapp: "WhatsApp",
-    call: "Позвонить",
     whatsappMessage:
       "Здравствуйте! Пишу вам с сайта REAL CONSTRUCTION CO по поводу строительства / услуг.",
   },

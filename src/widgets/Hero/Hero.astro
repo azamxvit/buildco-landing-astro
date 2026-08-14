@@ -1,21 +1,57 @@
 ---
+import { getImage } from "astro:assets";
 import Button from "../../shared/ui/Button.astro";
 import T from "../../shared/ui/T.astro";
 import { site } from "../../shared/config/site";
+import { resolveImage } from "../../shared/lib/images";
+
+const slideWidths = [640, 960, 1280, 1600];
+
+const slides = await Promise.all(
+  site.heroSlides.map(async (path) => {
+    const asset = resolveImage(path);
+    if (!asset) return { fallback: path, avif: undefined, webp: undefined };
+
+    const widths = slideWidths.filter((width) => width <= asset.width);
+    const [avif, webp] = await Promise.all([
+      getImage({ src: asset, widths, sizes: "100vw", format: "avif", quality: 45 }),
+      getImage({ src: asset, widths, sizes: "100vw", format: "webp", quality: 68 }),
+    ]);
+
+    return { fallback: webp.src, avif: avif.srcSet.attribute, webp: webp.srcSet.attribute };
+  }),
+);
 ---
 
 <section class="relative flex min-h-screen items-end overflow-hidden pt-[var(--spacing-header)]" id="top" aria-label="Hero">
   <div class="absolute inset-0" aria-hidden="true">
     {
-      site.heroSlides.map((src, index) => (
-        <div
-          class:list={[
-            "absolute inset-0 bg-cover bg-center opacity-0 scale-105 transition-[opacity,transform] duration-[1200ms] ease-out data-[active=true]:opacity-100 data-[active=true]:scale-100 data-[active=true]:duration-[6000ms]",
-          ]}
-          style={`background-image: url('${src}')`}
-          data-hero-slide
-          data-active={index === 0 ? "true" : "false"}
-        />
+      slides.map((slide, index) => (
+        <picture>
+          {slide.avif &&
+            (index === 0 ? (
+              <source type="image/avif" srcset={slide.avif} sizes="100vw" />
+            ) : (
+              <source type="image/avif" data-srcset={slide.avif} sizes="100vw" />
+            ))}
+          {slide.webp &&
+            (index === 0 ? (
+              <source type="image/webp" srcset={slide.webp} sizes="100vw" />
+            ) : (
+              <source type="image/webp" data-srcset={slide.webp} sizes="100vw" />
+            ))}
+          <img
+            src={index === 0 ? slide.fallback : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"}
+            data-deferred-src={index === 0 ? undefined : slide.fallback}
+            alt=""
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchpriority={index === 0 ? "high" : "low"}
+            decoding="async"
+            class="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-[opacity,transform] duration-[1200ms] ease-out data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:duration-[6000ms]"
+            data-hero-slide
+            data-active={index === 0 ? "true" : "false"}
+          />
+        </picture>
       ))
     }
   </div>
@@ -26,17 +62,17 @@ import { site } from "../../shared/config/site";
   ></div>
 
   <div class="page-container relative z-10 pb-20 pt-24 md:pb-28">
-    <p class="reveal mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+    <p class="reveal-now mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
       <T path="brand.location" />
     </p>
-    <h1 class="reveal reveal-delay-1 mb-5 max-w-[14ch] font-display text-[clamp(3.75rem,11vw,8rem)] uppercase leading-[0.95] tracking-[0.04em] text-white">
+    <h1 class="reveal-now reveal-delay-1 mb-5 max-w-[14ch] font-display text-[clamp(3.75rem,11vw,8rem)] uppercase leading-[0.95] tracking-[0.04em] text-white">
       {site.brand}
     </h1>
-    <div class="reveal reveal-delay-1 mb-6 h-1 w-16 bg-accent" aria-hidden="true"></div>
-    <p class="reveal reveal-delay-2 mb-10 max-w-xl font-display text-[clamp(1.5rem,3.5vw,2.25rem)] uppercase leading-snug tracking-[0.06em] text-accent">
+    <div class="reveal-now reveal-delay-1 mb-6 h-1 w-16 bg-accent" aria-hidden="true"></div>
+    <p class="reveal-now reveal-delay-2 mb-10 max-w-xl font-display text-[clamp(1.5rem,3.5vw,2.25rem)] uppercase leading-snug tracking-[0.06em] text-accent">
       <T path="hero.slogan" />
     </p>
-    <div class="reveal reveal-delay-3 flex flex-wrap gap-3">
+    <div class="reveal-now reveal-delay-3 flex flex-wrap gap-3">
       <Button href="/contact" variant="primary">
         <T path="cta.primary" />
       </Button>
@@ -56,13 +92,42 @@ import { site } from "../../shared/config/site";
 </section>
 
 <script>
-  const slides = document.querySelectorAll<HTMLElement>("[data-hero-slide]");
-  if (slides.length > 1) {
+  const slides = document.querySelectorAll<HTMLImageElement>("[data-hero-slide]");
+
+  const startRotation = () => {
+    if (slides.length < 2) return;
     let active = 0;
     setInterval(() => {
       slides[active]?.setAttribute("data-active", "false");
       active = (active + 1) % slides.length;
       slides[active]?.setAttribute("data-active", "true");
     }, 5500);
+  };
+
+  // Only the first slide ships with the document; the rest would otherwise
+  // compete with it for bandwidth and push out LCP.
+  const loadRemainingSlides = () => {
+    slides.forEach((img) => {
+      const deferred = img.dataset.deferredSrc;
+      if (!deferred) return;
+      img
+        .closest("picture")
+        ?.querySelectorAll<HTMLSourceElement>("source[data-srcset]")
+        .forEach((source) => {
+          source.srcset = source.dataset.srcset ?? "";
+        });
+      img.src = deferred;
+      delete img.dataset.deferredSrc;
+    });
+    startRotation();
+  };
+
+  const whenIdle = (fn: () => void) =>
+    "requestIdleCallback" in window ? requestIdleCallback(fn, { timeout: 2000 }) : setTimeout(fn, 300);
+
+  if (document.readyState === "complete") {
+    whenIdle(loadRemainingSlides);
+  } else {
+    window.addEventListener("load", () => whenIdle(loadRemainingSlides), { once: true });
   }
 </script>

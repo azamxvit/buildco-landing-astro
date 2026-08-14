@@ -9,24 +9,18 @@ import Certifications from "../widgets/Certifications/Certifications.astro";
 import CTA from "../widgets/CTA/CTA.astro";
 import Contact from "../widgets/Contact/Contact.astro";
 import { getMessages } from "../messages";
-import { getServices, getProjects, getPartners, getCertificates } from "../shared/api/content";
+import { site } from "../shared/config/site";
 
 const meta = getMessages("ru").meta;
-const [services, projects, partners, certifications] = await Promise.all([
-  getServices("ru"),
-  getProjects("ru"),
-  getPartners(),
-  getCertificates("ru"),
-]);
 ---
 
 <SiteLayout title={meta.title} description={meta.description} flush>
   <Hero />
   <About showMoreLink />
-  <Services limit={6} services={services} />
-  <Projects limit={6} projects={projects} />
+  <Services limit={6} />
+  <Projects limit={6} projects={site.featuredProjects} />
   <CTA />
-  <Clients clients={partners} />
-  <Certifications certifications={certifications} />
+  <Clients />
+  <Certifications />
   <Contact />
 </SiteLayout>
