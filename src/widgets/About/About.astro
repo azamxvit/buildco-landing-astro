@@ -2,6 +2,7 @@
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
 import Button from "../../shared/ui/Button.astro";
+import Photo from "../../shared/ui/Photo.astro";
 import { site } from "../../shared/config/site";
 
 interface Props {
@@ -50,12 +51,11 @@ const { showMoreLink = false } = Astro.props;
 
     <div class="reveal relative lg:sticky lg:top-28">
       <span class="pointer-events-none absolute -inset-x-3 -top-6 -bottom-3 border border-accent/45" aria-hidden="true"></span>
-      <img
+      <Photo
         src="/images/projects/rcc/rcc-08.jpg"
         alt={site.brand}
-        width="960"
-        height="1280"
-        loading="lazy"
+        widths={[480, 720, 1024]}
+        sizes="(min-width: 1024px) 480px, 100vw"
         class="relative h-72 w-full object-cover contrast-[1.05] saturate-90 sm:h-96 lg:h-[26rem]"
       />
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>

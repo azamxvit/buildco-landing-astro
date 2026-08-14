@@ -39,7 +39,7 @@ const kz: Messages = {
   },
   nav: {
     home: "Басты бет",
-    about: "Компания туралы",
+    about: "Біз туралы",
     services: "Қызметтер",
     projects: "Жобалар",
     clients: "Клиенттер",

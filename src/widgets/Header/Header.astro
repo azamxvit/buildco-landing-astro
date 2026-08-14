@@ -10,22 +10,23 @@ import { site } from "../../shared/config/site";
   data-scrolled="false"
 >
   <div class="page-container flex h-full items-center gap-2 sm:gap-4">
-    <a href="/" class="relative z-10 flex min-w-0 shrink items-center" aria-label={site.brand}>
+    <a href="/" class="relative z-10 flex shrink-0 items-center" aria-label={site.brand}>
       <img
         src="/images/rcc-logo.svg"
         alt={site.brand}
         width="180"
         height="64"
+        fetchpriority="high"
         class="h-8 w-auto max-w-[7.25rem] object-contain object-left sm:h-10 sm:max-w-[11rem] lg:h-12 lg:max-w-[14.5rem]"
       />
     </a>
 
-    <nav class="ml-auto hidden items-center gap-6 lg:flex" aria-label="Primary">
+    <nav class="ml-auto hidden items-center gap-4 xl:flex" aria-label="Primary">
       {
         site.nav.map((item) => (
           <a
             href={item.href}
-            class="text-[0.8125rem] font-medium tracking-wide text-soft transition hover:text-accent"
+            class="whitespace-nowrap text-[0.8125rem] font-medium tracking-wide text-soft transition hover:text-accent"
           >
             <T path={`nav.${item.key}`} />
           </a>
@@ -33,7 +34,7 @@ import { site } from "../../shared/config/site";
       }
     </nav>
 
-    <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-3 lg:ml-0">
+    <div class="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-3 xl:ml-0">
       <div
         class="inline-flex overflow-hidden border border-border-strong"
         role="group"
@@ -54,7 +55,7 @@ import { site } from "../../shared/config/site";
       </div>
 
       <a
-        class="hidden items-center gap-2 text-sm font-semibold transition hover:text-accent lg:inline-flex"
+        class="hidden items-center gap-2 whitespace-nowrap text-sm font-semibold transition hover:text-accent md:inline-flex"
         href={site.contact.phoneHref}
       >
         {site.contact.phone}
@@ -62,14 +63,14 @@ import { site } from "../../shared/config/site";
 
       <a
         href="/contact"
-        class="hidden min-h-12 items-center justify-center border border-transparent bg-accent px-6 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-on-accent shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_35%,transparent)] transition duration-300 hover:-translate-y-0.5 hover:bg-accent-hover lg:inline-flex"
+        class="hidden min-h-12 items-center justify-center whitespace-nowrap border border-transparent bg-accent px-5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-on-accent shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_35%,transparent)] transition duration-300 hover:-translate-y-0.5 hover:bg-accent-hover md:inline-flex"
       >
         <T path="cta.call" />
       </a>
 
       <button
         type="button"
-        class="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center border border-border-strong bg-transparent text-fg sm:h-10 sm:w-10 lg:hidden"
+        class="inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center border border-border-strong bg-transparent text-fg sm:h-10 sm:w-10 xl:hidden"
         id="menu-toggle"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -83,7 +84,7 @@ import { site } from "../../shared/config/site";
   </div>
 
   <nav
-    class="absolute inset-x-0 top-full flex max-h-0 flex-col gap-4 overflow-hidden border-b border-border bg-bg-elevated px-6 opacity-0 transition-all duration-300 data-[open=true]:max-h-96 data-[open=true]:py-6 data-[open=true]:opacity-100 lg:hidden"
+    class="absolute inset-x-0 top-full flex max-h-0 flex-col gap-4 overflow-hidden border-b border-border bg-bg-elevated px-6 opacity-0 transition-all duration-300 data-[open=true]:max-h-96 data-[open=true]:py-6 data-[open=true]:opacity-100 xl:hidden"
     id="mobile-nav"
     aria-label="Mobile"
     data-open="false"

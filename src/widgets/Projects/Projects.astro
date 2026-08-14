@@ -1,21 +1,47 @@
 ---
+import { getImage } from "astro:assets";
 import SectionTitle from "../../shared/ui/SectionTitle.astro";
 import T from "../../shared/ui/T.astro";
 import Button from "../../shared/ui/Button.astro";
+import Photo from "../../shared/ui/Photo.astro";
 import { site, type ProjectItem } from "../../shared/config/site";
+import { resolveImage } from "../../shared/lib/images";
 
 interface Props {
   limit?: number;
   enableFilter?: boolean;
   enableLightbox?: boolean;
   projects?: ProjectItem[];
+  /** Set on pages where the grid is the first thing above the fold. */
+  priority?: boolean;
 }
 
-const { limit, enableFilter = false, enableLightbox = true, projects: projectsProp } = Astro.props;
+const {
+  limit,
+  enableFilter = false,
+  enableLightbox = true,
+  projects: projectsProp,
+  priority = false,
+} = Astro.props;
 const source = projectsProp ?? site.projects;
 const items = limit ? source.slice(0, limit) : source;
 const categories = [...new Set(source.map((p) => p.categoryKey))];
 const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
+
+// The lightbox needs a larger rendition than the card itself.
+const cards = await Promise.all(
+  items.map(async (project) => {
+    const asset = resolveImage(project.image);
+    if (!asset) return { project, fullSrc: project.image };
+    const full = await getImage({
+      src: asset,
+      format: "webp",
+      width: Math.min(asset.width, 1280),
+      quality: 68,
+    });
+    return { project, fullSrc: full.src };
+  }),
+);
 ---
 
 <section class="py-[var(--spacing-section)]" id="projects">
@@ -55,7 +81,7 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
 
     <div class="grid grid-cols-12 gap-4" data-projects-grid>
       {
-        items.map((project, index) => (
+        cards.map(({ project, fullSrc }, index) => (
           <article
             class:list={[
               "reveal group relative col-span-12 overflow-hidden sm:col-span-6",
@@ -69,16 +95,17 @@ const clientById = Object.fromEntries(site.clients.map((c) => [c.id, c.label]));
               type="button"
               class="absolute inset-0 z-10 cursor-zoom-in"
               data-lightbox-trigger
-              data-src={project.image}
+              data-src={fullSrc}
               data-title-path={`projects.items.${project.id}.title`}
               aria-label="Open image"
             />
-            <img
+            <Photo
               src={project.image}
               alt=""
-              width="800"
-              height="600"
-              loading="lazy"
+              widths={[400, 640, 800]}
+              sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+              loading={priority && index < 2 ? "eager" : "lazy"}
+              fetchpriority={priority && index === 0 ? "high" : undefined}
               class="h-full min-h-[inherit] w-full object-cover transition duration-500 ease-out group-hover:scale-105"
               data-i18n-alt={`projects.items.${project.id}.title`}
             />
