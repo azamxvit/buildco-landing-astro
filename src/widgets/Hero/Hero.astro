@@ -41,7 +41,7 @@ const slides = await Promise.all(
               <source type="image/webp" data-srcset={slide.webp} sizes="100vw" />
             ))}
           <img
-            src={index === 0 ? slide.fallback : undefined}
+            src={index === 0 ? slide.fallback : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"}
             data-deferred-src={index === 0 ? undefined : slide.fallback}
             alt=""
             loading={index === 0 ? "eager" : "lazy"}
