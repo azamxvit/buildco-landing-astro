@@ -1,3 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="TYAN-SHAN">
-  <text x="160" y="56" text-anchor="middle" font-family="system-ui,Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f5f5f5" letter-spacing="0.06em">TYAN-SHAN</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" role="img" aria-label="Tyan-Shan">
+  <text
+    x="210"
+    y="54"
+    text-anchor="middle"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="34"
+    font-weight="800"
+    fill="#F5F5F5"
+    letter-spacing="0.08em"
+  >TYAN-SHAN</text>
 </svg>

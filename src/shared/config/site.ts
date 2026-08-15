@@ -229,8 +229,8 @@ export class SiteConfig {
     new ClientItem("cct", "ТОО «Caspian Contractors Trust»", "/images/clients/cct.png", "CCT"),
     new ClientItem("bonatti", "Bonatti S.p.A.", "/images/clients/bonatti.png", "Bonatti"),
     new ClientItem("mimas", "Mimas Muhendislik Insaat LLP", "/images/clients/mimas.png", "Mimas"),
-    new ClientItem("tyanshan", "Tyan-Shan Engineering LLP", "/images/clients/tyanshan.svg", "Tyan-Shan"),
-    new ClientItem("kentech", "Kentech LLP", "/images/clients/kentech.svg", "Kentech"),
+    new ClientItem("tyanshan", "Tyan-Shan Engineering LLP", "/images/clients/tyanshan.svg", "Tyan-Shan", true),
+    new ClientItem("kentech", "Kentech LLP", "/images/clients/kentech.svg", "Kentech", true),
   ];
 
   readonly certifications: CertificationItem[] = [
